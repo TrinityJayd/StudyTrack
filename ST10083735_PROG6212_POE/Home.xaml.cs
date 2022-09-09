@@ -16,25 +16,18 @@ using System.Windows.Shapes;
 namespace ST10083735_PROG6212_POE
 {
     /// <summary>
-    /// Interaction logic for LandingPage.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class LandingPage : UserControl
+    public partial class Home : UserControl
     {
-        public event EventHandler HideButtonClicked;
-
-        public LandingPage()
+        public Home()
         {
             InitializeComponent();
         }
 
-        //Author:andreask
-        //https://stackoverflow.com/questions/25585491/showing-user-control-from-another-user-controls-button-click-in-main-window  
         private void getStartedbtn_Click(object sender, RoutedEventArgs e)
         {
-            if (HideButtonClicked != null)
-                HideButtonClicked(this, EventArgs.Empty);
-        }
 
-        
+        }
     }
 }

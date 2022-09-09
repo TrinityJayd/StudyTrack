@@ -8,12 +8,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Arrow.png" />
+    <None Remove="undraw_Bookshelves_re_lxoy.png" />
+    <None Remove="undraw_Brainstorming_re_1lmw.png" />
+    <None Remove="undraw_Knowledge_re_5v9l.png" />
+    <None Remove="undraw_Learning_re_32qv.png" />
+    <None Remove="undraw_Online_test_re_kyfx.png" />
+    <None Remove="undraw_Reading_re_29f8.png" />
+    <None Remove="undraw_Reading_time_re_phf7.png" />
+    <None Remove="undraw_road_to_knowledge_m8s0.png" />
+    <None Remove="undraw_Scrum_board_re_wk7v.png" />
     <None Remove="undraw_Studying_re_deca.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Arrow.png" />
+    <Resource Include="undraw_Bookshelves_re_lxoy.png" />
+    <Resource Include="undraw_Brainstorming_re_1lmw.png" />
+    <Resource Include="undraw_Knowledge_re_5v9l.png" />
+    <Resource Include="undraw_Learning_re_32qv.png" />
+    <Resource Include="undraw_Online_test_re_kyfx.png" />
+    <Resource Include="undraw_Reading_re_29f8.png" />
+    <Resource Include="undraw_Reading_time_re_phf7.png" />
+    <Resource Include="undraw_road_to_knowledge_m8s0.png" />
+    <Resource Include="undraw_Scrum_board_re_wk7v.png" />
     <Resource Include="undraw_Studying_re_deca.png" />
   </ItemGroup>
 

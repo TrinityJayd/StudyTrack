@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
 
-        <Button BorderThickness="2" Name="homebtn" Content="Home" HorizontalAlignment="Left" Margin="626,2,0,0" VerticalAlignment="Top" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="16" Click="homebtn_Click">
+        <Button Name="homebtn" Content="Home"  HorizontalAlignment="Left" Margin="626,2,0,0" VerticalAlignment="Top" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="16" Click="homebtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">
@@ -27,18 +27,26 @@
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter TargetName="border" Property="BorderBrush" Value="#8C52FF" />
                                     </Trigger>
+
+                                    
+                                    
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
+
+                    
                 </Style>
 
             </Button.Resources>
+
+            
         </Button>
 
-        <Grid x:Name="GridContainer" Margin="-1,25,1,23" Grid.RowSpan="2">
-
+        <Grid x:Name="GridContainer" Margin="-1,25,1,10" Grid.RowSpan="2">
             <local:LandingPage x:Name="landingPage" Visibility="Collapsed" Grid.ColumnSpan="2"></local:LandingPage>
+            <local:Home x:Name="home" Visibility="Collapsed" Grid.ColumnSpan="2"></local:Home>
+
 
         </Grid>
         <Label x:Name="mainLb" Content="studytrack" HorizontalAlignment="Left" Height="32" Margin="10,-7,0,0" VerticalAlignment="Top" Width="123" FontFamily="Candara" FontSize="18" MouseDown="mainLb_MouseDown"/>

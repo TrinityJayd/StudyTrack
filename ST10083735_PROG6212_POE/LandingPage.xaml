@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:ST10083735_PROG6212_POE"
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="907" Height="450">
-    <Grid Background="White" Width="907">
+    <Grid x:Name="landingGrid" Background="White" Width="907" Margin="0,0,0,-34">
+       
         <RichTextBox x:Name="headlinertb" Margin="31,10,0,0" BorderThickness="0" FontFamily="Arial Black" FontSize="50" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnlyCaretVisible="True" Width="375">
             <FlowDocument>
                 <Paragraph>
@@ -16,8 +17,8 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Image x:Name="landingImg" HorizontalAlignment="Left" Height="465" Margin="396,10,0,0" VerticalAlignment="Top" Width="541" Source="/undraw_Studying_re_deca.png" Stretch="UniformToFill"/>
-        <Button x:Name="getStartedbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="18" Margin="40,195,0,0" VerticalAlignment="Top" Width="197"  Foreground="White" Height="30">
+        <Image x:Name="landingImg" HorizontalAlignment="Left" Height="485" Margin="396,10,0,0" VerticalAlignment="Top" Width="541" Source="/undraw_Studying_re_deca.png" Stretch="UniformToFill"/>
+        <Button x:Name="getStartedbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="18" Margin="40,195,0,0" VerticalAlignment="Top" Width="197"  Foreground="White" Height="30" Click="getStartedbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>
@@ -44,5 +45,8 @@
 
             </Button.Resources>
         </Button>
-    </Grid>
+
+        
+    </Grid>   
+    
 </UserControl>
