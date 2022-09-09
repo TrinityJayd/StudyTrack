@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ST10083735_PROG6212_POE"
         mc:Ignorable="d"
-        Title="studytrack" Height="572" Width="907" WindowStartupLocation="CenterScreen">
+        Title="studytrack" Height="572" Width="907" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="63*"/>
@@ -46,6 +46,8 @@
         <Grid x:Name="GridContainer" Margin="-1,25,1,10" Grid.RowSpan="2">
             <local:LandingPage x:Name="landingPage" Visibility="Collapsed" Grid.ColumnSpan="2"></local:LandingPage>
             <local:Home x:Name="home" Visibility="Collapsed" Grid.ColumnSpan="2"></local:Home>
+            <local:AddModule x:Name="addModule" Visibility="Collapsed" Grid.ColumnSpan="2"></local:AddModule>
+            <local:SemesterDetails x:Name="semesterDetails" Visibility="Collapsed" Grid.ColumnSpan="2"></local:SemesterDetails>
 
 
         </Grid>
