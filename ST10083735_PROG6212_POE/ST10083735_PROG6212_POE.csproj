@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Arrow.png" />
+    <None Remove="undraw_Studying_re_deca.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Arrow.png" />
+    <Resource Include="undraw_Studying_re_deca.png" />
+  </ItemGroup>
+
+</Project>
