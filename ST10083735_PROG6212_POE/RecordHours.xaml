@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="ST10083735_PROG6212_POE.RecordHours"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ST10083735_PROG6212_POE"
+             mc:Ignorable="d" 
+             d:DesignHeight="521" d:DesignWidth="907" Background="White" x:Name="recordHours">
+    <Grid>
+        <Label x:Name="headinglb" Content="Record Hours" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="316"/>
+        <Label x:Name="moduleCodelb" Content="Module Code" HorizontalAlignment="Left" Margin="29,177,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="351"/>
+        <TextBox BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleCodetbx" HorizontalAlignment="Left" Margin="34,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Label x:Name="hourslb" Content="Hours studied" HorizontalAlignment="Left" Margin="29,276,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="447"/>
+        <TextBox BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="hourstbx" HorizontalAlignment="Left" Margin="34,322,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="694,431,0,0" VerticalAlignment="Top" Width="145"  Foreground="White" Height="35" Click="completebtn_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Button}" >
+                    <Setter Property="Background" Value="#8C52FF"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" BorderBrush="White" Background="{TemplateBinding Background}" CornerRadius="18">
+                                    <ContentPresenter   HorizontalAlignment="Left" VerticalAlignment="Center" Content="       Complete"/>
+
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter  Property="Background" Value="#7e49e5" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+
+                </Style>
+
+            </Button.Resources>
+        </Button>
+        <Label x:Name="datelb" Content="Date studied" HorizontalAlignment="Left" Margin="29,374,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="447"/>
+        <TextBox BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="datetbx" HorizontalAlignment="Left" Margin="34,420,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <RichTextBox x:Name="subHeadinglb" Margin="26,68,458,344" FontSize="32" FontFamily="Segoe UI Semilight" BorderThickness="0">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="Record the hours you studied for a module. "/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+    </Grid>
+</UserControl>
