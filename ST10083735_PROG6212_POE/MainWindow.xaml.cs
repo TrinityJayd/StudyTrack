@@ -21,6 +21,13 @@ namespace ST10083735_PROG6212_POE
             landingPage.HideButtonClicked += OnHideButtonClicked;
             addModule.HideModulePageButtonClicked += OnHideModulePageButtonClicked;
             semesterDetails.HideSemesterDetailsButtonClicked += OnHideSemesterDetailsButtonClicked;
+            home.ShowStudyHoursBtnClicked += OnShowStudyHoursBtnClicked;
+        }
+
+        private void OnShowStudyHoursBtnClicked(object? sender, EventArgs e)
+        {
+            home.Visibility = Visibility.Collapsed;
+            recordHours.Visibility = Visibility.Visible;
         }
 
         private void OnHideSemesterDetailsButtonClicked(object? sender, EventArgs e)
@@ -50,6 +57,7 @@ namespace ST10083735_PROG6212_POE
             home.Visibility = Visibility.Collapsed;
             addModule.Visibility = Visibility.Collapsed;
             semesterDetails.Visibility = Visibility.Collapsed;
+            recordHours.Visibility = Visibility.Collapsed;
 
             control.Visibility = Visibility.Visible;
 

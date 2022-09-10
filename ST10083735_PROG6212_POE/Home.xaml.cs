@@ -20,6 +20,7 @@ namespace ST10083735_PROG6212_POE
     /// </summary>
     public partial class Home : UserControl
     {
+        public event EventHandler ShowStudyHoursBtnClicked;
         public Home()
         {
             InitializeComponent();
@@ -27,7 +28,8 @@ namespace ST10083735_PROG6212_POE
 
         private void getStartedbtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ShowStudyHoursBtnClicked != null)
+                ShowStudyHoursBtnClicked(this, EventArgs.Empty);
         }
     }
 }
