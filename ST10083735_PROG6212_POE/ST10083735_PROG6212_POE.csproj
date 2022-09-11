@@ -21,6 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Modules">
+      <HintPath>..\Modules\bin\Debug\net6.0\Modules.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="undraw_Bookshelves_re_lxoy.png" />
     <Resource Include="undraw_Brainstorming_re_1lmw.png" />
     <Resource Include="undraw_Knowledge_re_5v9l.png" />

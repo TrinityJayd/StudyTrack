@@ -18,7 +18,7 @@
         <Label x:Name="classHourslb" Content="Class hours per week" HorizontalAlignment="Left" Margin="26,395,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="226"/>
         <TextBox BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="classHourstbx" HorizontalAlignment="Left" Margin="31,437,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Label x:Name="addModulePresslb" Content="+ Add Module" HorizontalAlignment="Left" Margin="491,427,0,0" VerticalAlignment="Top" BorderThickness="0,0,0,2" BorderBrush="#8C52FF" FontSize="18" Foreground="#FF8C52FF" Height="39" Width="131"/>
-        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="694,431,0,0" VerticalAlignment="Top" Width="145"  Foreground="White" Height="35" Click="completebtn_Click">
+        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="694,431,0,0" VerticalAlignment="Top" Width="139"  Foreground="White" Height="35" Click="completebtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>
@@ -26,7 +26,7 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border x:Name="border" BorderBrush="White" Background="{TemplateBinding Background}" CornerRadius="18">
-                                    <ContentPresenter   HorizontalAlignment="Left" VerticalAlignment="Center" Content="       Complete"/>
+                                    <ContentPresenter   HorizontalAlignment="Left" VerticalAlignment="Center" Content="      Complete"/>
 
                                 </Border>
 

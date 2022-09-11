@@ -16,20 +16,15 @@ using System.Windows.Shapes;
 namespace ST10083735_PROG6212_POE
 {
     /// <summary>
-    /// Interaction logic for RecordHours.xaml
+    /// Interaction logic for ViewModules.xaml
     /// </summary>
-    public partial class RecordHours : UserControl
+    public partial class ViewModules : UserControl
     {
-        public event EventHandler ShowRecordHoursClicked;
-        public RecordHours()
+        public ViewModules()
         {
             InitializeComponent();
         }
 
-        private void completebtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (ShowRecordHoursClicked != null)
-                ShowRecordHoursClicked(this, EventArgs.Empty);
-        }
+       
     }
 }

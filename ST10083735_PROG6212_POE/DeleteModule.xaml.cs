@@ -16,20 +16,21 @@ using System.Windows.Shapes;
 namespace ST10083735_PROG6212_POE
 {
     /// <summary>
-    /// Interaction logic for RecordHours.xaml
+    /// Interaction logic for DeleteModule.xaml
     /// </summary>
-    public partial class RecordHours : UserControl
+    public partial class DeleteModule : UserControl
     {
-        public event EventHandler ShowRecordHoursClicked;
-        public RecordHours()
+        public event EventHandler HideDeleteButtonClicked;
+
+        public DeleteModule()
         {
             InitializeComponent();
         }
 
         private void completebtn_Click(object sender, RoutedEventArgs e)
         {
-            if (ShowRecordHoursClicked != null)
-                ShowRecordHoursClicked(this, EventArgs.Empty);
+            if (HideDeleteButtonClicked != null)
+                HideDeleteButtonClicked(this, EventArgs.Empty);
         }
     }
 }

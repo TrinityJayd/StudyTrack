@@ -49,6 +49,8 @@
             <local:AddModule x:Name="addModule" Visibility="Collapsed" Grid.ColumnSpan="2"></local:AddModule>
             <local:SemesterDetails x:Name="semesterDetails" Visibility="Collapsed" Grid.ColumnSpan="2"></local:SemesterDetails>
             <local:RecordHours x:Name="recordHours" Visibility="Collapsed" Grid.ColumnSpan="2"></local:RecordHours>
+            <local:DeleteModule x:Name="deleteModule" Visibility="Collapsed" Grid.ColumnSpan="2"></local:DeleteModule>
+            <local:ViewModules x:Name="viewModule" Visibility="Collapsed" Grid.ColumnSpan="2"></local:ViewModules>
 
 
         </Grid>
