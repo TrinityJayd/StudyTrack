@@ -49,6 +49,14 @@ namespace ST10083735_PROG6212_POE
 
         private void OnShowModulesBtnClicked(object? sender, EventArgs e)
         {
+            if(deleteModule.modules == null)
+            {
+                viewModule.modules = addModule.modules;
+            }
+            else
+            {
+                viewModule.modules = deleteModule.modules;
+            }
             SetActiveUserControl(viewModule);
 
         }
@@ -59,8 +67,7 @@ namespace ST10083735_PROG6212_POE
         }
 
         private void OnShowDeleteModulesBtnClicked(object? sender, EventArgs e)
-        {
-           
+        {          
             deleteModule.modules = addModule.modules;
             SetActiveUserControl(deleteModule);
 

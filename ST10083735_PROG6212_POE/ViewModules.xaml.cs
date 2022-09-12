@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Modules;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +22,22 @@ namespace ST10083735_PROG6212_POE
     /// </summary>
     public partial class ViewModules : UserControl
     {
+        public List<Module> modules { get; set; }
         public ViewModules()
         {
             InitializeComponent();
+            
         }
 
-       
+        private void viewModules_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+           
+            if (viewModules.Visibility == Visibility.Visible)
+            {
+                moduleDG.ItemsSource = modules;
+            }
+        }
+
+        
     }
 }

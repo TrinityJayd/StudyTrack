@@ -1,4 +1,6 @@
-﻿namespace Modules
+﻿using System.ComponentModel;
+
+namespace Modules
 {
     public class Module
     {
@@ -15,9 +17,13 @@
             this.ClassHoursPerWeek = classHoursPerWeek;
         }
 
+        
         public string ModuleCode { get => moduleCode; set => moduleCode = value; }
+
+        [DisplayName("Module Name")]
         public string ModuleName { get => moduleName; set => moduleName = value; }
         public int Credits { get => credits; set => credits = value; }
+        [DisplayName("Class Hours Per Week")]
         public int ClassHoursPerWeek { get => classHoursPerWeek; set => classHoursPerWeek = value; }
        
     }
