@@ -14,10 +14,9 @@
         <Label x:Name="moduleNamelb" Content="Module Name" HorizontalAlignment="Left" Margin="26,216,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="159"/>
         <TextBox BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleNametbx" HorizontalAlignment="Left" Margin="31,258,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Label x:Name="numCreditslb" Content="Number of Credits" HorizontalAlignment="Left" Margin="26,310,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="200"/>
-        <TextBox BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="numCreditstbx" HorizontalAlignment="Left" Margin="31,352,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <TextBox DataObject.Pasting="PasteNumericValidation" PreviewTextInput="TypeNumericValidation" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="numCreditstbx" HorizontalAlignment="Left" Margin="31,352,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Label x:Name="classHourslb" Content="Class hours per week" HorizontalAlignment="Left" Margin="26,395,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="226"/>
-        <TextBox BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="classHourstbx" HorizontalAlignment="Left" Margin="31,437,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
-        <Label x:Name="addModulePresslb" Content="+ Add Module" HorizontalAlignment="Left" Margin="491,427,0,0" VerticalAlignment="Top" BorderThickness="0,0,0,2" BorderBrush="#8C52FF" FontSize="18" Foreground="#FF8C52FF" Height="39" Width="131"/>
+        <TextBox DataObject.Pasting="PasteNumericValidation" PreviewTextInput="TypeNumericValidation" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="classHourstbx" HorizontalAlignment="Left" Margin="31,437,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="694,431,0,0" VerticalAlignment="Top" Width="139"  Foreground="White" Height="35" Click="completebtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
@@ -26,7 +25,7 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border x:Name="border" BorderBrush="White" Background="{TemplateBinding Background}" CornerRadius="18">
-                                    <ContentPresenter   HorizontalAlignment="Left" VerticalAlignment="Center" Content="      Complete"/>
+                                    <ContentPresenter  HorizontalAlignment="Left" VerticalAlignment="Center" Content="      Complete"/>
 
                                 </Border>
 
@@ -45,6 +44,33 @@
 
             </Button.Resources>
         </Button>
+        <Label x:Name="errorlb" Visibility="Hidden" Content="Missing Information. All fields are required." HorizontalAlignment="Left" Margin="479,379,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="367"/>
+        <Button x:Name="addModulebtn" FontSize="18"  Content="+ Add Module" HorizontalAlignment="Left" Margin="512,437,0,0" VerticalAlignment="Top" Background="White" Foreground="#FF8C52FF" Click="addModulebtn_Click" IsEnabled="False">
+            <Button.Resources>
+                <Style TargetType="{x:Type Button}" >
+                    
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" Padding="0,0,0,3" BorderThickness="0,0,0,2"  BorderBrush="#FF8C52FF" Background="{TemplateBinding Background}">
+                                    <ContentPresenter   HorizontalAlignment="Left" VerticalAlignment="Center" Content="+ Add Module"/>
 
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter  Property="Background" Value="Transparent" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+
+                </Style>
+
+            </Button.Resources>
+        </Button>
     </Grid>
 </UserControl>

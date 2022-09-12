@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ namespace ST10083735_PROG6212_POE
     
     public partial class MainWindow : Window
     {
+        private List<Module> modules = new List<Module>();
 
         public MainWindow()
         {
@@ -46,6 +48,7 @@ namespace ST10083735_PROG6212_POE
         private void OnShowModulesBtnClicked(object? sender, EventArgs e)
         {
             SetActiveUserControl(viewModule);
+            
         }
 
         private void OnShowHoursBtnClicked(object? sender, EventArgs e)

@@ -32,5 +32,22 @@ namespace ST10083735_PROG6212_POE
             if (HideDeleteButtonClicked != null)
                 HideDeleteButtonClicked(this, EventArgs.Empty);
         }
+
+        private void yeschbkx_Checked(object sender, RoutedEventArgs e)
+        {
+            if (yeschbkx.IsChecked == true)
+            {
+                nochbx.IsChecked = false;
+            }
+            
+        }
+
+        private void nochbx_Checked(object sender, RoutedEventArgs e)
+        {
+            if (nochbx.IsChecked == true)
+            {
+                yeschbkx.IsChecked = false;
+            }
+        }
     }
 }
