@@ -12,7 +12,6 @@
         <Label x:Name="moduleCodelb" Content="Number of weeks in the semester" HorizontalAlignment="Left" Margin="26,131,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="351"/>
         <TextBox BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleCodetbx" HorizontalAlignment="Left" Margin="31,173,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Label x:Name="moduleNamelb" Content="Start Date of the first week in the semester" HorizontalAlignment="Left" Margin="26,230,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="447"/>
-        <TextBox BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleNametbx" HorizontalAlignment="Left" Margin="31,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="694,431,0,0" VerticalAlignment="Top" Width="139"  Foreground="White" Height="35" Click="completebtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
@@ -40,6 +39,7 @@
 
             </Button.Resources>
         </Button>
+        <DatePicker x:Name="datedp"  HorizontalAlignment="Left" Margin="31,277,0,0" VerticalAlignment="Top" BorderBrush="#FF8C52FF" FontFamily="Segoe UI Light" FontSize="20" Width="227"/>
 
     </Grid>
 </UserControl>

@@ -17,7 +17,7 @@
         <TextBox DataObject.Pasting="PasteNumericValidation" PreviewTextInput="TypeNumericValidation" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="numCreditstbx" HorizontalAlignment="Left" Margin="31,352,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Label x:Name="classHourslb" Content="Class hours per week" HorizontalAlignment="Left" Margin="26,395,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="226"/>
         <TextBox DataObject.Pasting="PasteNumericValidation" PreviewTextInput="TypeNumericValidation" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="classHourstbx" HorizontalAlignment="Left" Margin="31,437,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
-        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="694,431,0,0" VerticalAlignment="Top" Width="139"  Foreground="White" Height="35" Click="completebtn_Click">
+        <Button Visibility="Collapsed" x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="694,431,0,0" VerticalAlignment="Top" Width="139"  Foreground="White" Height="35" Click="completebtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>
@@ -45,7 +45,7 @@
             </Button.Resources>
         </Button>
         <Label x:Name="errorlb" Visibility="Hidden" Content="Missing Information. All fields are required." HorizontalAlignment="Left" Margin="479,379,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="367"/>
-        <Button x:Name="addModulebtn" FontSize="18"  Content="+ Add Module" HorizontalAlignment="Left" Margin="512,437,0,0" VerticalAlignment="Top" Background="White" Foreground="#FF8C52FF" Click="addModulebtn_Click" IsEnabled="False">
+        <Button x:Name="addModulebtn" FontSize="18"  Content="+ Add Module" HorizontalAlignment="Left" Margin="512,437,0,0" VerticalAlignment="Top" Background="White" Foreground="#FF8C52FF" Click="addModulebtn_Click" >
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     
@@ -72,5 +72,12 @@
 
             </Button.Resources>
         </Button>
+        <RichTextBox x:Name="confirmrtb" IsEnabled="False" Foreground="#7141ce" FontWeight="Medium" IsReadOnly="True" Margin="512,84,32,167" FontSize="20" FontFamily="Segoe UI" BorderBrush="White">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text=""/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
     </Grid>
 </UserControl>

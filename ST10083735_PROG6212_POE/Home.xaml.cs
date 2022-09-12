@@ -23,7 +23,7 @@ namespace ST10083735_PROG6212_POE
         public event EventHandler ShowStudyHoursBtnClicked;
         public event EventHandler ShowAddModulesBtnClicked;
         public event EventHandler ShowHoursBtnClicked;
-        public event EventHandler ShowSemesterDetailsBtnClicked;
+        
         public event EventHandler ShowModulesBtnClicked;
         public event EventHandler ShowDeleteModulesBtnClicked;
         public Home()
@@ -51,11 +51,7 @@ namespace ST10083735_PROG6212_POE
                 ShowHoursBtnClicked(this, EventArgs.Empty);
         }
 
-        private void editSemesterDetailsbtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (ShowSemesterDetailsBtnClicked != null)
-                ShowSemesterDetailsBtnClicked(this, EventArgs.Empty);
-        }
+       
 
         private void viewModulesListbtn_Click(object sender, RoutedEventArgs e)
         {

@@ -1,19 +1,10 @@
-﻿using System;
+﻿using Modules;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Modules;
 
 namespace ST10083735_PROG6212_POE
 {
@@ -25,13 +16,29 @@ namespace ST10083735_PROG6212_POE
         public event EventHandler HideModulePageButtonClicked;
 
         private ValidationMethods newValid = new ValidationMethods();
-        private Module newMod;
+        private List<Module> moduleList = new List<Module>();
+        public List<Module> modules { get; set; }
+
         public AddModule()
         {
             InitializeComponent();
         }
 
+
+
         private void completebtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (HideModulePageButtonClicked != null)
+            {
+                modules = moduleList;
+                HideModulePageButtonClicked(this, EventArgs.Empty);
+            }
+
+        }
+
+
+
+        private void addModulebtn_Click(object sender, RoutedEventArgs e)
         {
             errorlb.Visibility = Visibility.Collapsed;
 
@@ -39,31 +46,40 @@ namespace ST10083735_PROG6212_POE
             {
                 errorlb.Visibility = Visibility.Visible;
             }
-            else 
+            else
             {
                 string moduleCode = moduleCodetbx.Text;
                 string moduleName = moduleNametbx.Text;
                 int classHours = Convert.ToInt32(classHourstbx.Text);
                 int credits = Convert.ToInt32(numCreditstbx.Text);
 
-                
-                modules.Add(new Module(moduleCode, moduleName, credits, classHours ));       
-               
-                if(modules.Count > 1)
-                {
-                    addModulebtn.IsEnabled = true;
-                }
 
-                
+                moduleList.Add(new Module(moduleCode, moduleName, credits, classHours));
 
-                if (HideModulePageButtonClicked != null)
+                if(moduleList.Count > 1)
                 {
-                    HideModulePageButtonClicked(this, EventArgs.Empty);
+                    confirmrtb.AppendText($"\n{moduleName} added.");
                 }
-                    
+                else
+                {
+                    confirmrtb.AppendText($"{moduleName} added.");
+                }
+                
+                moduleCodetbx.Clear();
+                moduleNametbx.Clear();
+                numCreditstbx.Clear();
+                classHourstbx.Clear();
+
+                completebtn.Visibility = Visibility.Visible;
+
             }
             
+           
+
+
         }
+
+        
 
         //https://iditect.com/guide/csharp/csharp_howto_make_a_textbox_only_accept_numbers_in_wpf.html#:~:text=C%23%20How%20to%20make%20a%20TextBox%20only%20accept,into%20the%20textbox%20but%20only%20typing%20numeric%20input.
         private void TypeNumericValidation(object sender, TextCompositionEventArgs e)
@@ -84,16 +100,8 @@ namespace ST10083735_PROG6212_POE
             else e.CancelCommand();
         }
 
-        private void addModulebtn_Click(object sender, RoutedEventArgs e)
-        {
-            
-            moduleCodetbx.Clear();
-            moduleNametbx.Clear();
-            numCreditstbx.Clear();
-            classHourstbx.Clear();
-            completebtn_Click( sender,  e);
-        }
 
-        
+
+
     }
 }
