@@ -17,14 +17,16 @@ namespace ST10083735_PROG6212_POE
         public MainWindow()
         {
             InitializeComponent();
-            SetActiveUserControl(landingPage);
+            GridContainer.Children.Clear();
+            GridContainer.Children.Add(new LandingPage());
 
-            
+
             //Author:andreask
             //https://stackoverflow.com/questions/25585491/showing-user-control-from-another-user-controls-button-click-in-main-window
             landingPage.HideButtonClicked += OnHideButtonClicked;
+
             addModule.HideModulePageButtonClicked += OnHideModulePageButtonClicked;
-            semesterDetails.HideSemesterDetailsButtonClicked += OnHideSemesterDetailsButtonClicked;
+            
             home.ShowAddModulesBtnClicked += OnShowAddModulesBtnClicked;
             home.ShowDeleteModulesBtnClicked += OnShowDeleteModulesBtnClicked;
             home.ShowHoursBtnClicked += OnShowHoursBtnClicked;
@@ -37,27 +39,39 @@ namespace ST10083735_PROG6212_POE
 
         private void OnHideDeleteButtonClicked(object? sender, EventArgs e)
         {
-            SetActiveUserControl(home);
+            //SetActiveUserControl(home);
+            GridContainer.Children.Clear();
+            GridContainer.Children.Add(new Home());
+
         }
 
         private void OnShowStudyHoursBtnClicked(object? sender, EventArgs e)
         {
-            SetActiveUserControl(recordHours);
+            //SetActiveUserControl(recordHours);
+            GridContainer.Children.Clear();
+            GridContainer.Children.Add(new RecordHours());
         }
+
+        //private List<Module> selectList()
+        //{
+        //    if (deleteModule.modules == null)
+        //    {
+        //        return addModule.modules;
+        //    }
+        //    else if(addM)
+        //    {
+        //        return deleteModule.modules;
+        //    }
+        //}
 
         
 
         private void OnShowModulesBtnClicked(object? sender, EventArgs e)
         {
-            if(deleteModule.modules == null)
-            {
-                viewModule.modules = addModule.modules;
-            }
-            else
-            {
-                viewModule.modules = deleteModule.modules;
-            }
-            SetActiveUserControl(viewModule);
+            //viewModule.modules = selectList();
+            //SetActiveUserControl(viewModule);
+            GridContainer.Children.Clear();
+            GridContainer.Children.Add(new ViewModules());
 
         }
 
@@ -69,60 +83,63 @@ namespace ST10083735_PROG6212_POE
         private void OnShowDeleteModulesBtnClicked(object? sender, EventArgs e)
         {          
             deleteModule.modules = addModule.modules;
-            SetActiveUserControl(deleteModule);
+            GridContainer.Children.Clear();
+            GridContainer.Children.Add(new DeleteModule());
 
         }
 
         private void OnShowAddModulesBtnClicked(object? sender, EventArgs e)
         {
-            
-            SetActiveUserControl(addModule);
+
+            GridContainer.Children.Clear();
+            GridContainer.Children.Add(new AddModule());
 
         }
 
-        private void OnHideSemesterDetailsButtonClicked(object? sender, EventArgs e)
-        {
-            
-            SetActiveUserControl(home);
-        }
+        
 
         private void OnHideModulePageButtonClicked(object? sender, EventArgs e)
-        {           
-            SetActiveUserControl(semesterDetails);
+        {
+            GridContainer.Children.Clear();
+            GridContainer.Children.Add(new AddModule());
         }
 
         ////Author:andreask
         ////https://stackoverflow.com/questions/25585491/showing-user-control-from-another-user-controls-button-click-in-main-window
         private void OnHideButtonClicked(object? sender, EventArgs e)
         {
-            SetActiveUserControl(addModule);
+            GridContainer.Children.Clear();
+            GridContainer.Children.Add(new AddModule());
         }
 
         ////youtube reference
-        public void SetActiveUserControl(UserControl control)
-        {
-            landingPage.Visibility = Visibility.Collapsed;
-            home.Visibility = Visibility.Collapsed;
-            addModule.Visibility = Visibility.Collapsed;
-            semesterDetails.Visibility = Visibility.Collapsed;
-            recordHours.Visibility = Visibility.Collapsed;
-            deleteModule.Visibility = Visibility.Collapsed;
-            viewModule.Visibility = Visibility.Collapsed;
+        //public void SetActiveUserControl(UserControl control)
+        //{
+        //    landingPage.Visibility = Visibility.Collapsed;
+        //    home.Visibility = Visibility.Collapsed;
+        //    addModule.Visibility = Visibility.Collapsed;           
+        //    recordHours.Visibility = Visibility.Collapsed;
+        //    deleteModule.Visibility = Visibility.Collapsed;
+        //    viewModule.Visibility = Visibility.Collapsed;
 
-            control.Visibility = Visibility.Visible;
+        //    control.Visibility = Visibility.Visible;
 
-        }
+        //}
 
         private void homebtn_Click(object sender, RoutedEventArgs e)
         {
           
-            SetActiveUserControl(home);
+            //SetActiveUserControl(home);
+            GridContainer.Children.Clear();
+            GridContainer.Children.Add(new Home());
+         
         }
 
         private void mainLb_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
-            SetActiveUserControl(landingPage);
+            GridContainer.Children.Clear();
+            GridContainer.Children.Add(new LandingPage());
+            //SetActiveUserControl(landingPage);
         }
 
 

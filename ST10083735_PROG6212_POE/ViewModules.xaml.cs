@@ -38,6 +38,10 @@ namespace ST10083735_PROG6212_POE
             }
         }
 
-        
+        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyType == typeof(System.DateTime))
+                (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
+        }
     }
 }

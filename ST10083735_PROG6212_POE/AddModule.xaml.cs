@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Timer = System.Threading.Timer;
 
 namespace ST10083735_PROG6212_POE
 {
@@ -18,6 +21,7 @@ namespace ST10083735_PROG6212_POE
         private ValidationMethods newValid = new ValidationMethods();
         private List<Module> moduleList = new List<Module>();
         public List<Module> modules { get; set; }
+        private Timer timer;
 
         public AddModule()
         {
@@ -36,13 +40,17 @@ namespace ST10083735_PROG6212_POE
 
         }
 
-
+        
 
         private void addModulebtn_Click(object sender, RoutedEventArgs e)
         {
+            
+            confirmlb.Visibility = Visibility.Collapsed;
             errorlb.Visibility = Visibility.Collapsed;
 
-            if (String.IsNullOrWhiteSpace(moduleCodetbx.Text) || String.IsNullOrWhiteSpace(moduleNametbx.Text) || String.IsNullOrWhiteSpace(numCreditstbx.Text) || String.IsNullOrWhiteSpace(classHourstbx.Text))
+            if (String.IsNullOrWhiteSpace(moduleCodetbx.Text) || String.IsNullOrWhiteSpace(moduleNametbx.Text) 
+                || String.IsNullOrWhiteSpace(numCreditstbx.Text) || String.IsNullOrWhiteSpace(classHourstbx.Text)
+                || String.IsNullOrWhiteSpace(numWeekstb.Text) || String.IsNullOrWhiteSpace(datedp.Text))
             {
                 errorlb.Visibility = Visibility.Visible;
             }
@@ -52,19 +60,19 @@ namespace ST10083735_PROG6212_POE
                 string moduleName = moduleNametbx.Text;
                 int classHours = Convert.ToInt32(classHourstbx.Text);
                 int credits = Convert.ToInt32(numCreditstbx.Text);
+                int weeks = Convert.ToInt32(numWeekstb.Text);
+               DateTime startdate = datedp.DisplayDate.Date;
 
+              
 
-                moduleList.Add(new Module(moduleCode, moduleName, credits, classHours));
+               
+                moduleList.Add(new Module(moduleCode, moduleName, credits, classHours,weeks, startdate));
 
-                if(moduleList.Count > 1)
-                {
-                    confirmrtb.AppendText($"\n{moduleName} added.");
-                }
-                else
-                {
-                    confirmrtb.AppendText($"{moduleName} added.");
-                }
+               
+                confirmlb.Visibility = Visibility.Visible;
+
                 
+
                 moduleCodetbx.Clear();
                 moduleNametbx.Clear();
                 numCreditstbx.Clear();
@@ -100,8 +108,9 @@ namespace ST10083735_PROG6212_POE
             else e.CancelCommand();
         }
 
-
-
-
+        private void moduleCodetbx_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            confirmlb.Visibility=Visibility.Collapsed;  
+        }
     }
 }

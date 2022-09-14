@@ -25,6 +25,7 @@ namespace ST10083735_PROG6212_POE
 
         private void completebtn_Click(object sender, RoutedEventArgs e)
         {
+           
             if (modulecmb.SelectedItem.ToString() == null || (yeschbkx.IsChecked == false && nochbx.IsChecked == false))
             {
                 errorlb.Visibility = Visibility.Visible;
@@ -38,12 +39,15 @@ namespace ST10083735_PROG6212_POE
                     if (module.ModuleCode.Equals(moduleToDelete) && (yeschbkx.IsChecked == true))
                     {
                         moduleList.Remove(module);
-                        return;
+                        
                     }
                 }
 
-                if (HideDeleteButtonClicked != null)
+                
+
+                
                     HideDeleteButtonClicked(this, EventArgs.Empty);
+
             }
             
         }

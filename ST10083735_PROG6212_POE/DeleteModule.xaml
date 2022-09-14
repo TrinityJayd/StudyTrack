@@ -55,7 +55,7 @@
         </RichTextBox>
         <CheckBox BorderBrush="#FF8C52FF" VerticalContentAlignment="Center" x:Name="yeschbkx" Content="Yes" FontFamily="Segoe UI Light" FontSize="20" HorizontalAlignment="Left" Margin="34,367,0,0" VerticalAlignment="Top" Width="48" Checked="yeschbkx_Checked"/>
         <CheckBox BorderBrush="#FF8C52FF" VerticalContentAlignment="Center" x:Name="nochbx" Content="No" FontFamily="Segoe UI Light" FontSize="20" HorizontalAlignment="Left" Margin="148,367,0,0" VerticalAlignment="Top" Width="48" Checked="nochbx_Checked"/>
-        <Label Visibility="Collapsed" x:Name="errorlb" Content="Missing Information." HorizontalAlignment="Left" Margin="647,361,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="177"/>
+        <Label Visibility="Collapsed" x:Name="errorlb" Content="Please select a module and confirm or deny deletion." HorizontalAlignment="Left" Margin="34,424,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="463"/>
 
     </Grid>
 </UserControl>

@@ -8,7 +8,7 @@
              d:DesignHeight="521" d:DesignWidth="907" Background="White" x:Name="viewModules" IsVisibleChanged="viewModules_IsVisibleChanged">
     <Grid>
         <Label x:Name="headinglb" Content="All Modules" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="222"/>
-        <DataGrid AutoGenerateColumns="True"  Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding}" Margin="26,76,35,48">
+        <DataGrid AutoGenerateColumns="True" AutoGeneratingColumn="OnAutoGeneratingColumn" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding}" Margin="26,76,35,48">
             
         </DataGrid>
 
