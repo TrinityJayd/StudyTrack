@@ -9,9 +9,9 @@ namespace ST10083735_PROG6212_POE
     /// <summary>
     /// Interaction logic for DeleteModule.xaml
     /// </summary>
-    public partial class DeleteModule : UserControl
+    public partial class DeleteModule : Page
     {
-        public event EventHandler HideDeleteButtonClicked;
+       
 
         private List<Module> moduleList = new List<Module>();
         public List<Module> modules { get; set; }
@@ -39,14 +39,14 @@ namespace ST10083735_PROG6212_POE
                     if (module.ModuleCode.Equals(moduleToDelete) && (yeschbkx.IsChecked == true))
                     {
                         moduleList.Remove(module);
-                        
+                        return;
                     }
                 }
 
                 
 
                 
-                    HideDeleteButtonClicked(this, EventArgs.Empty);
+                  
 
             }
             

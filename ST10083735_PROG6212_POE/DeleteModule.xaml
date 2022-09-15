@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ST10083735_PROG6212_POE.DeleteModule"
+﻿<Page x:Class="ST10083735_PROG6212_POE.DeleteModule"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -58,4 +58,4 @@
         <Label Visibility="Collapsed" x:Name="errorlb" Content="Please select a module and confirm or deny deletion." HorizontalAlignment="Left" Margin="34,424,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="463"/>
 
     </Grid>
-</UserControl>
+</Page>

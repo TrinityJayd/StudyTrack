@@ -18,7 +18,7 @@ namespace ST10083735_PROG6212_POE
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Home : UserControl
+    public partial class Home : Page
     {
         public event EventHandler ShowStudyHoursBtnClicked;
         public event EventHandler ShowAddModulesBtnClicked;
@@ -43,6 +43,7 @@ namespace ST10083735_PROG6212_POE
         {
             if (ShowAddModulesBtnClicked != null)
                 ShowAddModulesBtnClicked(this, EventArgs.Empty);
+
         }
 
         private void viewHoursbtn_Click(object sender, RoutedEventArgs e)

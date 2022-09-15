@@ -20,7 +20,7 @@ namespace ST10083735_PROG6212_POE
     /// <summary>
     /// Interaction logic for ViewModules.xaml
     /// </summary>
-    public partial class ViewModules : UserControl
+    public partial class ViewModules : Page
     {
         public List<Module> modules { get; set; }
         public ViewModules()

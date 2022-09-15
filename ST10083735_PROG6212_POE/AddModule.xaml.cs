@@ -14,14 +14,14 @@ namespace ST10083735_PROG6212_POE
     /// <summary>
     /// Interaction logic for AddModule.xaml
     /// </summary>
-    public partial class AddModule : UserControl
+    public partial class AddModule : Page
     {
-        public event EventHandler HideModulePageButtonClicked;
 
+       
         private ValidationMethods newValid = new ValidationMethods();
         private List<Module> moduleList = new List<Module>();
         public List<Module> modules { get; set; }
-        private Timer timer;
+        
 
         public AddModule()
         {
@@ -32,12 +32,8 @@ namespace ST10083735_PROG6212_POE
 
         private void completebtn_Click(object sender, RoutedEventArgs e)
         {
-            if (HideModulePageButtonClicked != null)
-            {
-                modules = moduleList;
-                HideModulePageButtonClicked(this, EventArgs.Empty);
-            }
-
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new Home());
         }
 
         
@@ -50,7 +46,7 @@ namespace ST10083735_PROG6212_POE
 
             if (String.IsNullOrWhiteSpace(moduleCodetbx.Text) || String.IsNullOrWhiteSpace(moduleNametbx.Text) 
                 || String.IsNullOrWhiteSpace(numCreditstbx.Text) || String.IsNullOrWhiteSpace(classHourstbx.Text)
-                || String.IsNullOrWhiteSpace(numWeekstb.Text) || String.IsNullOrWhiteSpace(datedp.Text))
+                || String.IsNullOrWhiteSpace(numWeekstb.Text) || String.IsNullOrWhiteSpace(datedp.SelectedDate.ToString()))
             {
                 errorlb.Visibility = Visibility.Visible;
             }
@@ -61,14 +57,14 @@ namespace ST10083735_PROG6212_POE
                 int classHours = Convert.ToInt32(classHourstbx.Text);
                 int credits = Convert.ToInt32(numCreditstbx.Text);
                 int weeks = Convert.ToInt32(numWeekstb.Text);
-               DateTime startdate = datedp.DisplayDate.Date;
+                DateTime startdate = datedp.SelectedDate.Value;
 
               
 
                
                 moduleList.Add(new Module(moduleCode, moduleName, credits, classHours,weeks, startdate));
 
-               
+                confirmlb.Content = $"{moduleName} Added.";
                 confirmlb.Visibility = Visibility.Visible;
 
                 
@@ -79,6 +75,7 @@ namespace ST10083735_PROG6212_POE
                 classHourstbx.Clear();
 
                 completebtn.Visibility = Visibility.Visible;
+               
 
             }
             
