@@ -14,33 +14,45 @@ namespace ST10083735_PROG6212_POE
     /// <summary>
     /// Interaction logic for AddModule.xaml
     /// </summary>
-    public partial class AddModule : Page
+    public partial class AddModule : UserControl
     {
 
-       
+        public event EventHandler HideModulePageButtonClicked;
         private ValidationMethods newValid = new ValidationMethods();
         private List<Module> moduleList = new List<Module>();
-        public List<Module> modules { get; set; }
-        
+        ModuleViewModel mod; 
 
         public AddModule()
         {
             InitializeComponent();
+            
+           
         }
 
 
 
         private void completebtn_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow?.ChangeView(new Home());
+            if (HideModulePageButtonClicked != null)
+            {
+                //modules = moduleList;
+                HideModulePageButtonClicked(this, EventArgs.Empty);
+                confirmlb.Content = "";
+                this.DataContext = mod;
+                //change list as well before this line
+            }
+            
         }
 
         
 
         private void addModulebtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            mod = (ModuleViewModel)this.DataContext;
+            if (mod.listmods != null)
+            {
+                moduleList = mod.listmods;
+            }
             confirmlb.Visibility = Visibility.Collapsed;
             errorlb.Visibility = Visibility.Collapsed;
 

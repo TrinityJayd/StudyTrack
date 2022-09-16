@@ -9,23 +9,25 @@ namespace ST10083735_PROG6212_POE
     /// <summary>
     /// Interaction logic for DeleteModule.xaml
     /// </summary>
-    public partial class DeleteModule : Page
+    public partial class DeleteModule : UserControl
     {
-       
 
+        public event EventHandler HideDeleteButtonClicked;
         private List<Module> moduleList = new List<Module>();
-        public List<Module> modules { get; set; }
+        ModuleViewModel mod;
+
         public DeleteModule()
         {
             InitializeComponent();
-
+            
         }
 
       
 
         private void completebtn_Click(object sender, RoutedEventArgs e)
         {
-           
+            
+
             if (modulecmb.SelectedItem.ToString() == null || (yeschbkx.IsChecked == false && nochbx.IsChecked == false))
             {
                 errorlb.Visibility = Visibility.Visible;
@@ -39,6 +41,7 @@ namespace ST10083735_PROG6212_POE
                     if (module.ModuleCode.Equals(moduleToDelete) && (yeschbkx.IsChecked == true))
                     {
                         moduleList.Remove(module);
+                        modulecmb.Items.Remove(module.ModuleCode);
                         return;
                     }
                 }
@@ -49,7 +52,12 @@ namespace ST10083735_PROG6212_POE
                   
 
             }
-            
+            if (HideDeleteButtonClicked != null)
+            {
+                HideDeleteButtonClicked(this, EventArgs.Empty);
+                this.DataContext = mod;
+            }
+
         }
 
         private void yeschbkx_Checked(object sender, RoutedEventArgs e)
@@ -71,9 +79,14 @@ namespace ST10083735_PROG6212_POE
 
         private void deleteModule_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            modulecmb.Items.Clear();
+            mod = (ModuleViewModel)this.DataContext;
 
-            moduleList = modules;
+            if (mod.listmods != null)
+            {
+                moduleList = mod.listmods;
+            }
+            modulecmb.Items.Clear();
+           
             if (this.Visibility == Visibility.Visible)
             {
                 if (moduleList != null)

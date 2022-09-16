@@ -1,4 +1,4 @@
-﻿<Page x:Name="addModule" x:Class="ST10083735_PROG6212_POE.AddModule"
+﻿<UserControl x:Name="addModule" x:Class="ST10083735_PROG6212_POE.AddModule"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -80,4 +80,4 @@
         <Label x:Name="startDatelb" Content="Start Date of the first week in the semester" HorizontalAlignment="Left" Margin="432,224,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="448"/>
         <DatePicker  x:Name="datedp"  HorizontalAlignment="Left" Margin="438,271,0,0" VerticalAlignment="Top" BorderBrush="#FF8C52FF" FontFamily="Segoe UI Light" FontSize="20" Width="226" SelectedDateFormat="Short" DisplayDate="2022-09-15"/>
     </Grid>
-</Page>
+</UserControl>
