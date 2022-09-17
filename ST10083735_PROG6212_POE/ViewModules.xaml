@@ -5,12 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ST10083735_PROG6212_POE"
              mc:Ignorable="d" 
-             d:DesignHeight="521" d:DesignWidth="907" Background="White" x:Name="viewModules" IsVisibleChanged="viewModules_IsVisibleChanged">
+             d:DesignHeight="521" d:DesignWidth="907" Background="White" x:Name="viewModules" IsVisibleChanged="viewModules_IsVisibleChanged"
+             DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=Prop, 
+        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             >
     <Grid>
         <Label x:Name="headinglb" Content="All Modules" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="222"/>
-        <DataGrid AutoGenerateColumns="True" AutoGeneratingColumn="OnAutoGeneratingColumn" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding}" Margin="26,76,35,48">
-            
+        <DataGrid Visibility="Collapsed" AutoGenerateColumns="False" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding Modules}" Margin="26,76,30,29">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Module Code" Binding="{Binding ModuleCode}"/>
+                <DataGridTextColumn Header="Module Name" Binding="{Binding ModuleName}"/>
+                <DataGridTextColumn Header="Credits" Binding="{Binding Credits}"/>
+                <DataGridTextColumn Header="Class Hours Per Week" Binding="{Binding ClassHoursPerWeek}"/>
+                <DataGridTextColumn Header="Number Of Weeks In Semester" Binding="{Binding NumberOfWeeksInSemester}"/>
+                <DataGridTextColumn Header="Semester Start Date" Binding="{Binding SemesterStartDate, StringFormat=\{0:dd/MM/yy\}}" />
+            </DataGrid.Columns>
         </DataGrid>
+        <Label Content="No modules added." Width="Auto" Visibility="Visible" x:Name="noModuleslb"  Foreground="#FF8C52FF" FontWeight="Regular"  Margin="26,76,669,379" FontSize="20" FontFamily="Segoe UI" BorderBrush="White" />
 
     </Grid>
 </UserControl>

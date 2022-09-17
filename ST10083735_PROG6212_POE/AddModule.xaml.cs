@@ -20,12 +20,17 @@ namespace ST10083735_PROG6212_POE
         public event EventHandler HideModulePageButtonClicked;
         private ValidationMethods newValid = new ValidationMethods();
         private List<Module> moduleList = new List<Module>();
-        ModuleViewModel mod; 
+
+
+        
+
+
+
 
         public AddModule()
         {
             InitializeComponent();
-            
+
            
         }
 
@@ -33,14 +38,24 @@ namespace ST10083735_PROG6212_POE
 
         private void completebtn_Click(object sender, RoutedEventArgs e)
         {
-            if (HideModulePageButtonClicked != null)
+            MessageBoxResult dialog = MessageBoxResult.None;
+            if (moduleCodetbx.Text != "")
             {
-                //modules = moduleList;
-                HideModulePageButtonClicked(this, EventArgs.Empty);
-                confirmlb.Content = "";
-                this.DataContext = mod;
-                //change list as well before this line
+                dialog = MessageBox.Show($"Are you sure you want to continue without adding {moduleNametbx.Text}?","Alert",MessageBoxButton.YesNo,MessageBoxImage.Warning);
             }
+            else if(moduleCodetbx.Text.Equals("") || dialog == MessageBoxResult.Yes)
+            {
+                if (HideModulePageButtonClicked != null)
+                {
+
+                    HideModulePageButtonClicked(this, EventArgs.Empty);
+                    confirmlb.Content = "";
+
+                    this.DataContext = moduleList;
+
+                }
+            }
+            
             
         }
 
@@ -48,11 +63,7 @@ namespace ST10083735_PROG6212_POE
 
         private void addModulebtn_Click(object sender, RoutedEventArgs e)
         {
-            mod = (ModuleViewModel)this.DataContext;
-            if (mod.listmods != null)
-            {
-                moduleList = mod.listmods;
-            }
+            
             confirmlb.Visibility = Visibility.Collapsed;
             errorlb.Visibility = Visibility.Collapsed;
 
@@ -66,15 +77,18 @@ namespace ST10083735_PROG6212_POE
             {
                 string moduleCode = moduleCodetbx.Text;
                 string moduleName = moduleNametbx.Text;
-                int classHours = Convert.ToInt32(classHourstbx.Text);
-                int credits = Convert.ToInt32(numCreditstbx.Text);
-                int weeks = Convert.ToInt32(numWeekstb.Text);
+                double classHours = Convert.ToDouble(classHourstbx.Text);
+                double credits = Convert.ToDouble(numCreditstbx.Text);
+                double weeks = Convert.ToDouble(numWeekstb.Text);
                 DateTime startdate = datedp.SelectedDate.Value;
 
               
 
                
                 moduleList.Add(new Module(moduleCode, moduleName, credits, classHours,weeks, startdate));
+
+               
+                 
 
                 confirmlb.Content = $"{moduleName} Added.";
                 confirmlb.Visibility = Visibility.Visible;

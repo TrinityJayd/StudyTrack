@@ -14,7 +14,7 @@ namespace ST10083735_PROG6212_POE
 
         public event EventHandler HideDeleteButtonClicked;
         private List<Module> moduleList = new List<Module>();
-        ModuleViewModel mod;
+      
 
         public DeleteModule()
         {
@@ -27,8 +27,9 @@ namespace ST10083735_PROG6212_POE
         private void completebtn_Click(object sender, RoutedEventArgs e)
         {
             
+            
 
-            if (modulecmb.SelectedItem.ToString() == null || (yeschbkx.IsChecked == false && nochbx.IsChecked == false))
+            if (modulecmb.SelectedIndex == -1 || (yeschbkx.IsChecked == false && nochbx.IsChecked == false))
             {
                 errorlb.Visibility = Visibility.Visible;
             }
@@ -36,27 +37,32 @@ namespace ST10083735_PROG6212_POE
             {
                 string moduleToDelete = modulecmb.SelectedItem.ToString();
 
+
                 foreach(Module module in moduleList)
                 {
                     if (module.ModuleCode.Equals(moduleToDelete) && (yeschbkx.IsChecked == true))
                     {
                         moduleList.Remove(module);
                         modulecmb.Items.Remove(module.ModuleCode);
-                        return;
+                        break;
                     }
                 }
 
-                
+                yeschbkx.IsChecked = false;
+                nochbx.IsChecked = false;
+                modulecmb.SelectedIndex = -1;
+                errorlb.Visibility = Visibility.Collapsed;
+                this.DataContext = moduleList;
+                if (HideDeleteButtonClicked != null)
+                {
+                    HideDeleteButtonClicked(this, EventArgs.Empty);
+                    
+                }
 
-                
-                  
+
 
             }
-            if (HideDeleteButtonClicked != null)
-            {
-                HideDeleteButtonClicked(this, EventArgs.Empty);
-                this.DataContext = mod;
-            }
+            
 
         }
 
@@ -79,12 +85,7 @@ namespace ST10083735_PROG6212_POE
 
         private void deleteModule_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            mod = (ModuleViewModel)this.DataContext;
-
-            if (mod.listmods != null)
-            {
-                moduleList = mod.listmods;
-            }
+            moduleList = (List<Module>)this.DataContext;
             modulecmb.Items.Clear();
            
             if (this.Visibility == Visibility.Visible)

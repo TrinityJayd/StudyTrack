@@ -22,7 +22,7 @@ namespace ST10083735_PROG6212_POE
     /// </summary>
     public partial class ViewModules : UserControl
     {
-        public List<Module> modules { get; set; }
+        public List<Module> Modules { get; set; }
         public ViewModules()
         {
             InitializeComponent();
@@ -31,17 +31,28 @@ namespace ST10083735_PROG6212_POE
 
         private void viewModules_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-           
+            moduleDG.ItemsSource = null;
+
+            Modules = (List<Module>)this.DataContext;
+            
             if (viewModules.Visibility == Visibility.Visible)
             {
-                moduleDG.ItemsSource = modules;
+                if(Modules == null)
+                {
+                    moduleDG.Visibility = Visibility.Collapsed;
+                    noModuleslb.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    noModuleslb.Visibility = Visibility.Collapsed;
+                    moduleDG.Visibility = Visibility.Visible;
+                    moduleDG.ItemsSource = Modules;
+                   
+                }
+                
             }
         }
 
-        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            if (e.PropertyType == typeof(System.DateTime))
-                (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
-        }
+        
     }
 }

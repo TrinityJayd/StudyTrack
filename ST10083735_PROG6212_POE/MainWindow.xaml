@@ -7,15 +7,13 @@
         mc:Ignorable="d"
         Title="studytrack" Height="572" Width="907" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
-        <local:ModuleViewModel x:Key="ABC"/>
+        
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="63*"/>
             <RowDefinition Height="382*"/>
         </Grid.RowDefinitions>
-
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="-9,-9,9,9"/>
         <Button x:Name="homebtn" Content="Home"  HorizontalAlignment="Left" Margin="739,0,0,49" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="20" Click="homebtn_Click" Height="29" VerticalAlignment="Bottom">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
@@ -49,10 +47,10 @@
         <Grid x:Name="GridContainer" Margin="-1,25,1,10" Grid.RowSpan="2">
             <local:LandingPage x:Name="landingPage" Visibility="Collapsed" Grid.ColumnSpan="2"></local:LandingPage>
             <local:Home x:Name="home" Visibility="Collapsed" Grid.ColumnSpan="2"></local:Home>
-            <local:AddModule x:Name="addModule" Visibility="Collapsed" Grid.ColumnSpan="2" DataContext="{Binding Source={StaticResource ABC}}"></local:AddModule>
+            <local:AddModule x:Name="addModule" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:AddModule>
             <local:RecordHours x:Name="recordHours" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:RecordHours>
-            <local:DeleteModule x:Name="deleteModule" Visibility="Collapsed" Grid.ColumnSpan="2" DataContext="{Binding Source={StaticResource ABC}}"></local:DeleteModule>
-            <local:ViewModules x:Name="viewModule" Visibility="Collapsed" Grid.ColumnSpan="2" DataContext="{Binding Source={StaticResource ABC}}"></local:ViewModules>
+            <local:DeleteModule x:Name="deleteModule" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:DeleteModule>
+            <local:ViewModules x:Name="viewModule" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:ViewModules>
 
 
         </Grid>
@@ -85,7 +83,7 @@
 
 
         </Button>
-        <Label x:Name="mainLb" Content="studytrack" HorizontalAlignment="Left" Height="46" Margin="28,-7,0,0" VerticalAlignment="Top" Width="123" FontFamily="Candara" FontSize="24"/>
+        <Label x:Name="mainLb" Content="studytrack" HorizontalAlignment="Left" Height="46" Margin="28,-7,0,0" VerticalAlignment="Top" Width="123" FontFamily="Candara" FontSize="24" MouseDown="mainLb_MouseDown"/>
 
     </Grid>
 </Window>

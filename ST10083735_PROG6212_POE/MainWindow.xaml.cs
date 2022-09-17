@@ -13,12 +13,23 @@ namespace ST10083735_PROG6212_POE
     
     public partial class MainWindow : Window
     {
-        
+        public List<Module> Prop
+        {
+            get { return Prop; }
+            set { SetValue(PropProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Prop.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PropProperty =
+            DependencyProperty.Register("Prop", typeof(List<Module>), typeof(MainWindow), new PropertyMetadata(null));
+
+
         public MainWindow()
         {
             InitializeComponent();
 
             SetActiveUserControl(landingPage);
+            
             //Author:andreask
             //https://stackoverflow.com/questions/25585491/showing-user-control-from-another-user-controls-button-click-in-main-window
             landingPage.HideButtonClicked += OnHideButtonClicked;
@@ -46,19 +57,6 @@ namespace ST10083735_PROG6212_POE
             SetActiveUserControl(recordHours);
             
         }
-
-        //private List<Module> selectList()
-        //{
-        //    if (deleteModule.modules == null)
-        //    {
-        //        return addModule.modules;
-        //    }
-        //    else if(addM)
-        //    {
-        //        return deleteModule.modules;
-        //    }
-        //}
-
 
 
         private void OnShowModulesBtnClicked(object? sender, EventArgs e)
@@ -124,14 +122,16 @@ namespace ST10083735_PROG6212_POE
 
         }
 
-        private void mainLb_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            SetActiveUserControl(landingPage);
-        }
+      
 
         private void exitbtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void mainLb_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SetActiveUserControl(landingPage);
         }
     }
 }
