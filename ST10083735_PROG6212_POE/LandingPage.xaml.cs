@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,9 @@ namespace ST10083735_PROG6212_POE
     /// </summary>
     public partial class LandingPage : UserControl
     {
+        //Author:andreask
+        //https://stackoverflow.com/questions/25585491/showing-user-control-from-another-user-controls-button-click-in-main-window 
+        //Create an event within the control that is raised on button click
         public event EventHandler HideButtonClicked;
 
         public LandingPage()
@@ -27,8 +31,7 @@ namespace ST10083735_PROG6212_POE
             InitializeComponent();
         }
 
-        //Author:andreask
-        //https://stackoverflow.com/questions/25585491/showing-user-control-from-another-user-controls-button-click-in-main-window  
+          
         private void getStartedbtn_Click(object sender, RoutedEventArgs e)
         {
 

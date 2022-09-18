@@ -20,7 +20,9 @@
             this.classHoursPerWeek = classHoursPerWeek;
             this.numberOfWeeksInSemester = numberOfWeeksInSemester;
             this.semesterStartDate = semesterStartDate;
+            //Initialize the study hours to zero becuase the user just added the module
             this.hoursStudied = TimeSpan.Zero;
+            //Set the value of self study hours to the return value of the method
             this.selfStudyHours = calculateSelfStudyHours();
            
         }
@@ -32,18 +34,19 @@
         public double ClassHoursPerWeek { get => classHoursPerWeek; set => classHoursPerWeek = value; }
         public double NumberOfWeeksInSemester { get => numberOfWeeksInSemester; set => numberOfWeeksInSemester = value; }
         public DateTime SemesterStartDate { get => semesterStartDate; set => semesterStartDate = value; }
-        public TimeSpan SelfStudyHours { get => selfStudyHours; set => selfStudyHours = calculateSelfStudyHours(); }
+        public TimeSpan SelfStudyHours { get => selfStudyHours; set => selfStudyHours = value; }
         public TimeSpan HoursStudied { get => hoursStudied; set => hoursStudied = value; }
         public TimeSpan HoursLeft { get => hoursLeft; set => hoursLeft = value; }
 
         public TimeSpan calculateSelfStudyHours()
         {
+            //Calculation for the amount of time the student needs to self study
             double studyHours = ((Credits * 10) / NumberOfWeeksInSemester) - ClassHoursPerWeek;
        
-            double roundedstudyHours = Math.Round(studyHours, 2);
-
-            
-            return TimeSpan.FromHours(roundedstudyHours);
+            //Convert the value to a TimeSpan so a manual calculation isn't necessary
+            //The value sent as a parameter is not rounded off becuase it will allow the time to be
+            //more accurate.
+            return TimeSpan.FromHours(studyHours);
 
         }
 
