@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Modules
@@ -57,6 +58,17 @@ namespace Modules
                 value = value.Insert(0, "0");
             }
             return value;
+        }
+
+        public bool LettersNumbersWhiteSpace(string value)
+        {
+            bool isValid;
+            //Regex patter only allows letters, digits, underscores and whitespace
+            string lettersPattern ="^[a-zA-Z\\d_\\s*]+$";
+            check = new Regex(lettersPattern);
+            isValid = check.IsMatch(value);
+
+            return isValid;
         }
 
         

@@ -75,7 +75,7 @@ namespace ST10083735_PROG6212_POE
 
         private void OnShowHoursBtnClicked(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SetActiveUserControl(hoursLeft);
             
         }
 
@@ -114,6 +114,7 @@ namespace ST10083735_PROG6212_POE
             recordHours.Visibility = Visibility.Collapsed;
             deleteModule.Visibility = Visibility.Collapsed;
             viewModule.Visibility = Visibility.Collapsed;
+            hoursLeft.Visibility = Visibility.Collapsed;
 
             control.Visibility = Visibility.Visible;
 

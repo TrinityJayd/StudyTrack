@@ -7,16 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="521" d:DesignWidth="907" Background="White" Width="907" Height="521"
              DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=Prop, 
-        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsVisibleChanged="addModule_IsVisibleChanged">
     <Grid Width="907" Height="521" >
         <Label x:Name="addModulelb" Content="Add Modules" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="252"/>
         <Label x:Name="moduleInfolb" Content="Module Information" HorizontalAlignment="Left" Margin="26,68,0,0" VerticalAlignment="Top" FontSize="32" FontFamily="Segoe UI Semilight" Width="290"/>
         <Label x:Name="moduleCodelb" Content="Module Code" HorizontalAlignment="Left" Margin="26,136,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
-        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleCodetbx" HorizontalAlignment="Left" Margin="31,178,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" MouseDown="moduleCodetbx_MouseDown" />
+        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleCodetbx" HorizontalAlignment="Left" Margin="31,178,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Label x:Name="moduleNamelb" Content="Module Name" HorizontalAlignment="Left" Margin="27,228,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="158"/>
         <TextBox BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleNametbx" HorizontalAlignment="Left" Margin="31,271,0,0" TextWrapping="WrapWithOverflow" Text="" VerticalAlignment="Top" Width="228" FontSize="20" />
         <Label x:Name="numCreditslb" Content="Number of Credits" HorizontalAlignment="Left" Margin="26,321,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="200"/>
-        <TextBox DataObject.Pasting="PasteNumericValidation" PreviewTextInput="TypeNumericValidation" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="numCreditstbx" HorizontalAlignment="Left" Margin="31,363,0,0" TextWrapping="WrapWithOverflow" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Label x:Name="classHourslb" Content="Class hours per week" HorizontalAlignment="Left" Margin="26,412,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="226"/>
         <TextBox DataObject.Pasting="PasteNumericValidation" PreviewTextInput="TypeNumericValidation" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="classHourstbx" HorizontalAlignment="Left" Margin="31,454,0,0" TextWrapping="WrapWithOverflow" Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Button Visibility="Collapsed" x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="698,446,0,0" VerticalAlignment="Top" Width="139"  Foreground="White" Height="35" Click="completebtn_Click" RenderTransformOrigin="0.493,0.931">

@@ -43,7 +43,15 @@ namespace ST10083735_PROG6212_POE
                     if (module.ModuleCode.Equals(moduleToUpdate))
                     {
                         module.HoursStudied = (TimeSpan)timespedt.Value;
-                        MessageBox.Show(module.SelfStudyHours.ToString());
+                        if(module.HoursStudied > module.SelfStudyHours)
+                        {
+                            module.HoursLeft = TimeSpan.Zero;
+                        }
+                        else
+                        {
+                            module.HoursLeft = module.SelfStudyHours - module.HoursStudied;
+                        }
+                        
                     }
                 }
                 if (ShowRecordHoursClicked != null)
@@ -54,6 +62,7 @@ namespace ST10083735_PROG6212_POE
 
         private void RecordHours_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            
             moduleList = (List<Module>)this.DataContext;
             modulecmb.Items.Clear();
 
@@ -61,11 +70,19 @@ namespace ST10083735_PROG6212_POE
             {
                 if (moduleList != null)
                 {
+                    datedp.DisplayDateStart = moduleList[0].SemesterStartDate;
+                   
                     foreach (Module module in moduleList)
                     {
                         modulecmb.Items.Add(module.ModuleCode);
                     }
                 }
+            }
+            else
+            {
+                modulecmb.SelectedIndex = -1;
+                datedp.SelectedDate = null;
+                timespedt.Text = "0 hours 0 minutes";
             }
         }
     }

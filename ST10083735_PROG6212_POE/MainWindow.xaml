@@ -51,6 +51,7 @@
             <local:RecordHours x:Name="recordHours" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:RecordHours>
             <local:DeleteModule x:Name="deleteModule" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:DeleteModule>
             <local:ViewModules x:Name="viewModule" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:ViewModules>
+            <local:HoursLeft x:Name="hoursLeft" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:HoursLeft>
 
 
         </Grid>
