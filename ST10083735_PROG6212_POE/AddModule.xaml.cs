@@ -77,7 +77,7 @@ namespace ST10083735_PROG6212_POE
                     string moduleCode = moduleCodetbx.Text;
                     string moduleName = moduleNametbx.Text;
                     double classHours = Convert.ToDouble(hoursspn.Value);
-                    double credits = Convert.ToDouble(creditspn.Value;
+                    double credits = Convert.ToDouble(creditspn.Value);
                     double weeks = Convert.ToDouble(weeksspn.Value);
                     DateTime startdate = datedp.SelectedDate.Value;
 

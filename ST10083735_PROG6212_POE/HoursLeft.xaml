@@ -10,7 +10,7 @@
         Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsVisibleChanged="hoursLeft_IsVisibleChanged"
              >
     <Grid>
-        <DataGrid Visibility="Visible" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True" AutoGenerateColumns="False" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding Modules}" Margin="30,112,142,10" Width="732">
+        <DataGrid AlternatingRowBackground="#c5a8ff" Visibility="Visible" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True" AutoGenerateColumns="False" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding Modules}" Margin="30,112,142,10" Width="732">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Module Code" Binding="{Binding ModuleCode}"/>
                 <DataGridTextColumn CanUserSort="True" Header="Self Study Time Per Week" Binding="{Binding SelfStudyHours, StringFormat=hh\\:mm}"/>
@@ -21,6 +21,7 @@
         <Label x:Name="headinglb" Content="Module Study Hours" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="425"/>
         <Label Content="No modules added." Width="Auto" Visibility="Collapsed" x:Name="noModuleslb"  Foreground="#FF8C52FF" FontWeight="Regular"  Margin="26,76,669,379" FontSize="20" FontFamily="Segoe UI" BorderBrush="White" />
         <Label Content="Time is displayed in the format of Hours: Minutes." Width="Auto" Visibility="Visible" x:Name="infolb"  Foreground="#FF8C52FF" FontWeight="Regular"  Margin="26,68,410,392" FontSize="20" FontFamily="Segoe UI" BorderBrush="White" />
-   
+        
+
     </Grid>
 </UserControl>
