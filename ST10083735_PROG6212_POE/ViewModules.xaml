@@ -18,7 +18,7 @@
                 <DataGridTextColumn Header="Credits" Binding="{Binding Credits}"/>
                 <DataGridTextColumn Header="Class Hours Per Week" Binding="{Binding ClassHoursPerWeek}"/>
                 <DataGridTextColumn Header="Number Of Weeks In Semester" Binding="{Binding NumberOfWeeksInSemester}"/>
-                <DataGridTextColumn Header="Semester Start Date" Binding="{Binding SemesterStartDate, StringFormat=\{0:dd/MM/yy\}}" />
+                <DataGridTextColumn Header="Semester Start Date" Binding="{Binding SemesterStartDate, StringFormat=\{0:dd/MM/yyyy\}}" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="No modules added." Width="Auto" Visibility="Visible" x:Name="noModuleslb"  Foreground="#FF8C52FF" FontWeight="Regular"  Margin="26,76,669,379" FontSize="20" FontFamily="Segoe UI" BorderBrush="White" />

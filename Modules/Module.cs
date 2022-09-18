@@ -8,8 +8,8 @@
         private double classHoursPerWeek;
         private double numberOfWeeksInSemester;
         private DateTime semesterStartDate;
-        private double selfStudyHours;
-        private double hoursStudied;
+        private TimeSpan selfStudyHours;
+        private TimeSpan hoursStudied;
 
         public Module(string moduleCode, string moduleName, double credits, double classHoursPerWeek, double numberOfWeeksInSemester, DateTime semesterStartDate)
         {
@@ -19,8 +19,9 @@
             this.classHoursPerWeek = classHoursPerWeek;
             this.numberOfWeeksInSemester = numberOfWeeksInSemester;
             this.semesterStartDate = semesterStartDate;
-            this.hoursStudied = 0;
+            this.hoursStudied = TimeSpan.Zero;
             this.selfStudyHours = calculateSelfStudyHours();
+           
         }
       
 
@@ -30,16 +31,20 @@
         public double ClassHoursPerWeek { get => classHoursPerWeek; set => classHoursPerWeek = value; }
         public double NumberOfWeeksInSemester { get => numberOfWeeksInSemester; set => numberOfWeeksInSemester = value; }
         public DateTime SemesterStartDate { get => semesterStartDate; set => semesterStartDate = value; }
-        public double SelfStudyHours { get => selfStudyHours; set => selfStudyHours = value; }
-        public double HoursStudied { get => hoursStudied; set => hoursStudied = value; }
+        public TimeSpan SelfStudyHours { get => selfStudyHours; set => selfStudyHours = value; }
+        public TimeSpan HoursStudied { get => hoursStudied; set => hoursStudied = value; }
 
-        public double calculateSelfStudyHours()
+        public TimeSpan calculateSelfStudyHours()
         {
             double studyHours = ((Credits * 10) / NumberOfWeeksInSemester) - ClassHoursPerWeek;
        
             double roundedstudyHours = Math.Round(studyHours, 2);
             
-            return roundedstudyHours;
+
+            return TimeSpan.FromHours(roundedstudyHours);
         }
+
+        
     }
+
 }

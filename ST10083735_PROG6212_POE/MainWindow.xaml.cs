@@ -40,9 +40,14 @@ namespace ST10083735_PROG6212_POE
             home.ShowDeleteModulesBtnClicked += OnShowDeleteModulesBtnClicked;
             home.ShowHoursBtnClicked += OnShowHoursBtnClicked;
             home.ShowModulesBtnClicked += OnShowModulesBtnClicked;
-
+            recordHours.ShowRecordHoursClicked += OnShowRecordHoursClicked;
             home.ShowStudyHoursBtnClicked += OnShowStudyHoursBtnClicked;
             deleteModule.HideDeleteButtonClicked += OnHideDeleteButtonClicked;
+        }
+
+        private void OnShowRecordHoursClicked(object? sender, EventArgs e)
+        {
+            SetActiveUserControl(home);
         }
 
         private void OnHideDeleteButtonClicked(object? sender, EventArgs e)
@@ -126,7 +131,7 @@ namespace ST10083735_PROG6212_POE
 
         private void exitbtn_Click(object sender, RoutedEventArgs e)
         {
-
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void mainLb_MouseDown(object sender, MouseButtonEventArgs e)

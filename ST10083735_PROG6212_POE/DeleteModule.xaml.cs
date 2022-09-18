@@ -83,7 +83,7 @@ namespace ST10083735_PROG6212_POE
             }
         }
 
-        private void deleteModule_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void DeleteModule_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             moduleList = (List<Module>)this.DataContext;
             modulecmb.Items.Clear();
