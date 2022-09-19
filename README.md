@@ -55,7 +55,17 @@ The program also makes use of a custom class library that deals with all module 
 
 ### Screenshots
 
-On starting the app the user will see landing page.
+On starting the app the user will see a SyncFusion License Message because the program makes use of a SyncFusion package. Simply click OK to continue the program.
+- - - -
+
+
+<img src="SolutionImages/SyncFusionLicense.png" alt="SyncFusion License" width="800" height="600" />
+
+
+- - - -
+
+After clicking OK, the user will see the landing page.
+
 - - - -
 
 
@@ -70,16 +80,6 @@ If they click get started they will be directed to the add modules page.
 
 
 <img src="SolutionImages/GettingStarted.png" alt="Add modules page" width="800" height="600" />
-
-
-- - - -
-
-Once the user inputs all data correctly and clicks on the Add Module button, a Complete button will become visible.If the user clicks on the complete button they will be redirected to the home page or they can fill in details to add another module.
-
-- - - -
-
-
-<img src="SolutionImages/Home.png" alt="Home page" width="800" height="600" />
 
 
 - - - -
@@ -104,6 +104,16 @@ If the user has already added the module, an error will be displayed.
 
 - - - -
 
+Module codes/ names are only allowed to have uppercase or lowercase letters, digits, and optional underscores or spaces. If they user tries to input any other character, an error will be displayed.
+
+- - - -
+
+
+<img src="SolutionImages/ErrorFormat.png" alt="Format Error" width="800" height="600" />
+
+
+- - - -
+
 If the user clicks the complete button before saving the module, an alert will be displayed.
 
 - - - -
@@ -114,12 +124,32 @@ If the user clicks the complete button before saving the module, an alert will b
 
 - - - -
 
+When the user successfully adds a module, all fields will be cleared, and any inputs regarding the semester details will be hidden.
+
+- - - -
+
+
+<img src="SolutionImages/AddData.png" alt="Add modules page" width="800" height="600" />
+
+
+- - - -
+
+Once the user inputs all data correctly and clicks on the Add Module button, a Complete button will become visible.If the user clicks on the complete button they will be redirected to the home page or they can fill in details to add another module.
+
+- - - -
+
+
+<img src="SolutionImages/Home.png" alt="Home page" width="800" height="600" />
+
+
+- - - -
+
 On the home page, if the user clicks on the View Modules button a page will be displayed that shows them a list of all their modules.
 
 - - - -
 
 
-<img src="SolutionImages/ModuleList.png" alt="drawing" width="800" height="600" />
+<img src="SolutionImages/ModuleList.png" alt="Module list displayed to user" width="800" height="600" />
 
 
 - - - -
@@ -129,7 +159,7 @@ If they click the Delete Module button on the home page, a page will be displaye
 - - - -
 
 
-<img src="SolutionImages/DeleteModule.png" alt="drawing" width="800" height="600" />
+<img src="SolutionImages/DeleteModule.png" alt="Delet modules page" width="800" height="600" />
 
 
 - - - -
@@ -139,9 +169,19 @@ If they click on the Complete Button without confirming the deletion or selectin
 - - - -
 
 
-<img src="SolutionImages/DeleteError.png" alt="drawing" width="800" height="600" />
+<img src="SolutionImages/DeleteError.png" alt="Delete error without choosing module" width="800" height="600" />
 
-<img src="SolutionImages/DeleteModuleChoose.png" alt="drawing" width="800" height="600" />
+<img src="SolutionImages/DeleteModuleChoose.png" alt="Delete error without confirming deletion" width="800" height="600" />
+
+
+- - - -
+
+If they choose a module and confirm the deletion, the module will be deleted and removed as an option.
+
+- - - -
+
+
+<img src="SolutionImages/DeletedModule.png" alt="Shows that the module was deleted" width="800" height="600" />
 
 
 - - - -
@@ -151,9 +191,9 @@ On the home page, if the user clicks the Record Hours button they will be redire
 - - - -
 
 
-<img src="SolutionImages/RecordHours.png" alt="drawing" width="800" height="600" />
+<img src="SolutionImages/RecordHours.png" alt="Record hours page" width="800" height="600" />
  
-<img src="SolutionImages/RecordHoursError.png" alt="drawing" width="800" height="600" />
+<img src="SolutionImages/RecordHoursError.png" alt="Error if user does not complete all inputs" width="800" height="600" />
  
 
 - - - - 
@@ -163,20 +203,22 @@ The user can also view the modules, along with the calculate study hours, amount
 - - - -
 
 
-<img src="SolutionImages/StudyHours1.png" alt="drawing" width="800" height="600" />
+<img src="SolutionImages/StudyHours1.png" alt="Datagrid of study hours details" width="800" height="600" />
 
-<img src="SolutionImages/StudyHours2.png" alt="drawing" width="800" height="600" />
+<img src="SolutionImages/StudyHours2.png" alt="Datagrid of study hours details" width="800" height="600" />
 
 
 - - - - 
 
-If the user did not add any modules, then the datagrid where they can view all modules and the datagrid with the study hour details will not be filled.
+If the user clicks the Home button before Getting Started, no modules will be added, therefore the datagrid where they can view all modules and the datagrid with the study hour details will not be filled.
+
 - - - -
 
+<img src="SolutionImages/HoverImage.png" alt="On Hover of the home button" width="800" height="600" />
 
-<img src="SolutionImages/NoModulesList.png" alt="drawing" width="800" height="600" />
+<img src="SolutionImages/NoModulesList.png" alt="Datagrid for modules details empty" width="800" height="600" />
 
-<img src="SolutionImages/NoModulesStudyHours.png" alt="drawing" width="800" height="600" />
+<img src="SolutionImages/NoModulesStudyHours.png" alt="Datagrid for study hours details empty" width="800" height="600" />
 
 
 - - - -
