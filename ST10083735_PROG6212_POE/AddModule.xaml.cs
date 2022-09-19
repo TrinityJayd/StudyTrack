@@ -75,6 +75,7 @@ namespace ST10083735_PROG6212_POE
                 if (!isModuleNameValid || !isModuleCodeValid)
                 {
                     MessageBox.Show("Module names and codes only allow letters, digits, underscores and spaces.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    ClearText();
                 }
                 else
                 {

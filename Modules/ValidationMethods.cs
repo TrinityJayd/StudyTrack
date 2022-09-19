@@ -64,7 +64,7 @@ namespace Modules
         {
             bool isValid;
             //Regex patter only allows letters, digits, underscores and whitespace
-            string lettersPattern ="^[a-zA-Z\\d_\\s*]+$";
+            string lettersPattern ="^[a-zA-Z\\d_\\s]+$";
             check = new Regex(lettersPattern);
             isValid = check.IsMatch(value);
 

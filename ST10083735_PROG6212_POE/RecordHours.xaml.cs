@@ -106,7 +106,7 @@ namespace ST10083735_PROG6212_POE
                 //Clear all inputs when the user control is not visible
                 modulecmb.SelectedIndex = -1;
                 datedp.SelectedDate = null;
-                timespedt.Text = "0 hours 0 minutes";
+                timespedt.Value = timespedt.MinValue;
             }
         }
     }
