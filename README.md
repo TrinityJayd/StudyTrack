@@ -144,7 +144,7 @@ If they click on the Complete Button without confirming the deletion or selectin
 
 - - - -
 
-On the home page, if the user clicks the Record Hours button they will be redirected to a page to record the time that they have been studying for and if the user clicks the complete button without filling in all the details, they will not be able to move further.
+On the home page, if the user clicks the Record Hours button they will be redirected to a page to record the time that they have been studying for and if the user clicks the complete button without filling in all the details, they will not be able to move further. **Note: The dates the user can choose from are the start date of the current semester and the current date that they are using the application.**
 
 - - - -
 
