@@ -9,6 +9,11 @@ This is a solution to Part 1 the PROG6212 POE.
   - [The scenario](#the-scenario)
   - [Built with](#built-with)
   - [Screenshots](#screenshots)
+    - [Add Modules](#add-modules)
+    - [View Modules](#view-modules)
+    - [Delete Modules](#delete-modules)
+    - [Record Hours](#record-hours)
+    - [View Study Hours](#view-study-hours)
   - [Extra Features](#extra-features)
 
 
@@ -74,6 +79,8 @@ After clicking OK, the user will see the landing page.
 
 - - - -
 
+## Add Modules
+
 If they click get started they will be directed to the add modules page.
 
 - - - -
@@ -134,7 +141,7 @@ When the user successfully adds a module, all fields will be cleared, and any in
 
 - - - -
 
-Once the user inputs all data correctly and clicks on the Add Module button, a Complete button will become visible.If the user clicks on the complete button they will be redirected to the home page or they can fill in details to add another module.
+Once the user inputs all data correctly and clicks on the Add Module button, a Complete button will become visible. If the user clicks on the complete button they will be redirected to the home page or they can fill in details to add another module.
 
 - - - -
 
@@ -143,6 +150,8 @@ Once the user inputs all data correctly and clicks on the Add Module button, a C
 
 
 - - - -
+
+## View Modules
 
 On the home page, if the user clicks on the View Modules button a page will be displayed that shows them a list of all their modules.
 
@@ -153,6 +162,8 @@ On the home page, if the user clicks on the View Modules button a page will be d
 
 
 - - - -
+
+## Delete Modules
 
 If they click the Delete Module button on the home page, a page will be displayed that asks the user to select the module they want to delete and confirm the deletion of the module.
 
@@ -186,6 +197,8 @@ If they choose a module and confirm the deletion, the module will be deleted and
 
 - - - -
 
+## Record Hours
+
 On the home page, if the user clicks the Record Hours button they will be redirected to a page to record the time that they have been studying for and if the user clicks the complete button without filling in all the details, they will not be able to move further. **Note: The dates the user can choose from are the start date of the current semester and the current date that they are using the application.**
 
 - - - -
@@ -197,6 +210,8 @@ On the home page, if the user clicks the Record Hours button they will be redire
  
 
 - - - - 
+
+## View Study Hours
 
 The user can also view the modules, along with the calculate study hours, amount of time they spent studying and the date they last studied, when they click the View Study Hours button.
 
@@ -214,7 +229,7 @@ If the user clicks the Home button before Getting Started, no modules will be ad
 
 - - - -
 
-<img src="SolutionImages/HoverImage.png" alt="On Hover of the home button" width="800" height="600" />
+<img src="SolutionImages/HoverImg.png" alt="On Hover of the home button" width="800" height="600" />
 
 <img src="SolutionImages/NoModulesList.png" alt="Datagrid for modules details empty" width="800" height="600" />
 
