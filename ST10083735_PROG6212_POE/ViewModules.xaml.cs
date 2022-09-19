@@ -29,14 +29,17 @@ namespace ST10083735_PROG6212_POE
             
         }
 
-        private void viewModules_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void ViewModules_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            //Set the itemsource of the datagrid to null
             moduleDG.ItemsSource = null;
 
+            //Save the list
             Modules = (List<Module>)this.DataContext;
             
             if (viewModules.Visibility == Visibility.Visible)
             {
+                //if the list is null, display the label that tells users that there are no modules added
                 if(Modules == null)
                 {
                     moduleDG.Visibility = Visibility.Collapsed;
@@ -44,6 +47,7 @@ namespace ST10083735_PROG6212_POE
                 }
                 else
                 {
+                    //otherwise, make the datagrid visible and add the list to the datagrid itemsource
                     noModuleslb.Visibility = Visibility.Collapsed;
                     moduleDG.Visibility = Visibility.Visible;
                     moduleDG.ItemsSource = Modules;

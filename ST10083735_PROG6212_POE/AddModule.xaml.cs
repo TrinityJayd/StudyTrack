@@ -29,7 +29,7 @@ namespace ST10083735_PROG6212_POE
         }
 
 
-        private void completebtn_Click(object sender, RoutedEventArgs e)
+        private void Completebtn_Click(object sender, RoutedEventArgs e)
         {
             //If the module code text box isnt empty, it means that the user has not clicked th add module button
             //this means that the module has not been added to the list
@@ -42,7 +42,7 @@ namespace ST10083735_PROG6212_POE
                     //if they decide to continue without saving the module go to the home page
                     NavigateToHome();
                 }
-            }
+            } 
             //if the module code textbox is empty, the module has been saved, so navigate to the home page
             else if(moduleCodetbx.Text.Equals(""))
             {
@@ -54,7 +54,7 @@ namespace ST10083735_PROG6212_POE
 
         
 
-        private void addModulebtn_Click(object sender, RoutedEventArgs e)
+        private void AddModulebtn_Click(object sender, RoutedEventArgs e)
         {
             //make the confirmation label and error label invisible
             confirmlb.Visibility = Visibility.Collapsed;
@@ -78,6 +78,23 @@ namespace ST10083735_PROG6212_POE
                 }
                 else
                 {
+                    //If the list already contains modules
+                    if (moduleList != null)
+                    {
+                        //Check if the Module the user wants to create already exists
+                        foreach(Module module in moduleList)
+                        {
+                            if (module.ModuleCode.Equals(moduleCodetbx.Text))
+                            {
+                                //Alert the user that the module exists
+                                MessageBox.Show($"{moduleCodetbx.Text} already exists.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                //Clear all inputs
+                                ClearText();
+                                return;
+                            }
+                        }
+                    }
+                   
                     //Save the information input from the user
                     string moduleCode = moduleCodetbx.Text;
                     string moduleName = moduleNametbx.Text;

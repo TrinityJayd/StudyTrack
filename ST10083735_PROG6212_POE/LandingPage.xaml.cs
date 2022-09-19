@@ -31,10 +31,9 @@ namespace ST10083735_PROG6212_POE
             InitializeComponent();
         }
 
-          
-        private void getStartedbtn_Click(object sender, RoutedEventArgs e)
+         //Event handler if the user clicks th getting started button
+        private void GetStartedbtn_Click(object sender, RoutedEventArgs e)
         {
-
             if (HideButtonClicked != null)
                 HideButtonClicked(this, EventArgs.Empty);
         }

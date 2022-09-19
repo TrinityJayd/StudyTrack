@@ -24,26 +24,41 @@ namespace ST10083735_PROG6212_POE
 
         }
 
-
-
-        private void completebtn_Click(object sender, RoutedEventArgs e)
+        private void Completebtn_Click(object sender, RoutedEventArgs e)
         {
-
-
-
+            //Check if the user has chosen a module and confirmed if they wanted to delete the module
             if (modulecmb.SelectedIndex == -1 || (yeschbkx.IsChecked == false && nochbx.IsChecked == false))
             {
                 errorlb.Visibility = Visibility.Visible;
             }
             else
             {
-                string moduleToDelete = modulecmb.SelectedItem.ToString();
+                //If the user has confirmed deleteion, then delete the module
+                if(yeschbkx.IsChecked == true)
+                {
+                    string moduleToDelete = modulecmb.SelectedItem.ToString();
 
-                moduleList.RemoveAll(x => x.ModuleCode == moduleToDelete);
-                modulecmb.Items.Remove(moduleToDelete);
+                    //Delete the module using LINQ
+                    moduleList.RemoveAll(x => x.ModuleCode == moduleToDelete);
+                    //Remove the item from the combobox
+                    modulecmb.Items.Remove(moduleToDelete);
+                }
                 
-
-                this.DataContext = moduleList;
+                
+                //Update the datacontext with the list
+                //if the list does not have any items, set the datacontext to null,
+                //so when the user goes to view their modules/study hours
+                //a message that says there are no modules added will appear
+                if(moduleList.Count == 0)
+                {
+                    this.DataContext = null;
+                }
+                else
+                {
+                    this.DataContext = moduleList;
+                }
+                
+                //Navigate to home page
                 if (HideDeleteButtonClicked != null)
                 {
                     HideDeleteButtonClicked(this, EventArgs.Empty);
@@ -57,8 +72,9 @@ namespace ST10083735_PROG6212_POE
 
         }
 
-        private void yeschbkx_Checked(object sender, RoutedEventArgs e)
+        private void Yeschbkx_Checked(object sender, RoutedEventArgs e)
         {
+            //Uncheck the no box if the ye box is checked
             if (yeschbkx.IsChecked == true)
             {
                 nochbx.IsChecked = false;
@@ -66,21 +82,28 @@ namespace ST10083735_PROG6212_POE
 
         }
 
-        private void nochbx_Checked(object sender, RoutedEventArgs e)
+        private void Nochbx_Checked(object sender, RoutedEventArgs e)
         {
+            //Uncheck the yes box if the no box is checked
             if (nochbx.IsChecked == true)
             {
                 yeschbkx.IsChecked = false;
             }
         }
+        
 
+        //If the user control is visible then populate the combobox
+        //with the module codes in the list
         private void DeleteModule_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             moduleList = (List<Module>)this.DataContext;
+
+            //Clear the combobox of any other modules it contained
             modulecmb.Items.Clear();
 
             if (this.Visibility == Visibility.Visible)
             {
+                //Only if the list is has modules stored, it must try to add modules to the combobox
                 if (moduleList != null)
                 {
                     foreach (Module module in moduleList)
@@ -91,9 +114,12 @@ namespace ST10083735_PROG6212_POE
             }
             else
             {
+                //If the page is not visible clear all the inputs
                 yeschbkx.IsChecked = false;
                 nochbx.IsChecked = false;
                 modulecmb.SelectedIndex = -1;
+
+                //Make the confirmation components invisible
                 errorlb.Visibility = Visibility.Collapsed;
                 confirmrtb.Visibility = Visibility.Collapsed;
                 yeschbkx.Visibility = Visibility.Collapsed;
@@ -101,17 +127,19 @@ namespace ST10083735_PROG6212_POE
             }
         }
 
-        private void modulecmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //If the module selection changes
+        //Change the confirmation label to ask the user if they are sure they want to delete that module
+        private void Modulecmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            //Use text ranges to customize the look of the text
             confirmrtb.Document.Blocks.Clear();
             TextRange rangeOfText1 = new TextRange(confirmrtb.Document.ContentEnd, confirmrtb.Document.ContentEnd);
+            rangeOfText1.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Normal);
 
-
-            //Display a different message based on what the user has left over at the end of the month.
+            
             rangeOfText1.Text = "Are you sure you want to delete ";
 
-            //Different colour and font for the amount
+            //Different colour for the module code
             SolidColorBrush mySolidColorBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF8C52FF");
 
             TextRange rangeOfWord = new TextRange(confirmrtb.Document.ContentEnd, confirmrtb.Document.ContentEnd);
@@ -121,7 +149,7 @@ namespace ST10083735_PROG6212_POE
 
             //Customize the font/color of the text
             rangeOfWord.ApplyPropertyValue(TextElement.ForegroundProperty, mySolidColorBrush);
-            rangeOfWord.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.ExtraBold);
+            rangeOfWord.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
 
 
             //Chage the font colour
@@ -133,6 +161,7 @@ namespace ST10083735_PROG6212_POE
             rangeOfText2.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.Black);
             rangeOfText2.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Normal);
 
+            //When the user selects something from the combobox, make the confirmation components visible
             confirmrtb.Visibility = Visibility.Visible;
             yeschbkx.Visibility = Visibility.Visible;
             nochbx.Visibility = Visibility.Visible;

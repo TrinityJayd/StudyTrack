@@ -40,8 +40,8 @@ namespace ST10083735_PROG6212_POE
             home.ShowDeleteModulesBtnClicked += OnShowDeleteModulesBtnClicked;
             home.ShowHoursBtnClicked += OnShowHoursBtnClicked;
             home.ShowModulesBtnClicked += OnShowModulesBtnClicked;
-            home.ShowStudyHoursBtnClicked += OnShowStudyHoursBtnClicked;
-            recordHours.ShowRecordHoursClicked += OnShowRecordHoursClicked;           
+            home.ShowRecordHoursBtnClicked += OnShowRecordStudyHoursBtnClicked;
+            recordHours.HideRecordHoursClicked += OnHideRecordHoursClicked;           
             deleteModule.HideDeleteButtonClicked += OnHideDeleteButtonClicked;
         }
 
@@ -51,10 +51,11 @@ namespace ST10083735_PROG6212_POE
         ////https://stackoverflow.com/questions/25585491/showing-user-control-from-another-user-controls-button-click-in-main-window
         private void OnHideButtonClicked(object? sender, EventArgs e)
         {
+            //Show the add module page after the user clicks get started on the landing page
             SetActiveUserControl(addModule);
         }
 
-        ////youtube reference
+       
         public void SetActiveUserControl(UserControl control)
         {
             //First make all user controls invisible
@@ -70,58 +71,63 @@ namespace ST10083735_PROG6212_POE
             control.Visibility = Visibility.Visible;
         }
 
-        private void mainLb_MouseDown(object sender, MouseButtonEventArgs e)
+        private void MainLb_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //Make the landing page visible
             SetActiveUserControl(landingPage);
         }
 
-        private void homebtn_Click(object sender, RoutedEventArgs e)
+        private void Homebtn_Click(object sender, RoutedEventArgs e)
         {
             //Make the home page visible
             SetActiveUserControl(home);
         }
 
-        private void OnShowRecordHoursClicked(object? sender, EventArgs e)
+        private void OnHideRecordHoursClicked(object? sender, EventArgs e)
         {
-            //Make the home page visible
+            //Make the home page visible after the user clicks complete on the record hours page
             SetActiveUserControl(home);
         }
 
         private void OnHideDeleteButtonClicked(object? sender, EventArgs e)
         {
-            //Make the home page visible
+            //Make the home page visible after the user clickc complete on the delete page
             SetActiveUserControl(home);
         }
 
-        private void OnShowStudyHoursBtnClicked(object? sender, EventArgs e)
+        private void OnShowRecordStudyHoursBtnClicked(object? sender, EventArgs e)
         {
-            //Make the page that allows the user to record the hours they have studied
+            //Make the page that allows the user to record the hours they have studied when
+            //the user clicks the button on the home page
             SetActiveUserControl(recordHours);
         }
 
 
         private void OnShowModulesBtnClicked(object? sender, EventArgs e)
         {
-            //Makes the page that allows users to view the list of all their modules visible
+            //Makes the page that allows users to view the list of all their modules visible when
+            //the user clicks the button on the home page
             SetActiveUserControl(viewModule);
         }
 
         private void OnShowHoursBtnClicked(object? sender, EventArgs e)
         {
-            //Makes the page that allows users to check how many hours they have left to study visible
+            //Makes the page that allows users to check how many hours they have left to study visible when
+            //the user clicks the button on the home page
             SetActiveUserControl(hoursLeft);
         }
 
         private void OnShowDeleteModulesBtnClicked(object? sender, EventArgs e)
         {
-            //Makes the page that allows users to delete modules visible
+            //Makes the page that allows users to delete modules visible when
+            //the user clicks the button on the home page
             SetActiveUserControl(deleteModule);
         }
 
         private void OnShowAddModulesBtnClicked(object? sender, EventArgs e)
         {
-            //Makes the page that allows users to add modules visible
+            //Makes the page that allows users to add modules visible when
+            //the user clicks the button on the home page
             SetActiveUserControl(addModule);
         }
 
@@ -134,7 +140,7 @@ namespace ST10083735_PROG6212_POE
 
 
 
-        private void exitbtn_Click(object sender, RoutedEventArgs e)
+        private void Exitbtn_Click(object sender, RoutedEventArgs e)
         {
             //Code to exit the application
             System.Windows.Application.Current.Shutdown();

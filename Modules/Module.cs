@@ -11,6 +11,7 @@
         private TimeSpan selfStudyHours;
         private TimeSpan hoursStudied;
         private TimeSpan hoursLeft;
+        private Nullable<DateTime> dateLastStudied;
 
         public Module(string moduleCode, string moduleName, double credits, double classHoursPerWeek, double numberOfWeeksInSemester, DateTime semesterStartDate)
         {
@@ -23,7 +24,8 @@
             //Initialize the study hours to zero becuase the user just added the module
             this.hoursStudied = TimeSpan.Zero;
             //Set the value of self study hours to the return value of the method
-            this.selfStudyHours = calculateSelfStudyHours();
+            this.selfStudyHours = CalculateSelfStudyHours();
+            this.dateLastStudied = null;
            
         }
       
@@ -37,8 +39,9 @@
         public TimeSpan SelfStudyHours { get => selfStudyHours; set => selfStudyHours = value; }
         public TimeSpan HoursStudied { get => hoursStudied; set => hoursStudied = value; }
         public TimeSpan HoursLeft { get => hoursLeft; set => hoursLeft = value; }
+        public Nullable<DateTime> DateLastStudied { get => dateLastStudied; set => dateLastStudied = value; }
 
-        public TimeSpan calculateSelfStudyHours()
+        public TimeSpan CalculateSelfStudyHours()
         {
             //Calculation for the amount of time the student needs to self study
             double studyHours = ((Credits * 10) / NumberOfWeeksInSemester) - ClassHoursPerWeek;

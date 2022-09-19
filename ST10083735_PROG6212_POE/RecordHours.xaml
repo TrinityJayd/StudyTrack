@@ -139,7 +139,7 @@
         <Label x:Name="headinglb" Content="Record Hours" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="316"/>
         <Label x:Name="moduleCodelb" Content="Module Code" HorizontalAlignment="Left" Margin="29,177,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="172"/>
         <Label x:Name="hourslb" Content="Time studied" HorizontalAlignment="Left" Margin="29,276,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="164"/>
-        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="694,431,0,0" VerticalAlignment="Top" Width="139"  Foreground="White" Height="35" Click="completebtn_Click">
+        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="694,431,0,0" VerticalAlignment="Top" Width="139"  Foreground="White" Height="35" Click="Completebtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>

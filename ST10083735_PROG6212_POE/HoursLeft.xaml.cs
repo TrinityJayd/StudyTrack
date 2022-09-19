@@ -27,14 +27,31 @@ namespace ST10083735_PROG6212_POE
             InitializeComponent();
         }
 
-        private void hoursLeft_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void HoursLeft_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            //Set the datagrid ItemSource to null
             moduleDG.ItemsSource = null;
-
+            //Use LINQ to get only the fields we require from the data context
+            //only if the list is not null
             Modules = (List<Module>)this.DataContext;
+            if (Modules != null)
+            {
+                var Modules = from Module in (List<Module>)this.DataContext
+                              select new
+                              {
+                                  Module.ModuleCode,
+                                  Module.SelfStudyHours,
+                                  Module.HoursStudied,
+                                  Module.HoursLeft,
+                                  Module.DateLastStudied
+                              };
+            }
+            
+
 
             if (hoursLeft.Visibility == Visibility.Visible)
             {
+                //If there are no modules in the list, show the user the label that states that there are no modules saved
                 if (Modules == null)
                 {
                     moduleDG.Visibility = Visibility.Collapsed;
@@ -43,6 +60,7 @@ namespace ST10083735_PROG6212_POE
                 }
                 else
                 {
+                    //if there are modules saved, display the datagrid
                     noModuleslb.Visibility = Visibility.Collapsed;
                     moduleDG.Visibility = Visibility.Visible;
                     infolb.Visibility = Visibility.Visible;

@@ -20,10 +20,10 @@ namespace ST10083735_PROG6212_POE
     /// </summary>
     public partial class Home : UserControl
     {
-        public event EventHandler ShowStudyHoursBtnClicked;
+        //Create button event handlers for all user controls
+        public event EventHandler ShowRecordHoursBtnClicked;
         public event EventHandler ShowAddModulesBtnClicked;
-        public event EventHandler ShowHoursBtnClicked;
-        
+        public event EventHandler ShowHoursBtnClicked;       
         public event EventHandler ShowModulesBtnClicked;
         public event EventHandler ShowDeleteModulesBtnClicked;
         public Home()
@@ -32,40 +32,43 @@ namespace ST10083735_PROG6212_POE
         }
 
         
-
-        private void recordHoursbtn_Click(object sender, RoutedEventArgs e)
+        //Event handler for when the user wants to record hours
+        private void RecordHoursbtn_Click(object sender, RoutedEventArgs e)
         {
-            if (ShowStudyHoursBtnClicked != null)
-                ShowStudyHoursBtnClicked(this, EventArgs.Empty);
+            if (ShowRecordHoursBtnClicked != null)
+                ShowRecordHoursBtnClicked(this, EventArgs.Empty);
         }
 
-        private void addModulesbtn_Click(object sender, RoutedEventArgs e)
+        //Event handler for when the user wants to add modules
+        private void AddModulesbtn_Click(object sender, RoutedEventArgs e)
         {
             if (ShowAddModulesBtnClicked != null)
                 ShowAddModulesBtnClicked(this, EventArgs.Empty);
 
         }
 
-        private void viewHoursbtn_Click(object sender, RoutedEventArgs e)
+        //Event handler for when the user wants to view th hours they need to study for a specific module
+        private void ViewHoursbtn_Click(object sender, RoutedEventArgs e)
         {
             if (ShowHoursBtnClicked != null)
                 ShowHoursBtnClicked(this, EventArgs.Empty);
         }
 
-       
 
-        private void viewModulesListbtn_Click(object sender, RoutedEventArgs e)
+        //Event handler for when the user wants to view a list of all their modules
+        private void ViewModulesListbtn_Click(object sender, RoutedEventArgs e)
         {
             if (ShowModulesBtnClicked != null)
                 ShowModulesBtnClicked(this, EventArgs.Empty);
         }
 
-        private void deleteModulebtn_Click(object sender, RoutedEventArgs e)
+        //Event handler for when the user wants to delete a module
+        private void DeleteModulebtn_Click(object sender, RoutedEventArgs e)
         {
             if (ShowDeleteModulesBtnClicked != null)
                 ShowDeleteModulesBtnClicked(this, EventArgs.Empty);
         }
-
+         
         
     }
 }

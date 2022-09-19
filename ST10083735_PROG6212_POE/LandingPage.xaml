@@ -18,7 +18,7 @@
             </FlowDocument>
         </RichTextBox>
         <Image x:Name="landingImg" HorizontalAlignment="Left" Height="485" Margin="396,10,0,0" VerticalAlignment="Top" Width="541" Source="/undraw_Studying_re_deca.png" Stretch="UniformToFill"/>
-        <Button x:Name="getStartedbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="18" Margin="40,195,0,0" VerticalAlignment="Top" Width="197"  Foreground="White" Height="30" Click="getStartedbtn_Click">
+        <Button x:Name="getStartedbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="18" Margin="40,195,0,0" VerticalAlignment="Top" Width="197"  Foreground="White" Height="30" Click="GetStartedbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ST10083735_PROG6212_POE"
              mc:Ignorable="d" 
-             d:DesignHeight="521" d:DesignWidth="907" Background="White" x:Name="viewModules" IsVisibleChanged="viewModules_IsVisibleChanged"
+             d:DesignHeight="521" d:DesignWidth="907" Background="White" x:Name="viewModules" IsVisibleChanged="ViewModules_IsVisibleChanged"
              DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=MainList, 
         Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
              >

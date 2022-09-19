@@ -12,7 +12,7 @@
         <Image x:Name="Image3" HorizontalAlignment="Left" Height="145" Margin="333,30,0,0" VerticalAlignment="Top" Width="210" Source="/undraw_Scrum_board_re_wk7v.png"/>
         <Image x:Name="Image4" HorizontalAlignment="Left" Height="147" Margin="53,33,0,0" VerticalAlignment="Top" Width="173" Source="/undraw_Reading_re_29f8.png"/>
         <Image x:Name="Image6" HorizontalAlignment="Left" Height="152" Margin="653,30,0,0" VerticalAlignment="Top" Width="200" Source="/undraw_Online_test_re_kyfx.png"/>
-        <Button x:Name="recordHoursbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="53,395,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" RenderTransformOrigin="0.504,1.667" Click="recordHoursbtn_Click">
+        <Button x:Name="recordHoursbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="53,395,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" RenderTransformOrigin="0.504,1.667" Click="RecordHoursbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>
@@ -39,7 +39,7 @@
 
             </Button.Resources>
         </Button>
-        <Button x:Name="viewHoursbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="356,395,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" Click="viewHoursbtn_Click">
+        <Button x:Name="viewHoursbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="356,395,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" Click="ViewHoursbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>
@@ -66,7 +66,7 @@
 
             </Button.Resources>
         </Button>
-        <Button x:Name="viewModulesListbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="356,180,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" Click="viewModulesListbtn_Click">
+        <Button x:Name="viewModulesListbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="356,180,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" Click="ViewModulesListbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>
@@ -93,7 +93,7 @@
 
             </Button.Resources>
         </Button>
-        <Button x:Name="addModulesbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="53,180,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" Click="addModulesbtn_Click">
+        <Button x:Name="addModulesbtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="53,180,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" Click="AddModulesbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>
@@ -120,7 +120,7 @@
 
             </Button.Resources>
         </Button>
-        <Button x:Name="deleteModulebtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="666,180,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" Click="deleteModulebtn_Click">
+        <Button x:Name="deleteModulebtn" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="666,180,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" Click="DeleteModulebtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>

@@ -7,12 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="521" d:DesignWidth="907" Background="White" x:Name="deleteModule" IsVisibleChanged="DeleteModule_IsVisibleChanged"
                  DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=MainList, 
-            Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
                  >                                                  
     <Grid>
         <Label x:Name="headinglb" Content="Delete Module" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="316"/>
         <Label x:Name="moduleCodelb" Content="Module Code" HorizontalAlignment="Left" Margin="29,177,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="172"/>
-        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="660,426,0,0" VerticalAlignment="Top" Width="140"  Foreground="White" Height="35" Click="completebtn_Click">
+        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="660,426,0,0" VerticalAlignment="Top" Width="140"  Foreground="White" Height="35" Click="Completebtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>
@@ -46,7 +46,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <ComboBox Style="{DynamicResource ComboBoxStyle1}"  x:Name="modulecmb" BorderThickness="1" Background="White" BorderBrush="#FF8C52FF" HorizontalAlignment="Left" Margin="34,219,0,0" VerticalAlignment="Top" Width="227"  FontFamily="Segoe UI Light" FontSize="20" SelectionChanged="modulecmb_SelectionChanged"/>
+        <ComboBox Style="{DynamicResource ComboBoxStyle1}"  x:Name="modulecmb" BorderThickness="1" Background="White" BorderBrush="#FF8C52FF" HorizontalAlignment="Left" Margin="34,219,0,0" VerticalAlignment="Top" Width="227"  FontFamily="Segoe UI Light" FontSize="20" SelectionChanged="Modulecmb_SelectionChanged"/>
         <RichTextBox IsReadOnly="True" x:Name="confirmrtb"  FontFamily="Segoe UI Light" FontSize="24" Margin="26,274,575,159"  BorderThickness="0" Visibility="Collapsed">
             <FlowDocument>
                 <Paragraph>
@@ -56,8 +56,8 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <CheckBox BorderBrush="#FF8C52FF" VerticalContentAlignment="Center" x:Name="yeschbkx" Content="Yes" FontFamily="Segoe UI Light" FontSize="20" HorizontalAlignment="Left" Margin="34,367,0,0" VerticalAlignment="Top" Width="48" Checked="yeschbkx_Checked" Visibility="Collapsed"/>
-        <CheckBox BorderBrush="#FF8C52FF" VerticalContentAlignment="Center" x:Name="nochbx" Content="No" FontFamily="Segoe UI Light" FontSize="20" HorizontalAlignment="Left" Margin="148,367,0,0" VerticalAlignment="Top" Width="48" Checked="nochbx_Checked" Visibility="Collapsed"/>
+        <CheckBox BorderBrush="#FF8C52FF" VerticalContentAlignment="Center" x:Name="yeschbkx" Content="Yes" FontFamily="Segoe UI Light" FontSize="20" HorizontalAlignment="Left" Margin="34,367,0,0" VerticalAlignment="Top" Width="48" Checked="Yeschbkx_Checked" Visibility="Collapsed"/>
+        <CheckBox BorderBrush="#FF8C52FF" VerticalContentAlignment="Center" x:Name="nochbx" Content="No" FontFamily="Segoe UI Light" FontSize="20" HorizontalAlignment="Left" Margin="148,367,0,0" VerticalAlignment="Top" Width="48" Checked="Nochbx_Checked" Visibility="Collapsed"/>
         <Label Visibility="Collapsed" x:Name="errorlb" Content="Please select a module and confirm or deny deletion." HorizontalAlignment="Left" Margin="26,424,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="471"/>
 
     </Grid>
