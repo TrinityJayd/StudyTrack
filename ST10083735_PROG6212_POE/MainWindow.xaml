@@ -83,7 +83,7 @@
 
 
         </Button>
-        <Label x:Name="mainLb" Content="studytrack" HorizontalAlignment="Left" Height="46" Margin="28,-7,0,0" VerticalAlignment="Top" Width="123" FontFamily="Candara" FontSize="24" MouseDown="MainLb_MouseDown"/>
+        <Label x:Name="mainLb" Foreground="#8C52FF" FontWeight="Bold" Content="studytrack" HorizontalAlignment="Left" Height="46" Margin="28,-7,0,0" VerticalAlignment="Top" Width="123" FontFamily="Candara" FontSize="24" MouseDown="MainLb_MouseDown"/>
 
     </Grid>
 </Window>

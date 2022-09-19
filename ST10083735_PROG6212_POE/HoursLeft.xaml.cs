@@ -1,18 +1,8 @@
 ﻿using Modules;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ST10083735_PROG6212_POE
 {
@@ -46,7 +36,7 @@ namespace ST10083735_PROG6212_POE
                                   Module.DateLastStudied
                               };
             }
-            
+
 
 
             if (hoursLeft.Visibility == Visibility.Visible)
@@ -64,11 +54,51 @@ namespace ST10083735_PROG6212_POE
                     noModuleslb.Visibility = Visibility.Collapsed;
                     moduleDG.Visibility = Visibility.Visible;
                     infolb.Visibility = Visibility.Visible;
+                    orderBySelfStudybtn.Visibility = Visibility.Visible;
                     moduleDG.ItemsSource = Modules;
 
                 }
 
             }
+        }
+
+        private void OrderBySelfStudybtn_Click(object sender, RoutedEventArgs e)
+        {
+            moduleDG.ItemsSource = null;
+            string text = orderBySelfStudybtn.Content.ToString();
+            //If the buttons caption contans a down arrow then sort the list in descending order
+            if (text.Contains("🡣"))
+            {
+                var Modules = (from Module in (List<Module>)this.DataContext
+                               select new
+                               {
+                                   Module.ModuleCode,
+                                   Module.SelfStudyHours,
+                                   Module.HoursStudied,
+                                   Module.HoursLeft,
+                                   Module.DateLastStudied
+                               }).OrderByDescending(x => x.SelfStudyHours);
+                orderBySelfStudybtn.Content = "  Self Study Hours   🡡";
+                moduleDG.ItemsSource = Modules;
+            }
+            else
+            {
+                //If the buttons caption contans an up arrow then sort the list in descending order
+                var Modules = (from Module in (List<Module>)this.DataContext
+                               select new
+                               {
+                                   Module.ModuleCode,
+                                   Module.SelfStudyHours,
+                                   Module.HoursStudied,
+                                   Module.HoursLeft,
+                                   Module.DateLastStudied
+                               }).OrderBy(x => x.SelfStudyHours);
+                orderBySelfStudybtn.Content = "  Self Study Hours   🡣";
+                moduleDG.ItemsSource = Modules;
+            }
+            
+
+            
         }
     }
 }

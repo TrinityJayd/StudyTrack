@@ -143,6 +143,7 @@ namespace ST10083735_PROG6212_POE
         private void addModule_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             //Clear all the input text once the user leaves the page
+            this.DataContext = moduleList;
             ClearText();
         }
 
@@ -153,7 +154,7 @@ namespace ST10083735_PROG6212_POE
             moduleNametbx.Clear();
             creditspn.Value = creditspn.MinValue;
             hoursspn.Value = hoursspn.MinValue;
-
+            errorlb.Visibility = Visibility.Collapsed;  
         }
 
         
