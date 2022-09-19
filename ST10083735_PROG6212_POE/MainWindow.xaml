@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ST10083735_PROG6212_POE"
         mc:Ignorable="d"
-        Title="studytrack" Height="572" Width="907" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="studytrack" Height="572" Width="907" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/books-stack-of-three.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="63*"/>
@@ -41,7 +41,7 @@
 
         </Button>
 
-        
+
         <!--Add user controls to the grid container and make them all invisible-->
         <Grid x:Name="GridContainer" Margin="-1,25,1,10" Grid.RowSpan="2">
             <local:LandingPage x:Name="landingPage" Visibility="Collapsed" Grid.ColumnSpan="2"></local:LandingPage>
@@ -54,7 +54,7 @@
 
 
         </Grid>
-        <Button x:Name="exitbtn" Height="29" Content="Exit"  HorizontalAlignment="Left" Margin="822,0,0,49" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="Exitbtn_Click" RenderTransformOrigin="0.5,0.5" Width="32" VerticalAlignment="Bottom">
+        <Button x:Name="exitbtn" Height="24" Content="Exit"  HorizontalAlignment="Left" Margin="822,0,0,54" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="Exitbtn_Click" RenderTransformOrigin="0.5,0.5" Width="32" VerticalAlignment="Bottom">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">

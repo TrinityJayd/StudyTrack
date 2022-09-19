@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="books-stack-of-three.png" />
     <None Remove="undraw_Bookshelves_re_lxoy.png" />
     <None Remove="undraw_Brainstorming_re_1lmw.png" />
     <None Remove="undraw_Knowledge_re_5v9l.png" />
@@ -31,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="books-stack-of-three.png" />
     <Resource Include="undraw_Bookshelves_re_lxoy.png" />
     <Resource Include="undraw_Brainstorming_re_1lmw.png" />
     <Resource Include="undraw_Knowledge_re_5v9l.png" />
