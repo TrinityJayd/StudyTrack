@@ -22,7 +22,7 @@
         <Label x:Name="headinglb" Content="Module Study Hours" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="425"/>
         <Label Content="No modules added." Width="Auto" Visibility="Collapsed" x:Name="noModuleslb"  Foreground="#FF8C52FF" FontWeight="Regular"  Margin="26,76,669,379" FontSize="20" FontFamily="Segoe UI" BorderBrush="White" />
         <Label Content="Time is displayed in the format of Hours: Minutes." Width="Auto" Visibility="Visible" x:Name="infolb"  Foreground="#FF8C52FF" FontWeight="Regular"  Margin="26,68,410,392" FontSize="20" FontFamily="Segoe UI" BorderBrush="White" />
-        <Button x:Name="orderBySelfStudybtn" Content="  Self Study Hours   🡡" Foreground="White" FontSize="18" Visibility="Visible" Click="OrderBySelfStudybtn_Click" Margin="622,64,75,397">
+        <Button x:Name="orderBySelfStudybtn" Content="  Self Study Hours   🡡" Foreground="White" FontSize="18" Visibility="Collapsed" Click="OrderBySelfStudybtn_Click" Margin="622,64,75,397">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>
