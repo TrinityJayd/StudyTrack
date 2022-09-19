@@ -43,6 +43,8 @@ When they update a module it will be displayed on a Datagrid along with the:
  - The time left they need to study for
  - The date they last studied
 
+The program also makes use of a custom class library that deals with all module calculations as well as validation.
+
 ### Built With
   
   - C#
