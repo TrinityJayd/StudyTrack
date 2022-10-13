@@ -2,6 +2,7 @@
 {
     public class Module
     {
+        public int userID { get; set; }
         private string moduleCode;
         private string moduleName;
         private double credits;
