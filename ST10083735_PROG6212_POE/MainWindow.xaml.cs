@@ -146,6 +146,9 @@ namespace ST10083735_PROG6212_POE
             System.Windows.Application.Current.Shutdown();
         }
 
-        
+        private void signUpbtn_Click(object sender, RoutedEventArgs e)
+        {
+            SetActiveUserControl(signUp);
+        }
     }
 }
