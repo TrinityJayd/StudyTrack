@@ -8,6 +8,12 @@
              x:Name="signUp"
              d:DesignHeight="521" d:DesignWidth="907" Background="White" Width="907" Height="521">
     <Grid>
-        <Label x:Name="signUplb" Content="Sign Up" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="166"/>
+        <Label x:Name="signUplb" Content="Sign Up" Foreground="#8C52FF" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="166"/>
+        <Label x:Name="moduleCodelb" Content="Module Code" HorizontalAlignment="Left" Margin="21,86,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
+        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleCodetbx" HorizontalAlignment="Left" Margin="26,128,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Label x:Name="moduleCodelb_Copy" Content="Module Code" HorizontalAlignment="Left" Margin="21,175,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
+        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleCodetbx_Copy" HorizontalAlignment="Left" Margin="26,217,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Label x:Name="moduleCodelb_Copy1" Content="Module Code" HorizontalAlignment="Left" Margin="21,279,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
+        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleCodetbx_Copy1" HorizontalAlignment="Left" Margin="26,321,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
     </Grid>
 </UserControl>
