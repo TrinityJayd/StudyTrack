@@ -77,7 +77,11 @@ namespace ST10083735_PROG6212_POE
         private void RecordHours_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             //Save the list
-            moduleList = (List<Module>)this.DataContext;
+            if((List<Module>)this.DataContext != null)
+            {
+                moduleList = (List<Module>)this.DataContext;
+            }
+           
 
             //Clear the combobox
             modulecmb.Items.Clear();
@@ -85,7 +89,7 @@ namespace ST10083735_PROG6212_POE
             if (this.Visibility == Visibility.Visible)
             {
                 //If there are modules stored in the list then add it to the combobox
-                if (moduleList != null)
+                if (moduleList.Count != 0)
                 {
                     //Make the semester start date the beginning boundary
                     //The user cannot study for a module when the semester/classes has not started
