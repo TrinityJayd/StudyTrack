@@ -26,9 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Modules">
-      <HintPath>..\Modules\bin\Debug\net6.0\Modules.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Modules\Modules.csproj" />
   </ItemGroup>
 
   <ItemGroup>

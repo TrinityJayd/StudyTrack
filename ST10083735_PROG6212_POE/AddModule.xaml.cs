@@ -17,6 +17,7 @@ namespace ST10083735_PROG6212_POE
     public partial class AddModule : UserControl
     {
 
+        
         public event EventHandler HideModulePageButtonClicked;
         //Create an object of the validation methods class
         private ValidationMethods newValid = new ValidationMethods();
@@ -35,9 +36,12 @@ namespace ST10083735_PROG6212_POE
             //this means that the module has not been added to the list
             if (moduleCodetbx.Text != "")
             {
+                confirmAddlb.Visibility = Visibility.Visible;
+                yeschbkx.Visibility = Visibility.Visible;   
+                nochbx.Visibility = Visibility.Visible; 
                 //alert the user and tell them that the module has not been saved
-                MessageBoxResult dialog = MessageBox.Show($"Are you sure you want to continue without adding {moduleNametbx.Text}?","Alert",MessageBoxButton.YesNo,MessageBoxImage.Warning);
-                if (dialog.Equals(MessageBoxResult.Yes))
+                confirmAddlb.Content = $"Continue without adding {moduleCodetbx.Text}?";
+                if (yeschbkx.IsChecked == true)
                 {
                     //if they decide to continue without saving the module go to the home page
                     NavigateToHome();
@@ -46,6 +50,9 @@ namespace ST10083735_PROG6212_POE
             //if the module code textbox is empty, the module has been saved, so navigate to the home page
             else if(moduleCodetbx.Text.Equals(""))
             {
+                confirmAddlb.Visibility = Visibility.Visible;
+                yeschbkx.Visibility = Visibility.Visible;
+                nochbx.Visibility = Visibility.Visible;
                 NavigateToHome();
             }
             
@@ -56,6 +63,16 @@ namespace ST10083735_PROG6212_POE
 
         private void AddModulebtn_Click(object sender, RoutedEventArgs e)
         {
+            //do not allow wthe user to ad more than 6 modules
+            if(moduleList.Count == 6)
+            {
+                ClearText();
+                NavigateToHome(); 
+
+            }
+            confirmAddlb.Visibility = Visibility.Collapsed;
+            yeschbkx.Visibility = Visibility.Collapsed;
+            nochbx.Visibility = Visibility.Collapsed;
             //make the confirmation label and error label invisible
             confirmlb.Visibility = Visibility.Collapsed;
             errorlb.Visibility = Visibility.Collapsed;
@@ -67,6 +84,7 @@ namespace ST10083735_PROG6212_POE
             }
             else
             {
+                errorlb.Visibility = Visibility.Collapsed;
                 //Check if the module code and name are valid
                 //Module codes/names can contain spaces/underscores/numbers/letters
                 bool isModuleNameValid = newValid.LettersNumbersWhiteSpace(moduleNametbx.Text);
@@ -155,13 +173,33 @@ namespace ST10083735_PROG6212_POE
             moduleNametbx.Clear();
             creditspn.Value = creditspn.MinValue;
             hoursspn.Value = hoursspn.MinValue;
-            errorlb.Visibility = Visibility.Collapsed;  
+            errorlb.Visibility = Visibility.Collapsed;
+            confirmAddlb.Visibility = Visibility.Collapsed;
+            yeschbkx.Visibility = Visibility.Collapsed;
+            nochbx.Visibility = Visibility.Collapsed;
         }
 
-        
+        private void Yeschbkx_Checked(object sender, RoutedEventArgs e)
+        {
+            //Uncheck the no box if the ye box is checked
+            if (yeschbkx.IsChecked == true)
+            {
+                nochbx.IsChecked = false;
+            }
 
-        
+        }
 
-       
+        private void Nochbx_Checked(object sender, RoutedEventArgs e)
+        {
+            //Uncheck the yes box if the no box is checked
+            if (nochbx.IsChecked == true)
+            {
+                yeschbkx.IsChecked = false;
+            }
+        }
+
+
+
+
     }
 }

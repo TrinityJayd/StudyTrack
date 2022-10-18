@@ -1,0 +1,89 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ST10083735_PROG6212_POE/1.0.0": {
+        "dependencies": {
+          "Modules": "1.0.0",
+          "Syncfusion.SfInput.WPF": "20.2.0.49"
+        },
+        "runtime": {
+          "ST10083735_PROG6212_POE.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/20.2.0.49": {
+        "runtime": {
+          "lib/net6.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "20.2.0.49",
+            "fileVersion": "20.2.0.49"
+          }
+        }
+      },
+      "Syncfusion.SfInput.WPF/20.2.0.49": {
+        "dependencies": {
+          "Syncfusion.Licensing": "20.2.0.49",
+          "Syncfusion.Shared.WPF": "20.2.0.49"
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/Syncfusion.SfInput.WPF.dll": {
+            "assemblyVersion": "20.2500.0.49",
+            "fileVersion": "20.2500.0.49"
+          }
+        }
+      },
+      "Syncfusion.Shared.WPF/20.2.0.49": {
+        "dependencies": {
+          "Syncfusion.Licensing": "20.2.0.49"
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/Syncfusion.Shared.WPF.dll": {
+            "assemblyVersion": "20.2500.0.49",
+            "fileVersion": "20.2500.0.49"
+          }
+        }
+      },
+      "Modules/1.0.0": {
+        "runtime": {
+          "Modules.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ST10083735_PROG6212_POE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Syncfusion.Licensing/20.2.0.49": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9Ll1CzGUSTMXQ5c2k+VEuWWsiLbisPczo+yYf4dy0kVXZH4w36RGyl6oPpko4Byj9xhrFM0ZZXbj7828KWwB+w==",
+      "path": "syncfusion.licensing/20.2.0.49",
+      "hashPath": "syncfusion.licensing.20.2.0.49.nupkg.sha512"
+    },
+    "Syncfusion.SfInput.WPF/20.2.0.49": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-E9N7NrRj4JqwzqxJhqNR+LH0kUqgvMxJONx3IB/z32A2rWdhjEjRuK2mVknvq0zQPx/0jQGfJPqoDlLJEmsbvw==",
+      "path": "syncfusion.sfinput.wpf/20.2.0.49",
+      "hashPath": "syncfusion.sfinput.wpf.20.2.0.49.nupkg.sha512"
+    },
+    "Syncfusion.Shared.WPF/20.2.0.49": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-86anNY8dtwaeUPqnbA6+IpqHBSUc5VzQRhEqZkmhMG3IjOU+sK6S0NoyS3g/uOUPod4tgOF5259Dbm72PLfe6w==",
+      "path": "syncfusion.shared.wpf/20.2.0.49",
+      "hashPath": "syncfusion.shared.wpf.20.2.0.49.nupkg.sha512"
+    },
+    "Modules/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
