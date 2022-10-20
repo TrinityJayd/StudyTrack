@@ -1,4 +1,5 @@
 ﻿using Modules;
+using Modules.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -12,9 +13,11 @@ namespace ST10083735_PROG6212_POE
     public partial class HoursLeft : UserControl
     {
         public List<Module> Modules { get; set; }
+        ModuleManagement moduleManagement = new ModuleManagement();
         public HoursLeft()
         {
             InitializeComponent();
+            Modules = moduleManagement.GetModules(1);
         }
 
         private void HoursLeft_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -23,10 +26,10 @@ namespace ST10083735_PROG6212_POE
             moduleDG.ItemsSource = null;
             //Use LINQ to get only the fields we require from the data context
             //only if the list is not null
-            Modules = (List<Module>)this.DataContext;
+
             if (Modules != null)
             {
-                var Modules = from Module in (List<Module>)this.DataContext
+                var Modules = from Module in moduleManagement.GetModules(1)
                               select new
                               {
                                   Module.ModuleCode,
@@ -56,7 +59,6 @@ namespace ST10083735_PROG6212_POE
                     infolb.Visibility = Visibility.Visible;
                     orderBySelfStudybtn.Visibility = Visibility.Visible;
                     moduleDG.ItemsSource = Modules;
-
                 }
 
             }
@@ -69,7 +71,7 @@ namespace ST10083735_PROG6212_POE
             //If the buttons caption contans a down arrow then sort the list in descending order
             if (text.Contains("🡣"))
             {
-                var Modules = (from Module in (List<Module>)this.DataContext
+                var Modules = (from Module in moduleManagement.GetModules(1)
                                select new
                                {
                                    Module.ModuleCode,
@@ -79,12 +81,12 @@ namespace ST10083735_PROG6212_POE
                                    Module.DateLastStudied
                                }).OrderByDescending(x => x.SelfStudyHours);
                 orderBySelfStudybtn.Content = "  Self Study Hours   🡡";
-                moduleDG.ItemsSource = Modules;
+                
             }
             else
             {
                 //If the buttons caption contans an up arrow then sort the list in descending order
-                var Modules = (from Module in (List<Module>)this.DataContext
+                var Modules = (from Module in moduleManagement.GetModules(1)
                                select new
                                {
                                    Module.ModuleCode,
@@ -93,12 +95,11 @@ namespace ST10083735_PROG6212_POE
                                    Module.HoursLeft,
                                    Module.DateLastStudied
                                }).OrderBy(x => x.SelfStudyHours);
-                orderBySelfStudybtn.Content = "  Self Study Hours   🡣";
-                moduleDG.ItemsSource = Modules;
+                orderBySelfStudybtn.Content = "  Self Study Hours   🡣";               
             }
-            
 
-            
+            moduleDG.ItemsSource = Modules;
+
         }
     }
 }

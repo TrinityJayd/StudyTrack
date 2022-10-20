@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.IdentityModel.Protocols;
 
 namespace Modules.Models
 {
@@ -34,11 +33,15 @@ namespace Modules.Models
             modelBuilder.Entity<Module>(entity =>
             {
                 entity.HasKey(e => e.EntryId)
-                    .HasName("PK__Module__F57BD2D766C641E3");
+                    .HasName("PK__Module__F57BD2D77334AF07");
 
                 entity.ToTable("Module");
 
                 entity.Property(e => e.EntryId).HasColumnName("EntryID");
+
+                entity.Property(e => e.ClassHours).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.Credits).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.DateLastStudied).HasColumnType("date");
 
@@ -54,10 +57,12 @@ namespace Modules.Models
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
+                entity.Property(e => e.WeeksInSemester).HasColumnType("decimal(18, 0)");
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Modules)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Module__UserID__6383C8BA");
+                    .HasConstraintName("FK__Module__UserID__6C190EBB");
             });
 
             modelBuilder.Entity<User>(entity =>

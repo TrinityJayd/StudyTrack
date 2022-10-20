@@ -1,4 +1,5 @@
 ﻿using Modules;
+using Modules.Models;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -22,7 +23,7 @@ namespace ST10083735_PROG6212_POE
         //Create an object of the validation methods class
         private ValidationMethods newValid = new ValidationMethods();
         //Create a List of module objects
-        private List<Module> moduleList = new List<Module>();
+        
 
         public AddModule()
         {
@@ -64,12 +65,12 @@ namespace ST10083735_PROG6212_POE
         private void AddModulebtn_Click(object sender, RoutedEventArgs e)
         {
             //do not allow wthe user to ad more than 6 modules
-            if(moduleList.Count == 6)
-            {
-                ClearText();
-                NavigateToHome(); 
+            //if(moduleList.Count == 6)
+            //{
+            //    ClearText();
+            //    NavigateToHome(); 
 
-            }
+            //}
             confirmAddlb.Visibility = Visibility.Collapsed;
             yeschbkx.Visibility = Visibility.Collapsed;
             nochbx.Visibility = Visibility.Collapsed;
@@ -97,33 +98,35 @@ namespace ST10083735_PROG6212_POE
                 }
                 else
                 {
-                    //If the list already contains modules
-                    if (moduleList != null)
-                    {
-                        //Check if the Module the user wants to create already exists
-                        foreach(Module module in moduleList)
-                        {
-                            if (module.ModuleCode.Equals(moduleCodetbx.Text))
-                            {
-                                //Alert the user that the module exists
-                                MessageBox.Show($"{moduleCodetbx.Text} already exists.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                                //Clear all inputs
-                                ClearText();
-                                return;
-                            }
-                        }
-                    }
+                    ////If the list already contains modules
+                    //if (moduleList != null)
+                    //{
+                    //    //Check if the Module the user wants to create already exists
+                    //    foreach(Module module in moduleList)
+                    //    {
+                    //        if (module.ModuleCode.Equals(moduleCodetbx.Text))
+                    //        {
+                    //            //Alert the user that the module exists
+                    //            MessageBox.Show($"{moduleCodetbx.Text} already exists.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    //            //Clear all inputs
+                    //            ClearText();
+                    //            return;
+                    //        }
+                    //    }
+                    //}
                    
                     //Save the information input from the user
                     string moduleCode = moduleCodetbx.Text;
                     string moduleName = moduleNametbx.Text;
-                    double classHours = Convert.ToDouble(hoursspn.Value);
-                    double credits = Convert.ToDouble(creditspn.Value);
-                    double weeks = Convert.ToDouble(weeksspn.Value);
+                    decimal classHours = Convert.ToDecimal(hoursspn.Value);
+                    decimal credits = Convert.ToDecimal(creditspn.Value);
+                    decimal weeks = Convert.ToDecimal(weeksspn.Value);
                     DateTime startdate = datedp.SelectedDate.Value;
 
-                    //add the module to the list
-                    moduleList.Add(new Module(moduleCode, moduleName, credits, classHours, weeks, startdate));
+                    ModuleManagement newMod = new ModuleManagement();
+
+                    newMod.AddModule(new Module(moduleCode,moduleName,credits, startdate, weeks,classHours));
+                   
 
                     //on the confirmation label add the code of the module so the user knows which module has been added 
                     confirmlb.Content = $"{moduleCode} Added.";
@@ -149,9 +152,7 @@ namespace ST10083735_PROG6212_POE
         //Code to navigate to the home page
         private void NavigateToHome()
         {
-            confirmlb.Content = "";
-            //Update the data context with the new list
-            this.DataContext = moduleList;
+            confirmlb.Content = "";         
 
             if (HideModulePageButtonClicked != null)
             {
@@ -161,8 +162,7 @@ namespace ST10083735_PROG6212_POE
 
         private void AddModule_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            //Clear all the input text once the user leaves the page
-            this.DataContext = moduleList;
+            //Clear all the input text once the user leaves the page           
             ClearText();
         }
 
