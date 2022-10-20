@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Modules
 {
-    public class AccessDB
+    public class Account
     {
-        ValidationMethods security;
-        
+        ValidationMethods security = new ValidationMethods();   
+
         public bool Login(string username, string password)
         {         
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
@@ -29,13 +29,15 @@ namespace Modules
 
             return isLoggedIn;
         }
-
-        private void Register(string username, string password)
+        
+        public async Task Register(User user)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
-            var hashedPassword = security.HashPassword($"{username}{password}");
-            appDataContext.Add(new User() { Name = username, Password = hashedPassword});
-            appDataContext.SaveChangesAsync();
+            var hashedPassword = security.HashPassword($"{user.Username}{user.Password}");
+            user.Password = hashedPassword;
+            appDataContext.Users.Add(user);
+            await appDataContext.SaveChangesAsync();
+            
             
         }
     }

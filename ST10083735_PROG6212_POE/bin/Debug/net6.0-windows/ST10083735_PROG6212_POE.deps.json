@@ -441,6 +441,10 @@
         }
       },
       "Modules/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.10",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.10"
+        },
         "runtime": {
           "Modules.dll": {}
         }
