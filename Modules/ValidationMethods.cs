@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
 
 
@@ -71,7 +73,13 @@ namespace Modules
             return isValid;
         }
 
-        
 
+        public string HashPassword(string password)
+        {
+            SHA256 hash = SHA256.Create();
+            var passwordBytes = Encoding.Default.GetBytes(password);
+            var hashedPassword = hash.ComputeHash(passwordBytes);
+            return Convert.ToHexString(hashedPassword);
+        }
     }
 }
