@@ -1,4 +1,5 @@
 ﻿using Modules;
+using Modules.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -13,10 +14,8 @@ namespace ST10083735_PROG6212_POE
     /// </summary>
     public partial class DeleteModule : UserControl
     {
-
+        ModuleManagement modules = new ModuleManagement();
         public event EventHandler HideDeleteButtonClicked;
-        private List<Module> moduleList = new List<Module>();
-
 
         public DeleteModule()
         {
@@ -34,35 +33,17 @@ namespace ST10083735_PROG6212_POE
             else
             {
                 //If the user has confirmed deleteion, then delete the module
-                if(yeschbkx.IsChecked == true)
+                if (yeschbkx.IsChecked == true)
                 {
                     string moduleToDelete = modulecmb.SelectedItem.ToString();
-
-                    //Delete the module using LINQ
-                    moduleList.RemoveAll(x => x.ModuleCode == moduleToDelete);
-                    //Remove the item from the combobox
-                    modulecmb.Items.Remove(moduleToDelete);
-                }
-                
-                
-                //Update the datacontext with the list
-                //if the list does not have any items, set the datacontext to null,
-                //so when the user goes to view their modules/study hours
-                //a message that says there are no modules added will appear
-                if(moduleList.Count == 0)
-                {
-                    this.DataContext = null;
-                }
-                else
-                {
-                    this.DataContext = moduleList;
+                    int userID = (int)this.DataContext;
+                    modules.DeleteModule(moduleToDelete, userID);
                 }
                 
                 //Navigate to home page
                 if (HideDeleteButtonClicked != null)
                 {
                     HideDeleteButtonClicked(this, EventArgs.Empty);
-
                 }
 
 
@@ -96,7 +77,8 @@ namespace ST10083735_PROG6212_POE
         //with the module codes in the list
         private void DeleteModule_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            moduleList = (List<Module>)this.DataContext;
+            int userID = (int)this.DataContext;
+            List<Module> moduleList = modules.GetModules(userID);
 
             //Clear the combobox of any other modules it contained
             modulecmb.Items.Clear();

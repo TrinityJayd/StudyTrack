@@ -7,7 +7,7 @@
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Name="addModule" x:Class="ST10083735_PROG6212_POE.AddModule"
              mc:Ignorable="d" 
              d:DesignHeight="521" d:DesignWidth="907" Background="White" Width="907" Height="521"
-             DataContext="{Binding MainList, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}" IsVisibleChanged="AddModule_IsVisibleChanged">
+             DataContext="{Binding UserID, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}" IsVisibleChanged="AddModule_IsVisibleChanged">
     <!--set the DataContext to the dependency property-->
     <Grid Width="907" Height="521" >
         <Label x:Name="addModulelb" Content="Add Modules" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="252"/>

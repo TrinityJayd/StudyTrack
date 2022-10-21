@@ -8,12 +8,49 @@
              x:Name="signUp"
              d:DesignHeight="521" d:DesignWidth="907" Background="White" Width="907" Height="521">
     <Grid>
-        <Label x:Name="signUplb" Content="Sign Up" Foreground="#8C52FF" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="166"/>
-        <Label x:Name="moduleCodelb" Content="Module Code" HorizontalAlignment="Left" Margin="21,86,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
-        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleCodetbx" HorizontalAlignment="Left" Margin="26,128,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
-        <Label x:Name="moduleCodelb_Copy" Content="Module Code" HorizontalAlignment="Left" Margin="21,175,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
-        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleCodetbx_Copy" HorizontalAlignment="Left" Margin="26,217,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
-        <Label x:Name="moduleCodelb_Copy1" Content="Module Code" HorizontalAlignment="Left" Margin="21,279,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
-        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="moduleCodetbx_Copy1" HorizontalAlignment="Left" Margin="26,321,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Label x:Name="signUplb" Content="Sign Up" Foreground="Black" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="42" Width="166"/>
+        <Label x:Name="namelb" Content="Name" HorizontalAlignment="Left" Margin="33,319,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
+        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="nametxt" HorizontalAlignment="Left" Margin="38,361,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Label x:Name="lastnamelb" Content="Lastname" HorizontalAlignment="Left" Margin="33,396,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
+        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="lastnametxt" HorizontalAlignment="Left" Margin="38,438,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Label x:Name="usernamelb" Content="Username" HorizontalAlignment="Left" Margin="33,80,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
+        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="usernametxt" HorizontalAlignment="Left" Margin="38,122,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Label  x:Name="passwordlb" Content="Password" HorizontalAlignment="Left" Margin="33,156,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
+        <TextBox  TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="passwordtxt" HorizontalAlignment="Left" Margin="38,198,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Label x:Name="cellNumlb" Content="Cell number" HorizontalAlignment="Left" Margin="348,80,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
+        <TextBox MaxLength="10" TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="celltxt" HorizontalAlignment="Left" Margin="353,122,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Label x:Name="emaillb" Content="Email" HorizontalAlignment="Left" Margin="348,156,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
+        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="emailtxt" HorizontalAlignment="Left" Margin="353,198,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="670,430,0,0" VerticalAlignment="Top" Width="139"  Foreground="White" Height="35" Click="Completebtn_Click" RenderTransformOrigin="0.493,0.931">
+            <Button.Resources>
+                <Style TargetType="{x:Type Button}" >
+                    <Setter Property="Background" Value="#8C52FF"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" BorderBrush="White" Background="{TemplateBinding Background}" CornerRadius="18">
+                                    <ContentPresenter  HorizontalAlignment="Left" VerticalAlignment="Center" Content="        Register"/>
+
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter  Property="Background" Value="#7e49e5" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+
+                </Style>
+
+            </Button.Resources>
+        </Button>
+        <Label x:Name="confirmpasswordlb" Content="Confirm Password" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center" FontSize="24" FontFamily="Segoe UI Light" Width="215"/>
+        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="confirmpasswordtxt" HorizontalAlignment="Left" Margin="38,282,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
+        <TextBlock Text="" x:Name="messagetb" FontSize="18" Foreground="#8C52FF" FontWeight="Medium" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="353,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="121" Width="456"/>
+
     </Grid>
 </UserControl>

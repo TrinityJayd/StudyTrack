@@ -1,4 +1,5 @@
 ﻿using Modules;
+using Modules.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,11 @@ namespace ST10083735_PROG6212_POE
     {
         public event EventHandler HideRecordHoursClicked;
         private List<Module> moduleList = new List<Module>();
+        ModuleManagement moduleManagement = new ModuleManagement();
         public RecordHours()
         {
             InitializeComponent();
+            
         }
 
         private void Completebtn_Click(object sender, RoutedEventArgs e)
@@ -43,30 +46,13 @@ namespace ST10083735_PROG6212_POE
                 //Save the code of the module to update
                 string moduleToUpdate = modulecmb.SelectedItem.ToString();
 
-                foreach (Module module in moduleList)
-                {
-                    //Update the details of the module
-                    if (module.ModuleCode.Equals(moduleToUpdate))
-                    {
-                        //add the time studied to the current value of the time studied
-                        module.HoursStudied += (TimeSpan)timespedt.Value;
-                        //save the last date studied
-                        module.DateLastStudied = datedp.SelectedDate.Value; ;
+                TimeSpan hoursStudied = (TimeSpan)timespedt.Value;
+                long hoursStudiedTicks = hoursStudied.Ticks;
 
-                        //if the user studies more than is required then set the hours left
-                        //that they need to study to 0
-                        if (module.HoursStudied > module.SelfStudyHours)
-                        {
-                            module.HoursLeft = TimeSpan.Zero;
-                        }
-                        else
-                        {
-                            //otherwise, subtract the times
-                            module.HoursLeft = module.SelfStudyHours - module.HoursStudied;
-                        }
-                        
-                    }
-                }
+                int userID = (int)this.DataContext;
+                moduleManagement.UpdateModule(hoursStudiedTicks, datedp.SelectedDate.Value, moduleToUpdate, userID);
+
+                
                 //Navigate to home page
                 if (HideRecordHoursClicked != null)
                     HideRecordHoursClicked(this, EventArgs.Empty);
@@ -76,19 +62,15 @@ namespace ST10083735_PROG6212_POE
 
         private void RecordHours_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            //Save the list
-            if((List<Module>)this.DataContext != null)
-            {
-                moduleList = (List<Module>)this.DataContext;
-            }
-           
+            int userID = (int)this.DataContext;
+            List<Module> moduleList = moduleManagement.GetModules(userID);
 
-            //Clear the combobox
+            //Clear the combobox of any other modules it contained
             modulecmb.Items.Clear();
 
             if (this.Visibility == Visibility.Visible)
             {
-                //If there are modules stored in the list then add it to the combobox
+                //Only if the list is has modules stored, it must try to add modules to the combobox
                 if (moduleList.Count != 0)
                 {
                     //Make the semester start date the beginning boundary
@@ -97,8 +79,6 @@ namespace ST10083735_PROG6212_POE
 
                     //Make the end boundary, the current date, the user can only log past study sessions not future ones
                     datedp.DisplayDateEnd = DateTime.Now;
-                   
-                    //Add modules to the module combobox
                     foreach (Module module in moduleList)
                     {
                         modulecmb.Items.Add(module.ModuleCode);
@@ -112,6 +92,7 @@ namespace ST10083735_PROG6212_POE
                 datedp.SelectedDate = null;
                 timespedt.Value = timespedt.MinValue;
             }
+            
         }
     }
 }
