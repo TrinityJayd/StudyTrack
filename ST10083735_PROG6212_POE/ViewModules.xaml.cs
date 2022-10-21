@@ -28,10 +28,11 @@ namespace ST10083735_PROG6212_POE
 
             if (viewModules.Visibility == Visibility.Visible)
             {
+                int userID = (int)this.DataContext;
                 //Save the list
-                if (modules.GetModules(1) != null)
+                if (modules.GetModules(userID).Count != 0)
                 {
-                    moduleList = modules.GetModules(1);
+                    moduleList = modules.GetModules(userID);
                 }
 
                 if (moduleList.Count != 0)

@@ -6,9 +6,8 @@
              xmlns:local="clr-namespace:ST10083735_PROG6212_POE"
              mc:Ignorable="d" 
              d:DesignHeight="521" d:DesignWidth="907" Background="White" x:Name="viewModules" IsVisibleChanged="ViewModules_IsVisibleChanged"
-             DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=MainList, 
-        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-             >
+             DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=UserID, 
+        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
     <Grid>
         <Label x:Name="headinglb" Content="All Modules" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="222"/>
         <DataGrid Visibility="Collapsed" AutoGenerateColumns="False" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding Modules}" Margin="26,76,30,29">

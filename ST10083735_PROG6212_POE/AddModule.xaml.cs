@@ -35,7 +35,7 @@ namespace ST10083735_PROG6212_POE
         {
             //If the module code text box isnt empty, it means that the user has not clicked th add module button
             //this means that the module has not been added to the list
-            if (moduleCodetbx.Text != "")
+            if (!String.IsNullOrEmpty(moduleCodetbx.Text))
             {
                 confirmAddlb.Visibility = Visibility.Visible;
                 yeschbkx.Visibility = Visibility.Visible;   
@@ -49,7 +49,7 @@ namespace ST10083735_PROG6212_POE
                 }
             } 
             //if the module code textbox is empty, the module has been saved, so navigate to the home page
-            else if(moduleCodetbx.Text.Equals(""))
+            else if(String.IsNullOrEmpty(moduleCodetbx.Text))
             {
                 confirmAddlb.Visibility = Visibility.Visible;
                 yeschbkx.Visibility = Visibility.Visible;
@@ -123,9 +123,21 @@ namespace ST10083735_PROG6212_POE
                     decimal weeks = Convert.ToDecimal(weeksspn.Value);
                     DateTime startdate = datedp.SelectedDate.Value;
 
+                    int userID = (int)this.DataContext;
                     ModuleManagement newMod = new ModuleManagement();
 
-                    newMod.AddModule(new Module(moduleCode,moduleName,credits, startdate, weeks,classHours));
+                    Module module = new Module
+                    {                        
+                        ModuleCode = moduleCode,
+                        ModuleName = moduleName,
+                        ClassHours = classHours,
+                        Credits = credits,
+                        WeeksInSemester = weeks,
+                        SemesterStartDate = startdate,
+                        UserId = userID
+                    };
+                
+                    newMod.AddModule(module);
                    
 
                     //on the confirmation label add the code of the module so the user knows which module has been added 

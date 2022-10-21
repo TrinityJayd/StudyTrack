@@ -33,10 +33,11 @@ namespace ST10083735_PROG6212_POE
             else
             {
                 //If the user has confirmed deleteion, then delete the module
-                if(yeschbkx.IsChecked == true)
+                if (yeschbkx.IsChecked == true)
                 {
                     string moduleToDelete = modulecmb.SelectedItem.ToString();
-                    modules.DeleteModule(moduleToDelete, 1);
+                    int userID = (int)this.DataContext;
+                    modules.DeleteModule(moduleToDelete, userID);
                 }
                 
                 //Navigate to home page
@@ -76,7 +77,8 @@ namespace ST10083735_PROG6212_POE
         //with the module codes in the list
         private void DeleteModule_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            List<Module> moduleList = modules.GetModules(1);
+            int userID = (int)this.DataContext;
+            List<Module> moduleList = modules.GetModules(userID);
 
             //Clear the combobox of any other modules it contained
             modulecmb.Items.Clear();

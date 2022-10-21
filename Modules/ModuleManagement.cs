@@ -13,6 +13,8 @@ namespace Modules
         public async Task AddModule(Module module)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            int totalModules = appDataContext.Modules.Count();
+            module.EntryId = totalModules + 1;
             appDataContext.Modules.Add(module);
             await appDataContext.SaveChangesAsync();
         }

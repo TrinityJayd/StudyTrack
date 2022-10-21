@@ -8,7 +8,7 @@
              d:DesignHeight="450" Width="907" Height="450">
     <Grid x:Name="landingGrid" Background="White" Width="907" Margin="0,0,0,-34">
 
-        <RichTextBox x:Name="headlinertb" Margin="31,10,0,0" BorderThickness="0" FontFamily="Arial Black" FontSize="50" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnlyCaretVisible="True" Width="375">
+        <RichTextBox IsReadOnly="True" Focusable="False" x:Name="headlinertb" Margin="31,10,0,0" BorderThickness="0" FontFamily="Arial Black" FontSize="50" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnlyCaretVisible="True" Width="375">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="We Help You"/>

@@ -89,7 +89,7 @@ namespace ST10083735_PROG6212_POE
                     }
                     else
                     {
-                        this.DataContext = user.UserId;
+                        
                         account.Register(user);
                         ClearText();
                         NavigateToHome();

@@ -52,10 +52,11 @@
             <local:ViewModules x:Name="viewModule" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:ViewModules>
             <local:HoursLeft x:Name="hoursLeft" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:HoursLeft>
             <local:SignUp x:Name="signUp" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:SignUp>
+            <local:Login x:Name="login" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:Login>
 
 
         </Grid>
-        <Button x:Name="exitbtn" Height="24" Content="Exit"  HorizontalAlignment="Left" Margin="723,0,0,55" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="Exitbtn_Click" RenderTransformOrigin="0.5,0.5" Width="32" VerticalAlignment="Bottom">
+        <Button x:Name="exitbtn" Height="24" Content="Exit"  HorizontalAlignment="Left" Margin="722,0,0,54" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="Exitbtn_Click" RenderTransformOrigin="0.5,0.5" Width="32" VerticalAlignment="Bottom">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">
@@ -114,7 +115,7 @@
 
 
         </Button>
-        <Button x:Name="loginbtn" Content="Login"  HorizontalAlignment="Left" Margin="652,0,0,50" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Height="29" VerticalAlignment="Bottom">
+        <Button x:Name="loginbtn" Content="Login"  HorizontalAlignment="Left" Margin="650,-2,0,50" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="loginbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">
@@ -143,7 +144,7 @@
 
 
         </Button>
-        <Button x:Name="logoutbtn" Height="27" Content="Exit"  HorizontalAlignment="Left" Margin="778,0,0,52" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" RenderTransformOrigin="0.5,0.5" Width="59" VerticalAlignment="Bottom">
+        <Button x:Name="logoutbtn" Visibility="Collapsed" Height="27" Content="Exit"  HorizontalAlignment="Left" Margin="778,0,0,52" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" RenderTransformOrigin="0.5,0.5" Width="59" VerticalAlignment="Bottom" Click="logoutbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">

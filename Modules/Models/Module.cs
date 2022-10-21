@@ -18,15 +18,7 @@ namespace Modules.Models
         public DateTime DateLastStudied { get; set; }
         public int? UserId { get; set; }
 
-        public Module(string moduleCode, string moduleName, decimal credits, DateTime semesterStartDate, decimal weeksInSemester, decimal classHours)
-        {
-            ModuleCode = moduleCode;
-            ModuleName = moduleName;
-            Credits = credits;
-            SemesterStartDate = semesterStartDate;
-            WeeksInSemester = weeksInSemester;
-            ClassHours = classHours;
-        }
+       
 
         public virtual User? User { get; set; }
     }

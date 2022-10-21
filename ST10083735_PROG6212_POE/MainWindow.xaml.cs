@@ -1,6 +1,4 @@
-﻿using Modules;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,13 +14,13 @@ namespace ST10083735_PROG6212_POE
         ////Create a dependency property for the list of module objects
         public int UserID
         {
-            get { return UserID; }
+            get { return (int)GetValue(UserIDProperty); }
             set { SetValue(UserIDProperty, value); }
         }
 
         //Code to enable binding to the dependency property
         public static readonly DependencyProperty UserIDProperty =
-            DependencyProperty.Register("MainList", typeof(int), typeof(MainWindow), new PropertyMetadata(null));
+            DependencyProperty.Register("UserID", typeof(int), typeof(MainWindow), new PropertyMetadata(null));
 
 
         public MainWindow()
@@ -41,17 +39,12 @@ namespace ST10083735_PROG6212_POE
             home.ShowHoursBtnClicked += OnShowHoursBtnClicked;
             home.ShowModulesBtnClicked += OnShowModulesBtnClicked;
             home.ShowRecordHoursBtnClicked += OnShowRecordStudyHoursBtnClicked;
-            recordHours.HideRecordHoursClicked += OnHideRecordHoursClicked;           
+            recordHours.HideRecordHoursClicked += OnHideRecordHoursClicked;
             deleteModule.HideDeleteButtonClicked += OnHideDeleteButtonClicked;
             signUp.HideSignUpButtonClicked += OnHideSignUpButtonClicked;
+            login.LoginSuccess += OnLoginSuccess;
+            login.RegisterButtonClicked += Login_RegisterButtonClicked;
         }
-
-        private void OnHideSignUpButtonClicked(object? sender, EventArgs e)
-        {
-            //Show the login page after the user clicks complete on the registration
-            //SetActiveUserControl(login);
-        }
-
 
 
         ////Author:andreask
@@ -59,10 +52,29 @@ namespace ST10083735_PROG6212_POE
         private void OnHideButtonClicked(object? sender, EventArgs e)
         {
             //Show the add module page after the user clicks get started on the landing page
-            SetActiveUserControl(addModule);
+            SetActiveUserControl(signUp);
         }
 
-       
+        private void OnLoginSuccess(object? sender, EventArgs e)
+        {
+            //If the user successfully logs in show the home page
+            SetActiveUserControl(home);
+            logoutbtn.Visibility = Visibility.Visible;
+        }
+
+        private void Login_RegisterButtonClicked(object? sender, EventArgs e)
+        {
+            //Show sign up page if the user clicks the sign up button on the login pages
+            SetActiveUserControl(signUp);
+        }
+
+        private void OnHideSignUpButtonClicked(object? sender, EventArgs e)
+        {
+            //Show the login page after the user clicks complete on the registration
+            SetActiveUserControl(login);
+        }
+
+
         public void SetActiveUserControl(UserControl control)
         {
             //First make all user controls invisible
@@ -74,7 +86,8 @@ namespace ST10083735_PROG6212_POE
             viewModule.Visibility = Visibility.Collapsed;
             hoursLeft.Visibility = Visibility.Collapsed;
             signUp.Visibility = Visibility.Collapsed;
-            
+            login.Visibility = Visibility.Collapsed;
+
             //Make the user control recieved as a parameter visible
             control.Visibility = Visibility.Visible;
         }
@@ -87,8 +100,18 @@ namespace ST10083735_PROG6212_POE
 
         private void Homebtn_Click(object sender, RoutedEventArgs e)
         {
-            //Make the home page visible
-            SetActiveUserControl(home);
+            if (UserID == 0)
+            {
+                //If the user is not logged in show the login page
+                SetActiveUserControl(login);
+            }
+            else
+            {
+                //If the user is logged in show the home page
+                SetActiveUserControl(home);
+            }
+
+            
         }
 
         private void OnHideRecordHoursClicked(object? sender, EventArgs e)
@@ -147,16 +170,26 @@ namespace ST10083735_PROG6212_POE
         }
 
 
-
         private void Exitbtn_Click(object sender, RoutedEventArgs e)
         {
             //Code to exit the application
-            System.Windows.Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
         private void signUpbtn_Click(object sender, RoutedEventArgs e)
         {
             SetActiveUserControl(signUp);
+        }
+
+        private void loginbtn_Click(object sender, RoutedEventArgs e)
+        {
+            SetActiveUserControl(login);
+        }
+
+        private void logoutbtn_Click(object sender, RoutedEventArgs e)
+        {
+            UserID = 0;
+            SetActiveUserControl(landingPage);
         }
     }
 }

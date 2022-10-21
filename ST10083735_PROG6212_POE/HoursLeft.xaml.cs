@@ -12,9 +12,9 @@ namespace ST10083735_PROG6212_POE
     /// </summary>
     public partial class HoursLeft : UserControl
     {
-        public List<Module> Modules { get; set; }
+        List<Module> Modules;
         ModuleManagement moduleManagement = new ModuleManagement();
-        
+        List<Module> UserModules;
         public HoursLeft()
         {
             InitializeComponent();
@@ -24,25 +24,27 @@ namespace ST10083735_PROG6212_POE
         {
             //Set the datagrid ItemSource to null
             moduleDG.ItemsSource = null;
+            
 
             if (hoursLeft.Visibility == Visibility.Visible)
             {
-                Modules = moduleManagement.GetModules((int)this.DataContext);
+                int userID = (int)this.DataContext;
+                UserModules = moduleManagement.GetModules(userID);
 
                 //Use LINQ to get only the fields we require from the data context
                 //only if the list is not null
 
                 if (Modules != null)
                 {
-                    var Modules = from Module in moduleManagement.GetModules(1)
-                                  select new
+                     Modules = (List<Module>)(from Module in UserModules
+                               select new
                                   {
                                       Module.ModuleCode,
                                       Module.SelfStudyHours,
                                       Module.HoursStudied,
                                       Module.HoursLeft,
                                       Module.DateLastStudied
-                                  };
+                                  });
                 }
                 //If there are no modules in the list, show the user the label that states that there are no modules saved
                 if (Modules == null)
@@ -71,7 +73,7 @@ namespace ST10083735_PROG6212_POE
             //If the buttons caption contans a down arrow then sort the list in descending order
             if (text.Contains("🡣"))
             {
-                var Modules = (from Module in moduleManagement.GetModules((int)this.DataContext)
+                 Modules = (List<Module>)(from Module in UserModules
                                select new
                                {
                                    Module.ModuleCode,
@@ -86,7 +88,7 @@ namespace ST10083735_PROG6212_POE
             else
             {
                 //If the buttons caption contans an up arrow then sort the list in descending order
-                var Modules = (from Module in moduleManagement.GetModules((int)this.DataContext)
+                 Modules = (List<Module>)(from Module in UserModules
                                select new
                                {
                                    Module.ModuleCode,

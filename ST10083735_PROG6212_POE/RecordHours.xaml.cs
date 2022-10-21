@@ -49,7 +49,8 @@ namespace ST10083735_PROG6212_POE
                 TimeSpan hoursStudied = (TimeSpan)timespedt.Value;
                 long hoursStudiedTicks = hoursStudied.Ticks;
 
-                moduleManagement.UpdateModule(hoursStudiedTicks, datedp.SelectedDate.Value, moduleToUpdate, 1);
+                int userID = (int)this.DataContext;
+                moduleManagement.UpdateModule(hoursStudiedTicks, datedp.SelectedDate.Value, moduleToUpdate, userID);
 
                 
                 //Navigate to home page
@@ -61,7 +62,8 @@ namespace ST10083735_PROG6212_POE
 
         private void RecordHours_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            List<Module> moduleList = moduleManagement.GetModules(1);
+            int userID = (int)this.DataContext;
+            List<Module> moduleList = moduleManagement.GetModules(userID);
 
             //Clear the combobox of any other modules it contained
             modulecmb.Items.Clear();
@@ -69,7 +71,7 @@ namespace ST10083735_PROG6212_POE
             if (this.Visibility == Visibility.Visible)
             {
                 //Only if the list is has modules stored, it must try to add modules to the combobox
-                if (moduleList != null)
+                if (moduleList.Count != 0)
                 {
                     //Make the semester start date the beginning boundary
                     //The user cannot study for a module when the semester/classes has not started
