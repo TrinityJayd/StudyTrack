@@ -23,6 +23,7 @@ namespace ST10083735_PROG6212_POE
     public partial class SignUp : UserControl
     {
         public event EventHandler HideSignUpButtonClicked;
+        ValidationMethods validation = new ValidationMethods();
         public SignUp()
         {
             InitializeComponent();
@@ -41,21 +42,61 @@ namespace ST10083735_PROG6212_POE
                 messagetb.Text = "Passwords do not match";
             }
             else
-            {
-                Account account = new Account();
-                User user = new User
+            {                
+                if (validation.passwordRequirements(passwordtxt.Text) == false)
                 {
-                    Username = usernametxt.Text,
-                    Password = passwordtxt.Text,
-                    Name = nametxt.Text,
-                    Lastname = lastnametxt.Text,
-                    Email = emailtxt.Text,
-                    CellNumber = celltxt.Text
-                };
-
-                account.Register(user);
-                ClearText();
-                NavigateToHome();
+                    messagetb.Text = "Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.";
+                }
+                else if (validation.IsPhoneNumberValid(celltxt.Text) == false)
+                {
+                    messagetb.Text = "Cell number must be numeric and contain 10 digits.";
+                }
+                else if (validation.OnlyLetters(nametxt.Text) == false)
+                {
+                    messagetb.Text = "Name must only contain letters.";
+                }
+                else if (validation.OnlyLetters(lastnametxt.Text) == false)
+                {
+                    messagetb.Text = "Last name must only contain letters.";
+                }
+                else if (validation.IsEmailValid(emailtxt.Text) == false)
+                {
+                    messagetb.Text = "Email is not valid.";
+                }
+                else
+                {
+                    Account account = new Account();
+                    User user = new User
+                    {
+                        Username = usernametxt.Text,
+                        Password = passwordtxt.Text,
+                        Name = nametxt.Text,
+                        Lastname = lastnametxt.Text,
+                        Email = emailtxt.Text,
+                        CellNumber = celltxt.Text
+                    };
+                    if (account.UsernameExists(user.Username) == true)
+                    {
+                        messagetb.Text = "Username already exists.";
+                    }
+                    else if (account.EmailExists(user.Email) == true)
+                    {
+                        messagetb.Text = "User with this email already exists.";
+                    }
+                    else if (account.PhoneExists(user.CellNumber) == true)
+                    {
+                        messagetb.Text = "User with this cell number already exists.";
+                    }
+                    else
+                    {
+                        this.DataContext = user.UserId;
+                        account.Register(user);
+                        ClearText();
+                        NavigateToHome();
+                    }
+                    
+                }
+                
 
             }
                 

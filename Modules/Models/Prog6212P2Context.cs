@@ -33,11 +33,13 @@ namespace Modules.Models
             modelBuilder.Entity<Module>(entity =>
             {
                 entity.HasKey(e => e.EntryId)
-                    .HasName("PK__Module__F57BD2D77334AF07");
+                    .HasName("PK__Module__F57BD2D72FE06FCF");
 
                 entity.ToTable("Module");
 
-                entity.Property(e => e.EntryId).HasColumnName("EntryID");
+                entity.Property(e => e.EntryId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("EntryID");
 
                 entity.Property(e => e.ClassHours).HasColumnType("decimal(18, 0)");
 
@@ -62,12 +64,14 @@ namespace Modules.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Modules)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Module__UserID__6C190EBB");
+                    .HasConstraintName("FK__Module__UserID__75A278F5");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("UserID");
 
                 entity.Property(e => e.CellNumber)
                     .HasMaxLength(10)
@@ -82,10 +86,6 @@ namespace Modules.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Password)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 

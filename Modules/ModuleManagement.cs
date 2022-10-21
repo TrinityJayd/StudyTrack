@@ -52,5 +52,7 @@ namespace Modules
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             return appDataContext.Modules.Where(m => m.UserId == userID).ToList();
         }
+
+    
     }
 }

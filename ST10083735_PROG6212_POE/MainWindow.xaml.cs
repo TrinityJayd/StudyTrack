@@ -14,15 +14,15 @@ namespace ST10083735_PROG6212_POE
         ////Author: Abhinav Sharma
         ////Link: https://stackoverflow.com/questions/22573295/sharing-data-between-2-usercontrols-in-wpf
         ////Create a dependency property for the list of module objects
-        //public List<Module> MainList
-        //{
-        //    get { return MainList; }
-        //    set { SetValue(MainListProperty, value); }
-        //}
+        public int UserID
+        {
+            get { return UserID; }
+            set { SetValue(UserIDProperty, value); }
+        }
 
-        ////Code to enable binding to the dependency property
-        //public static readonly DependencyProperty MainListProperty =
-        //    DependencyProperty.Register("MainList", typeof(List<Module>), typeof(MainWindow), new PropertyMetadata(null));
+        //Code to enable binding to the dependency property
+        public static readonly DependencyProperty UserIDProperty =
+            DependencyProperty.Register("MainList", typeof(int), typeof(MainWindow), new PropertyMetadata(null));
 
 
         public MainWindow()
@@ -43,9 +43,16 @@ namespace ST10083735_PROG6212_POE
             home.ShowRecordHoursBtnClicked += OnShowRecordStudyHoursBtnClicked;
             recordHours.HideRecordHoursClicked += OnHideRecordHoursClicked;           
             deleteModule.HideDeleteButtonClicked += OnHideDeleteButtonClicked;
+            signUp.HideSignUpButtonClicked += OnHideSignUpButtonClicked;
         }
 
-       
+        private void OnHideSignUpButtonClicked(object? sender, EventArgs e)
+        {
+            //Show the login page after the user clicks complete on the registration
+            //SetActiveUserControl(login);
+        }
+
+
 
         ////Author:andreask
         ////https://stackoverflow.com/questions/25585491/showing-user-control-from-another-user-controls-button-click-in-main-window
@@ -66,7 +73,8 @@ namespace ST10083735_PROG6212_POE
             deleteModule.Visibility = Visibility.Collapsed;
             viewModule.Visibility = Visibility.Collapsed;
             hoursLeft.Visibility = Visibility.Collapsed;
-
+            signUp.Visibility = Visibility.Collapsed;
+            
             //Make the user control recieved as a parameter visible
             control.Visibility = Visibility.Visible;
         }

@@ -15,7 +15,7 @@ namespace Modules.Models
         public long SelfStudyHours { get; set; }
         public long HoursStudied { get; set; }
         public long HoursLeft { get; set; }
-        public DateTime? DateLastStudied { get; set; }
+        public DateTime DateLastStudied { get; set; }
         public int? UserId { get; set; }
 
         public Module(string moduleCode, string moduleName, decimal credits, DateTime semesterStartDate, decimal weeksInSemester, decimal classHours)
@@ -26,21 +26,6 @@ namespace Modules.Models
             SemesterStartDate = semesterStartDate;
             WeeksInSemester = weeksInSemester;
             ClassHours = classHours;
-            HoursStudied = 0;
-            SelfStudyHours = CalculateSelfStudyHours();
-            DateLastStudied = null; 
-        }
-        
-        public long CalculateSelfStudyHours()
-        {
-            //Calculation for the amount of time the student needs to self study
-            long studyHours = (long)(((Credits * 10) / WeeksInSemester) - ClassHours);
-
-            //Convert the value to a TimeSpan so a manual calculation isn't necessary
-            //The value sent as a parameter is not rounded off becuase it will allow the time to be
-            //more accurate.
-            return studyHours;
-
         }
 
         public virtual User? User { get; set; }

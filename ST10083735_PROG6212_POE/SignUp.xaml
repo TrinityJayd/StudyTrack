@@ -50,7 +50,7 @@
         </Button>
         <Label x:Name="confirmpasswordlb" Content="Confirm Password" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center" FontSize="24" FontFamily="Segoe UI Light" Width="215"/>
         <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="confirmpasswordtxt" HorizontalAlignment="Left" Margin="38,282,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
-        <TextBlock Text="hello world" x:Name="messagetb" FontSize="18" Foreground="#8C52FF" FontWeight="Medium" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="353,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="121" Width="290"/>
+        <TextBlock Text="" x:Name="messagetb" FontSize="18" Foreground="#8C52FF" FontWeight="Medium" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="353,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="121" Width="456"/>
 
     </Grid>
 </UserControl>

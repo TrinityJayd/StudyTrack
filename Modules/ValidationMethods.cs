@@ -1,7 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Modules
@@ -66,7 +65,7 @@ namespace Modules
         {
             bool isValid;
             //Regex patter only allows letters, digits, underscores and whitespace
-            string lettersPattern ="^[a-zA-Z\\d_\\s]+$";
+            string lettersPattern = "^[a-zA-Z\\d_\\s]+$";
             check = new Regex(lettersPattern);
             isValid = check.IsMatch(value);
 
@@ -80,6 +79,37 @@ namespace Modules
             var passwordBytes = Encoding.Default.GetBytes(password);
             var hashedPassword = hash.ComputeHash(passwordBytes);
             return Convert.ToHexString(hashedPassword);
+        }
+
+        public bool passwordRequirements(string password)
+        {
+
+            //Check if password meets requirements
+            string passwordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$";
+            check = new Regex(passwordPattern);
+            bool isValid = check.IsMatch(password);
+            return isValid;
+
+        }
+
+        public bool IsEmailValid(string email)
+        {
+            //Check if email is valid
+            bool isValid;
+            string emailPattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
+            check = new Regex(emailPattern);
+            isValid = check.IsMatch(email);
+            return isValid;
+        }
+
+        public bool IsPhoneNumberValid(string phoneNumber)
+        {
+            //Check if phone number is valid
+            bool isValid;          
+            string phoneNumberPattern = @"^(0\d{9})$";
+            check = new Regex(phoneNumberPattern);
+            isValid = check.IsMatch(phoneNumber);
+            return isValid;
         }
     }
 }
