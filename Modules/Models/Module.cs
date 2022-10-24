@@ -15,11 +15,17 @@ namespace Modules.Models
         public long SelfStudyHours { get; set; }
         public long HoursStudied { get; set; }
         public long HoursLeft { get; set; }
-        public DateTime DateLastStudied { get; set; }
+        public DateTime? DateLastStudied { get; set; }
         public int? UserId { get; set; }
 
-       
-
         public virtual User? User { get; set; }
+
+        public long CalculateSelfStudyHours()
+        {
+            //Calculation for the amount of time the student needs to self study
+            long studyHours = (long)(((Credits * 10) / WeeksInSemester) - ClassHours);            
+            return studyHours;
+
+        }
     }
 }

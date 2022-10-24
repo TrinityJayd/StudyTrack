@@ -11,7 +11,7 @@
             <RowDefinition Height="63*"/>
             <RowDefinition Height="382*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="homebtn" Content="Home"  HorizontalAlignment="Left" Margin="495,0,0,50" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="Homebtn_Click" Height="29" VerticalAlignment="Bottom">
+        <Button x:Name="homebtn" Content="Home"  HorizontalAlignment="Left" Margin="597,0,0,50" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="Homebtn_Click" Height="29" VerticalAlignment="Bottom">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">
@@ -56,7 +56,7 @@
 
 
         </Grid>
-        <Button x:Name="exitbtn" Height="24" Content="Exit"  HorizontalAlignment="Left" Margin="722,0,0,54" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="Exitbtn_Click" RenderTransformOrigin="0.5,0.5" Width="32" VerticalAlignment="Bottom">
+        <Button x:Name="exitbtn" Height="24" Content="Exit"  HorizontalAlignment="Left" Margin="824,0,0,54" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="Exitbtn_Click" RenderTransformOrigin="0.5,0.5" Width="32" VerticalAlignment="Bottom">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">
@@ -86,7 +86,7 @@
 
         </Button>
         <Label x:Name="mainLb" Foreground="#8C52FF" FontWeight="Bold" Content="studytrack" HorizontalAlignment="Left" Height="46" Margin="28,-7,0,0" VerticalAlignment="Top" Width="123" FontFamily="Candara" FontSize="24" MouseDown="MainLb_MouseDown"/>
-        <Button x:Name="signUpbtn" Content="Sign Up"  HorizontalAlignment="Left" Margin="571,0,0,50" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Height="29" VerticalAlignment="Bottom" Click="signUpbtn_Click">
+        <Button x:Name="signUpbtn" Content="Sign Up"  HorizontalAlignment="Left" Margin="667,0,0,50" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Height="29" VerticalAlignment="Bottom" Click="signUpbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">
@@ -115,14 +115,14 @@
 
 
         </Button>
-        <Button x:Name="loginbtn" Content="Login"  HorizontalAlignment="Left" Margin="650,-2,0,50" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="loginbtn_Click">
+        <Button x:Name="loginbtn" Content="Login"  HorizontalAlignment="Left" Margin="753,-3,0,52" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="loginbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border x:Name="border" BorderBrush="White" BorderThickness="0,0,0,3" Background="{TemplateBinding Background}" Margin="0,0,0,2">
-                                    <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Content="Login"/>
+                                    <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"  Content="Login"/>
                                 </Border>
 
                                 <ControlTemplate.Triggers>
@@ -144,14 +144,14 @@
 
 
         </Button>
-        <Button x:Name="logoutbtn" Visibility="Collapsed" Height="27" Content="Exit"  HorizontalAlignment="Left" Margin="778,0,0,52" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" RenderTransformOrigin="0.5,0.5" Width="59" VerticalAlignment="Bottom" Click="logoutbtn_Click">
+        <Button x:Name="logoutbtn" Visibility="Collapsed"  HorizontalAlignment="Left" Margin="747,-3,0,52" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="logoutbtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
-                                <Border x:Name="border" BorderBrush="White" BorderThickness="0,0,0,3" Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Content="Logout"/>
+                                <Border x:Name="border" BorderBrush="White" BorderThickness="0,0,0,3" Background="{TemplateBinding Background}" Margin="0,0,0,2">
+                                    <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"  Content="Logout"/>
                                 </Border>
 
                                 <ControlTemplate.Triggers>

@@ -32,18 +32,18 @@ namespace ST10083735_PROG6212_POE
         private void Completebtn_Click(object sender, RoutedEventArgs e)
         {
             messagetb.Text = "";
-            if (String.IsNullOrEmpty(usernametxt.Text) || String.IsNullOrEmpty(passwordtxt.Text) || String.IsNullOrEmpty(confirmpasswordtxt.Text)
+            if (String.IsNullOrEmpty(usernametxt.Text) || String.IsNullOrEmpty(passwordtxt.Password) || String.IsNullOrEmpty(confirmpasswordtxt.Password)
                 || String.IsNullOrEmpty(nametxt.Text) || String.IsNullOrEmpty(lastnametxt.Text) || String.IsNullOrEmpty(emailtxt.Text) || String.IsNullOrEmpty(celltxt.Text))
             {
                 messagetb.Text = "Missing Information. All fields are required.";
             }
-            else if (passwordtxt.Text != confirmpasswordtxt.Text)
+            else if (passwordtxt.Password != confirmpasswordtxt.Password)
             {
                 messagetb.Text = "Passwords do not match";
             }
             else
             {                
-                if (validation.passwordRequirements(passwordtxt.Text) == false)
+                if (validation.passwordRequirements(passwordtxt.Password) == false)
                 {
                     messagetb.Text = "Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.";
                 }
@@ -69,7 +69,7 @@ namespace ST10083735_PROG6212_POE
                     User user = new User
                     {
                         Username = usernametxt.Text,
-                        Password = passwordtxt.Text,
+                        Password = passwordtxt.Password,
                         Name = nametxt.Text,
                         Lastname = lastnametxt.Text,
                         Email = emailtxt.Text,
@@ -118,8 +118,8 @@ namespace ST10083735_PROG6212_POE
         {
             //clear all textboxes            
             usernametxt.Text = "";
-            passwordtxt.Text = "";
-            confirmpasswordtxt.Text = "";
+            passwordtxt.Password = "";
+            confirmpasswordtxt.Password = "";
             nametxt.Text = "";
             lastnametxt.Text = "";
             emailtxt.Text = "";

@@ -15,6 +15,7 @@ namespace Modules
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             int totalModules = appDataContext.Modules.Count();
             module.EntryId = totalModules + 1;
+            module.SelfStudyHours = module.CalculateSelfStudyHours();
             appDataContext.Modules.Add(module);
             await appDataContext.SaveChangesAsync();
         }
@@ -54,6 +55,8 @@ namespace Modules
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             return appDataContext.Modules.Where(m => m.UserId == userID).ToList();
         }
+
+        
 
     
     }

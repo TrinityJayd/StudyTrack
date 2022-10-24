@@ -38,8 +38,8 @@ namespace ST10083735_PROG6212_POE
             if (!String.IsNullOrEmpty(moduleCodetbx.Text))
             {
                 confirmAddlb.Visibility = Visibility.Visible;
-                yeschbkx.Visibility = Visibility.Visible;   
-                nochbx.Visibility = Visibility.Visible; 
+                yeschbkx.Visibility = Visibility.Visible;
+                nochbx.Visibility = Visibility.Visible;
                 //alert the user and tell them that the module has not been saved
                 confirmAddlb.Content = $"Continue without adding {moduleCodetbx.Text}?";
                 if (yeschbkx.IsChecked == true)
@@ -50,10 +50,7 @@ namespace ST10083735_PROG6212_POE
             } 
             //if the module code textbox is empty, the module has been saved, so navigate to the home page
             else if(String.IsNullOrEmpty(moduleCodetbx.Text))
-            {
-                confirmAddlb.Visibility = Visibility.Visible;
-                yeschbkx.Visibility = Visibility.Visible;
-                nochbx.Visibility = Visibility.Visible;
+            {              
                 NavigateToHome();
             }
             
@@ -64,16 +61,18 @@ namespace ST10083735_PROG6212_POE
 
         private void AddModulebtn_Click(object sender, RoutedEventArgs e)
         {
-            //do not allow wthe user to ad more than 6 modules
+            //do not allow the user to ad more than 6 modules
             //if(moduleList.Count == 6)
             //{
             //    ClearText();
             //    NavigateToHome(); 
 
             //}
+            
             confirmAddlb.Visibility = Visibility.Collapsed;
             yeschbkx.Visibility = Visibility.Collapsed;
             nochbx.Visibility = Visibility.Collapsed;
+            
             //make the confirmation label and error label invisible
             confirmlb.Visibility = Visibility.Collapsed;
             errorlb.Visibility = Visibility.Collapsed;
@@ -137,7 +136,7 @@ namespace ST10083735_PROG6212_POE
                         UserId = userID
                     };
                 
-                    newMod.AddModule(module);
+                     newMod.AddModule(module);
                    
 
                     //on the confirmation label add the code of the module so the user knows which module has been added 
@@ -209,6 +208,8 @@ namespace ST10083735_PROG6212_POE
                 yeschbkx.IsChecked = false;
             }
         }
+
+        
 
 
 

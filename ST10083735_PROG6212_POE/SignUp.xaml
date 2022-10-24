@@ -16,12 +16,11 @@
         <Label x:Name="usernamelb" Content="Username" HorizontalAlignment="Left" Margin="33,80,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
         <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="usernametxt" HorizontalAlignment="Left" Margin="38,122,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Label  x:Name="passwordlb" Content="Password" HorizontalAlignment="Left" Margin="33,156,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
-        <TextBox  TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="passwordtxt" HorizontalAlignment="Left" Margin="38,198,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Label x:Name="cellNumlb" Content="Cell number" HorizontalAlignment="Left" Margin="348,80,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
         <TextBox MaxLength="10" TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="celltxt" HorizontalAlignment="Left" Margin="353,122,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <Label x:Name="emaillb" Content="Email" HorizontalAlignment="Left" Margin="348,156,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
         <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="emailtxt" HorizontalAlignment="Left" Margin="353,198,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
-        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="670,430,0,0" VerticalAlignment="Top" Width="139"  Foreground="White" Height="35" Click="Completebtn_Click" RenderTransformOrigin="0.493,0.931">
+        <Button x:Name="completebtn" HorizontalAlignment="Left" FontSize="18" Margin="670,430,0,0" VerticalAlignment="Top" Width="133"  Foreground="White" Height="35" Click="Completebtn_Click" RenderTransformOrigin="0.493,0.931">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>
@@ -29,7 +28,7 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border x:Name="border" BorderBrush="White" Background="{TemplateBinding Background}" CornerRadius="18">
-                                    <ContentPresenter  HorizontalAlignment="Left" VerticalAlignment="Center" Content="        Register"/>
+                                    <ContentPresenter  HorizontalAlignment="Left" VerticalAlignment="Center" Content="       Register"/>
 
                                 </Border>
 
@@ -49,8 +48,9 @@
             </Button.Resources>
         </Button>
         <Label x:Name="confirmpasswordlb" Content="Confirm Password" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center" FontSize="24" FontFamily="Segoe UI Light" Width="215"/>
-        <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="confirmpasswordtxt" HorizontalAlignment="Left" Margin="38,282,0,0"  Text="" VerticalAlignment="Top" Width="227" FontSize="20" />
         <TextBlock Text="" x:Name="messagetb" FontSize="18" Foreground="#8C52FF" FontWeight="Medium" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="353,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="121" Width="456"/>
+        <PasswordBox  BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="confirmpasswordtxt" HorizontalAlignment="Left" Margin="38,286,0,0" VerticalAlignment="Top" Width="227" FontSize="20"/>
+        <PasswordBox  BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="passwordtxt" HorizontalAlignment="Left" Margin="38,198,0,0" VerticalAlignment="Top" Width="227" FontSize="20"/>
 
     </Grid>
 </UserControl>

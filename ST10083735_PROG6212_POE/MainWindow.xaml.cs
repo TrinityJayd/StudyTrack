@@ -60,6 +60,7 @@ namespace ST10083735_PROG6212_POE
         {
             //If the user successfully logs in show the home page
             SetActiveUserControl(home);
+            loginbtn.Visibility = Visibility.Collapsed;
             logoutbtn.Visibility = Visibility.Visible;
         }
 
@@ -191,6 +192,11 @@ namespace ST10083735_PROG6212_POE
         {
             UserID = 0;
             SetActiveUserControl(landingPage);
+            logoutbtn.Visibility = Visibility.Collapsed;
+            loginbtn.Visibility = Visibility.Visible;
+            
         }
+
+        
     }
 }

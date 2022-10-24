@@ -13,7 +13,6 @@
         <Label x:Name="usernamelb" Content="Username" HorizontalAlignment="Left" Margin="27,74,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
         <TextBox TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="usernametxt" HorizontalAlignment="Left" Margin="32,116,0,0"  Text="" VerticalAlignment="Top" Width="289" FontSize="20" />
         <Label  x:Name="passwordlb" Content="Password" HorizontalAlignment="Left" Margin="27,152,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="152"/>
-        <TextBox  TextWrapping="WrapWithOverflow" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="passwordtxt" HorizontalAlignment="Left" Margin="32,194,0,0"  Text="" VerticalAlignment="Top" Width="289" FontSize="20" />
         <Image HorizontalAlignment="Left" Height="516" Margin="355,0,0,0" VerticalAlignment="Top" Width="528" Source="/undraw_Access_account_re_8spm.png"/>
         <Button x:Name="loginbtn" HorizontalAlignment="Left" FontSize="18" Margin="32,254,0,0" VerticalAlignment="Top" Width="122"  Foreground="White" Height="36" RenderTransformOrigin="0.493,0.931" Click="loginbtn_Click">
             <Button.Resources>
@@ -22,8 +21,8 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
-                                <Border x:Name="border" BorderBrush="White" Background="{TemplateBinding Background}" CornerRadius="18">
-                                    <ContentPresenter  HorizontalAlignment="Left" VerticalAlignment="Center" Content="        Login"/>
+                                <Border x:Name="border" BorderBrush="White" Background="{TemplateBinding Background}" CornerRadius="18" Margin="0,0,6,0">
+                                    <ContentPresenter  HorizontalAlignment="Left" VerticalAlignment="Center" Content="       Login"/>
 
                                 </Border>
 
@@ -78,6 +77,7 @@
             </Button.RenderTransform>
         </Button>
         <TextBlock Text="" x:Name="messagetb" FontSize="16" Foreground="#8C52FF" FontWeight="Medium" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="32,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="83" Width="289"/>
+        <PasswordBox Width="289" FontSize="20" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="passwordtxt" HorizontalAlignment="Left" Margin="32,194,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

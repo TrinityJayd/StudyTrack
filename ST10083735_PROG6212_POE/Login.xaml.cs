@@ -30,26 +30,26 @@ namespace ST10083735_PROG6212_POE
 
         private void loginbtn_Click(object sender, RoutedEventArgs e)
         {
-            if(String.IsNullOrEmpty(usernametxt.Text) || String.IsNullOrEmpty(passwordtxt.Text))
+            if(String.IsNullOrEmpty(usernametxt.Text) || String.IsNullOrEmpty(passwordtxt.Password))
             {
                 messagetb.Text = "Please enter username and password";
             }
             else
             {
                 Account account = new Account();
-                bool isLoggedIn = account.Login(usernametxt.Text, passwordtxt.Text);
+                bool isLoggedIn = account.Login(usernametxt.Text, passwordtxt.Password);
                 if (isLoggedIn)
                 {
                     this.DataContext = account.GetUserID(usernametxt.Text);
                     if (LoginSuccess != null)
                     {
                         LoginSuccess(this, EventArgs.Empty);
-                       
+                        ClearText();
                     }
                 }
                 else
                 {
-                    messagetb.Text = "Invalid username or password";
+                    messagetb.Text = "Invalid username or password.";
                 }
             }
             
@@ -60,7 +60,15 @@ namespace ST10083735_PROG6212_POE
             if (RegisterButtonClicked != null)
             {
                 RegisterButtonClicked(this, EventArgs.Empty);
+                ClearText();
             }
+
+        }
+
+        private void ClearText()
+        {
+            usernametxt.Text = "";
+            passwordtxt.Password = "";
         }
     }
 }

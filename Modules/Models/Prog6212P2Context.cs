@@ -8,7 +8,6 @@ namespace Modules.Models
 {
     public partial class Prog6212P2Context : DbContext
     {
-        
         public Prog6212P2Context()
         {
         }
@@ -31,7 +30,6 @@ namespace Modules.Models
                     .Build();
                 optionsBuilder.UseSqlServer(configuration.GetConnectionString("UserDatabase"));
             }
-                      
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,7 +37,7 @@ namespace Modules.Models
             modelBuilder.Entity<Module>(entity =>
             {
                 entity.HasKey(e => e.EntryId)
-                    .HasName("PK__Module__F57BD2D72FE06FCF");
+                    .HasName("PK__Module__F57BD2D75B1270C1");
 
                 entity.ToTable("Module");
 
@@ -70,7 +68,7 @@ namespace Modules.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Modules)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Module__UserID__75A278F5");
+                    .HasConstraintName("FK__Module__UserID__02FC7413");
             });
 
             modelBuilder.Entity<User>(entity =>
