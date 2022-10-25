@@ -45,7 +45,7 @@
 
             </Button.Resources>
         </Button>
-        <Label x:Name="errorlb" Visibility="Collapsed" Content="Missing Information. All fields are required." HorizontalAlignment="Left" Margin="442,387,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="395"/>
+        <Label x:Name="errorlb" Visibility="Hidden" Content="Missing Information. All fields are required." HorizontalAlignment="Left" Margin="438,401,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="395"/>
         <Button x:Name="addModulebtn" FontSize="18"  Content="+ Add Module" HorizontalAlignment="Left" Margin="442,449,0,0" VerticalAlignment="Top" Background="White" Foreground="#FF8C52FF" Click="AddModulebtn_Click" >
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
@@ -73,7 +73,6 @@
 
             </Button.Resources>
         </Button>
-        <Label Content="" Width="Auto" Visibility="Visible" x:Name="confirmlb"  Foreground="#FF8C52FF" FontWeight="Regular"  Margin="442,388,22,88" FontSize="20" FontFamily="Segoe UI" BorderBrush="White" />
 
 
         <Label x:Name="numberOfWeekslb" Content="Number of weeks in the semester" HorizontalAlignment="Left" Margin="432,136,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="352"/>
@@ -82,9 +81,11 @@
         <syncfusion:UpDown x:Name="creditspn" HorizontalAlignment="Left" Height="31" Margin="31,368,0,0" NullValueText="Enter number of credits:" BorderBrush="#FF8C52FF" FontFamily="Segoe UI Light" FontSize="20" UseNullOption="True" Value="8" MinValue="8" MaxValue="15" NumberDecimalDigits="0" VerticalAlignment="Top" Width="227"/>
         <syncfusion:UpDown x:Name="hoursspn" HorizontalAlignment="Left" Height="31" Margin="32,454,0,0" NullValueText="Enter number of hours:" BorderBrush="#FF8C52FF" FontFamily="Segoe UI Light" FontSize="20" UseNullOption="True" Value="2" MinValue="2" MaxValue="20" NumberDecimalDigits="0" VerticalAlignment="Top" Width="227"/>
         <syncfusion:UpDown x:Name="weeksspn" HorizontalAlignment="Left" Height="32" Margin="438,176,0,0" NullValueText="Enter number of credits:" BorderBrush="#FF8C52FF" FontFamily="Segoe UI Light" FontSize="20" UseNullOption="True" Value="8" MinValue="15" MaxValue="26" NumberDecimalDigits="0" VerticalAlignment="Top" Width="227"/>
-        <CheckBox BorderBrush="#FF8C52FF" VerticalContentAlignment="Center" x:Name="yeschbkx" Content="Yes" FontFamily="Segoe UI Light" FontSize="20" HorizontalAlignment="Left" Margin="442,338,0,0" VerticalAlignment="Top" Width="48" Checked="Yeschbkx_Checked" Visibility="Hidden"/>
-        <CheckBox BorderBrush="#FF8C52FF" VerticalContentAlignment="Center" x:Name="nochbx" Content="No" FontFamily="Segoe UI Light" FontSize="20" HorizontalAlignment="Left" Margin="575,338,0,0" VerticalAlignment="Top" Width="48" Checked="Nochbx_Checked" Visibility="Hidden"/>
-        <Label x:Name="confirmAddlb" Content="Please select a module and confirm or deny deletion." HorizontalAlignment="Left" Margin="438,294,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="471" Visibility="Hidden"/>
+        <CheckBox BorderBrush="#FF8C52FF" VerticalContentAlignment="Center" x:Name="yeschbkx" Content="Yes" FontFamily="Segoe UI Light" FontSize="20" HorizontalAlignment="Left" Margin="442,370,0,0" VerticalAlignment="Top" Width="48" Checked="Yeschbkx_Checked" Visibility="Hidden"/>
+        <CheckBox BorderBrush="#FF8C52FF" VerticalContentAlignment="Center" x:Name="nochbx" Content="No" FontFamily="Segoe UI Light" FontSize="20" HorizontalAlignment="Left" Margin="575,370,0,0" VerticalAlignment="Top" Width="48" Checked="Nochbx_Checked" Visibility="Hidden"/>
+        <Label x:Name="confirmAddlb" Content="Please select a module and confirm or deny deletion." HorizontalAlignment="Left" Margin="438,326,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="471" Visibility="Hidden"/>
+        <ListBox BorderBrush="#FF8C52FF" Visibility="Hidden" x:Name="addedModuleslstbx" ItemsSource="{Binding}" Margin="438,149,123,200" FontFamily="Segoe UI Light" FontSize="20" />
+        <Label x:Name="infolb" Content="You can only add 6 modules per semester." HorizontalAlignment="Left" Margin="26,68,0,0" VerticalAlignment="Top" FontSize="26" FontFamily="Segoe UI Semilight" Width="488" Visibility="Hidden"/>
 
 
     </Grid>

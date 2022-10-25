@@ -27,7 +27,7 @@ namespace Modules
             await appDataContext.SaveChangesAsync();
         }
 
-        public void UpdateModule(long hoursStudied, DateTime dateLastStudied, string moduleCode, int userID)
+        public async Task UpdateModule(long hoursStudied, DateTime dateLastStudied, string moduleCode, int userID)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             var moduleToUpdate = appDataContext.Modules.Single(m => m.ModuleCode == moduleCode && m.UserId == userID);
@@ -47,7 +47,7 @@ namespace Modules
             }
             
             appDataContext.Modules.Update(moduleToUpdate);
-            appDataContext.SaveChangesAsync();
+            await appDataContext.SaveChangesAsync();
         }
 
         public List<Module> GetModules(int userID)
@@ -56,8 +56,20 @@ namespace Modules
             return appDataContext.Modules.Where(m => m.UserId == userID).ToList();
         }
 
-        
+        public DateTime GetSemesterStartDate(int userID)
+        {
+            using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            return appDataContext.Modules.First(m => m.UserId == userID).SemesterStartDate;
+        }
 
-    
+        public decimal GetWeeksInSemester(int userID)
+        {
+            using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            return appDataContext.Modules.First(m => m.UserId == userID).WeeksInSemester;
+        }
+
+
+
+
     }
 }
