@@ -77,7 +77,7 @@
             </Button.RenderTransform>
         </Button>
         <TextBlock Text="" x:Name="messagetb" FontSize="16" Foreground="#8C52FF" FontWeight="Medium" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="32,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="83" Width="289"/>
-        <PasswordBox Width="289" FontSize="20" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="passwordtxt" HorizontalAlignment="Left" Margin="32,194,0,0" VerticalAlignment="Top"/>
+        <PasswordBox Width="289" FontSize="18" BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="passwordtxt" HorizontalAlignment="Left" Margin="32,194,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

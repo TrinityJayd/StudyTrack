@@ -16,6 +16,7 @@ namespace Modules
             int totalModules = appDataContext.Modules.Count();
             module.EntryId = totalModules + 1;
             module.SelfStudyHours = module.CalculateSelfStudyHours();
+            module.HoursLeft = module.SelfStudyHours;
             appDataContext.Modules.Add(module);
             await appDataContext.SaveChangesAsync();
         }
@@ -68,7 +69,11 @@ namespace Modules
             return appDataContext.Modules.First(m => m.UserId == userID).WeeksInSemester;
         }
 
-
+        public bool ModuleExists(string moduleCode, int userID)
+        {
+            using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            return appDataContext.Modules.Any(m => m.ModuleCode == moduleCode && m.UserId == userID);
+        }
 
 
     }

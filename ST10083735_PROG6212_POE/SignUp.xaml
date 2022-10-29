@@ -49,8 +49,8 @@
         </Button>
         <Label x:Name="confirmpasswordlb" Content="Confirm Password" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center" FontSize="24" FontFamily="Segoe UI Light" Width="215"/>
         <TextBlock Text="" x:Name="messagetb" FontSize="18" Foreground="#8C52FF" FontWeight="Medium" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="353,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="121" Width="456"/>
-        <PasswordBox  BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="confirmpasswordtxt" HorizontalAlignment="Left" Margin="38,286,0,0" VerticalAlignment="Top" Width="227" FontSize="20"/>
-        <PasswordBox  BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="passwordtxt" HorizontalAlignment="Left" Margin="38,198,0,0" VerticalAlignment="Top" Width="227" FontSize="20"/>
+        <PasswordBox  BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="confirmpasswordtxt" HorizontalAlignment="Left" Margin="38,286,0,0" VerticalAlignment="Top" Width="227" FontSize="18" Height="29"/>
+        <PasswordBox  BorderBrush="#8C52FF" FontFamily="Segoe UI Light" x:Name="passwordtxt" HorizontalAlignment="Left" Margin="38,198,0,0" VerticalAlignment="Top" Width="227" FontSize="18" Height="29"/>
 
     </Grid>
 </UserControl>

@@ -1,8 +1,6 @@
 ﻿using Modules;
-using Modules.Models;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using Module = Modules.Models.Module;
@@ -58,7 +56,7 @@ namespace ST10083735_PROG6212_POE
 
         private void AddModulebtn_Click(object sender, RoutedEventArgs e)
         {
-          
+            moduleExistslb.Visibility = Visibility.Collapsed;
             confirmAddlb.Visibility = Visibility.Collapsed;
             yeschbkx.Visibility = Visibility.Collapsed;
             nochbx.Visibility = Visibility.Collapsed;
@@ -70,7 +68,7 @@ namespace ST10083735_PROG6212_POE
             ModuleManagement newMod = new ModuleManagement();
             int userID = (int)this.DataContext;
             List<Module> modules = newMod.GetModules(userID);
-            
+
             //do not allow the user to add more than 6 modules
             if (modules.Count == 6)
             {
@@ -79,8 +77,8 @@ namespace ST10083735_PROG6212_POE
                 ClearText();
                 NavigateToHome();
             }
-            
-            
+
+
 
 
 
@@ -104,25 +102,24 @@ namespace ST10083735_PROG6212_POE
                 }
                 else
                 {
-                    ////If the list already contains modules
-                    //if (moduleList != null)
-                    //{
-                    //    //Check if the Module the user wants to create already exists
-                    //    foreach(Module module in moduleList)
-                    //    {
-                    //        if (module.ModuleCode.Equals(moduleCodetbx.Text))
-                    //        {
-                    //            //Alert the user that the module exists
-                    //            MessageBox.Show($"{moduleCodetbx.Text} already exists.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    //            //Clear all inputs
-                    //            ClearText();
-                    //            return;
-                    //        }
-                    //    }
-                    //}
-
-                    //Save the information input from the user
                     string moduleCode = moduleCodetbx.Text;
+                    ////If the list already contains modules
+                    if (modules.Count != 0)
+                    {
+                        //Check if the Module the user wants to create already exists
+                        bool moduleExists = newMod.ModuleExists(moduleCode, userID);
+
+                        if (moduleExists)
+                        {
+                            HideExtraComponents();
+                            moduleExistslb.Visibility = Visibility.Visible;
+                            moduleCodetbx.Text = "";
+                            moduleNametbx.Text = "";
+                            return;
+                        }
+                    }
+
+                    //Save the information input from the user                   
                     string moduleName = moduleNametbx.Text;
                     decimal classHours = Convert.ToDecimal(hoursspn.Value);
                     decimal credits = Convert.ToDecimal(creditspn.Value);
@@ -157,6 +154,9 @@ namespace ST10083735_PROG6212_POE
                     HideSemesterComponents();
                 }
 
+
+
+
             }
 
         }
@@ -176,6 +176,7 @@ namespace ST10083735_PROG6212_POE
         {
             if (this.Visibility == Visibility.Visible)
             {
+                moduleExistslb.Visibility = Visibility.Collapsed;
                 addedModuleslstbx.Items.Clear();
                 ModuleManagement newMod = new ModuleManagement();
                 int userID = (int)this.DataContext;
@@ -192,13 +193,14 @@ namespace ST10083735_PROG6212_POE
                     HideSemesterComponents();
                     ShowAllComponents();
                     infolb.Visibility = Visibility.Hidden;
-                    
+
                     addedModuleslstbx.Visibility = Visibility.Visible;
                     foreach (Module module in modules)
                     {
                         addedModuleslstbx.Items.Add($"{module.ModuleCode} Added.");
                     }
-                }else if(modules.Count == 0)
+                }
+                else if (modules.Count == 0)
                 {
                     ShowSemesterComponents();
                     addedModuleslstbx.Visibility = Visibility.Hidden;
@@ -225,7 +227,7 @@ namespace ST10083735_PROG6212_POE
             startDatelb.Visibility = Visibility.Hidden;
             datedp.Visibility = Visibility.Hidden;
         }
-    
+
 
         private void ClearText()
         {
@@ -259,6 +261,15 @@ namespace ST10083735_PROG6212_POE
             }
         }
 
+        private void HideExtraComponents()
+        {
+            confirmAddlb.Visibility = Visibility.Hidden;
+            yeschbkx.Visibility = Visibility.Hidden;
+            nochbx.Visibility = Visibility.Hidden;
+            addedModuleslstbx.Visibility = Visibility.Hidden;
+            infolb.Visibility = Visibility.Hidden;
+        }
+
         private void HideAllComponents()
         {
             moduleInfolb.Visibility = Visibility.Hidden;
@@ -270,10 +281,10 @@ namespace ST10083735_PROG6212_POE
             creditspn.Visibility = Visibility.Hidden;
             classHourslb.Visibility = Visibility.Hidden;
             hoursspn.Visibility = Visibility.Hidden;
-            addModulebtn.Visibility = Visibility.Hidden;          
+            addModulebtn.Visibility = Visibility.Hidden;
             HideSemesterComponents();
         }
-        
+
         private void ShowAllComponents()
         {
             moduleInfolb.Visibility = Visibility.Visible;
@@ -285,10 +296,10 @@ namespace ST10083735_PROG6212_POE
             creditspn.Visibility = Visibility.Visible;
             classHourslb.Visibility = Visibility.Visible;
             hoursspn.Visibility = Visibility.Visible;
-            addModulebtn.Visibility = Visibility.Visible;          
+            addModulebtn.Visibility = Visibility.Visible;
 
         }
 
-        
+
     }
 }

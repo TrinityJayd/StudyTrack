@@ -10,8 +10,11 @@ namespace ST10083735_PROG6212_POE
     /// <summary>
     /// Interaction logic for ViewModules.xaml
     /// </summary>
+
+
     public partial class ViewModules : UserControl
     {
+        public List<Module> Modules { get; set; }
         ModuleManagement modules = new ModuleManagement();
         private List<Module> moduleList = new List<Module>();
         public ViewModules()
@@ -40,7 +43,8 @@ namespace ST10083735_PROG6212_POE
                     //make the datagrid visible and add the list to the datagrid itemsource
                     noModuleslb.Visibility = Visibility.Collapsed;
                     moduleDG.Visibility = Visibility.Visible;
-                    moduleDG.ItemsSource = moduleList;
+                    Modules = moduleList;
+                    moduleDG.ItemsSource = Modules;
                 }
                 else
                 {

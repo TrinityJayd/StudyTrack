@@ -46,11 +46,10 @@ namespace ST10083735_PROG6212_POE
                 //Save the code of the module to update
                 string moduleToUpdate = modulecmb.SelectedItem.ToString();
 
-                TimeSpan hoursStudied = (TimeSpan)timespedt.Value;
-                long hoursStudiedTicks = hoursStudied.Ticks;
+                TimeSpan hoursStudied = (TimeSpan)timespedt.Value;                
 
                 int userID = (int)this.DataContext;
-                moduleManagement.UpdateModule(hoursStudiedTicks, datedp.SelectedDate.Value, moduleToUpdate, userID);
+                moduleManagement.UpdateModule(hoursStudied.Ticks, datedp.SelectedDate.Value, moduleToUpdate, userID);
 
                 
                 //Navigate to home page
@@ -93,6 +92,23 @@ namespace ST10083735_PROG6212_POE
                 timespedt.Value = timespedt.MinValue;
             }
             
+        }
+
+        private void modulecmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (modulecmb.SelectedIndex != -1)
+            {
+                hourslb.Visibility = Visibility.Visible;
+                timespedt.Visibility = Visibility.Visible;
+                datedp.Visibility = Visibility.Visible;
+                datelb.Visibility = Visibility.Visible;
+            }
+            else{
+                hourslb.Visibility = Visibility.Collapsed;
+                timespedt.Visibility = Visibility.Collapsed;
+                datedp.Visibility = Visibility.Collapsed;
+                datelb.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

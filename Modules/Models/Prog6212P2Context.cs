@@ -26,7 +26,7 @@ namespace Modules.Models
             {
                 IConfigurationRoot configuration = new ConfigurationBuilder()
                     .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                    .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.json")
                     .Build();
                 optionsBuilder.UseSqlServer(configuration.GetConnectionString("UserDatabase"));
             }
@@ -37,7 +37,7 @@ namespace Modules.Models
             modelBuilder.Entity<Module>(entity =>
             {
                 entity.HasKey(e => e.EntryId)
-                    .HasName("PK__Module__F57BD2D75B1270C1");
+                    .HasName("PK__Module__F57BD2D773A56EBD");
 
                 entity.ToTable("Module");
 
@@ -68,7 +68,7 @@ namespace Modules.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Modules)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Module__UserID__02FC7413");
+                    .HasConstraintName("FK__Module__UserID__0B91BA14");
             });
 
             modelBuilder.Entity<User>(entity =>
