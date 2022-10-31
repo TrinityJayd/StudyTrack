@@ -1,10 +1,4 @@
 ﻿using Modules.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Modules
 {
@@ -19,6 +13,16 @@ namespace Modules
             await appDataContext.SaveChangesAsync();
         }
 
+        public async Task UpdateSemester(int userID,DateTime startDate, decimal weeks)
+        {
+            using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            var semesterToUpdate = appDataContext.UserSemesters.Single(s => s.UserId == userID);
+            semesterToUpdate.SemesterStartDate = startDate;
+            semesterToUpdate.WeeksInSemester = weeks;
+            appDataContext.UserSemesters.Update(semesterToUpdate);
+            await appDataContext.SaveChangesAsync();
+        }
+
         public DateTime GetSemesterStartDate(int userID)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
@@ -29,6 +33,12 @@ namespace Modules
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             return appDataContext.UserSemesters.First(m => m.UserId == userID).WeeksInSemester;
+        }
+
+        public bool SemesterExists(int userID)
+        {
+            using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            return appDataContext.UserSemesters.Any(s => s.UserId == userID);
         }
     }
 }

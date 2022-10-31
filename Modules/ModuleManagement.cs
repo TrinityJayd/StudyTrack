@@ -10,11 +10,23 @@ namespace Modules
 {
     public class ModuleManagement
     {
+         
         public async Task AddModule(Module module)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
-            int totalModules = appDataContext.Modules.Count();
-            module.EntryId = totalModules + 1;
+            //Find last entry id value
+            var lastEntry = await appDataContext.Modules.OrderByDescending(x => x.EntryId).FirstOrDefaultAsync();
+            int lastID;
+            if (lastEntry == null)
+            {
+                lastID = 0;
+            }
+            else
+            {
+                lastID = lastEntry.EntryId;
+            }
+            
+            module.EntryId = lastID + 1;
             module.SelfStudyHours = CalculateSelfStudyHours(module);
             module.HoursLeft = module.SelfStudyHours;
             appDataContext.Modules.Add(module);
@@ -25,6 +37,7 @@ namespace Modules
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             appDataContext.Remove(appDataContext.Modules.Single(m => m.ModuleCode == moduleCode && m.UserId == userID));  
+            appDataContext.Remove(appDataContext.StudySessions.Single(m => m.ModuleCode == moduleCode && m.UserId == userID));  
             await appDataContext.SaveChangesAsync();
         }
 

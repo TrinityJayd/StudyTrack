@@ -86,7 +86,7 @@ namespace ST10083735_PROG6212_POE
             }
             else
             {
-                //Clear all inputs when the user control is not visible
+                //Clear all inputs when the user control is not visible                
                 modulecmb.SelectedIndex = -1;
                 datedp.SelectedDate = null;
                 timespedt.Value = timespedt.MinValue;
@@ -102,6 +102,7 @@ namespace ST10083735_PROG6212_POE
                 timespedt.Visibility = Visibility.Visible;
                 datedp.Visibility = Visibility.Visible;
                 datelb.Visibility = Visibility.Visible;
+                errorlb.Visibility = Visibility.Collapsed;
             }
             else{
                 hourslb.Visibility = Visibility.Collapsed;

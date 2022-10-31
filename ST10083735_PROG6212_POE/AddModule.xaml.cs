@@ -80,9 +80,6 @@ namespace ST10083735_PROG6212_POE
             }
 
 
-
-
-
             //if the user has not entered the module code/name or chosen a start date for the semester, display the error label
             if (String.IsNullOrWhiteSpace(moduleCodetbx.Text) || String.IsNullOrWhiteSpace(moduleNametbx.Text) || String.IsNullOrWhiteSpace(datedp.SelectedDate.ToString()))
             {
@@ -98,11 +95,14 @@ namespace ST10083735_PROG6212_POE
                 //If the module code or name is invalid alert the user
                 if (!isModuleNameValid || !isModuleCodeValid)
                 {
-                    MessageBox.Show("Module names and codes only allow letters, digits, underscores and spaces.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    ClearText();
+                    HideExtraComponents();
+                    nameErrorlb.Visibility = Visibility.Visible;
+                    moduleCodetbx.Text = "";
+                    moduleNametbx.Text = "";
                 }
                 else
                 {
+                    nameErrorlb.Visibility = Visibility.Collapsed;
                     string moduleCode = moduleCodetbx.Text;
                     ////If the list already contains modules
                     if (modules.Count != 0)
@@ -127,15 +127,22 @@ namespace ST10083735_PROG6212_POE
                     decimal weeks = Convert.ToDecimal(weeksspn.Value);
                     DateTime startdate = datedp.SelectedDate.Value;
 
-                    UserSemester semester = new UserSemester
-                    {
-                        UserId = userID,
-                        WeeksInSemester = weeks,
-                        SemesterStartDate = startdate
-                    };
-
                     SemesterManagement semesterManagement = new SemesterManagement();
-                    semesterManagement.AddSemester(semester);
+                    if (modules.Count == 0 && semesterManagement.SemesterExists(userID))
+                    {
+                        semesterManagement.UpdateSemester(userID,startdate,weeks);
+                    }
+                    else if (modules.Count == 0 && !semesterManagement.SemesterExists(userID))
+                    {
+                        UserSemester semester = new UserSemester
+                        {
+                            UserId = userID,
+                            WeeksInSemester = weeks,
+                            SemesterStartDate = startdate
+                        };
+                        semesterManagement.AddSemester(semester);
+                    }   
+                              
 
                     Module module = new Module
                     {
@@ -145,7 +152,7 @@ namespace ST10083735_PROG6212_POE
                         Credits = credits,
                         UserId = userID
                     };
-
+                    
                     newMod.AddModule(module);
 
                     
@@ -203,7 +210,7 @@ namespace ST10083735_PROG6212_POE
                     HideSemesterComponents();
                     ShowAllComponents();
                     infolb.Visibility = Visibility.Hidden;
-
+                    nameErrorlb.Visibility = Visibility.Collapsed;
                     addedModuleslstbx.Visibility = Visibility.Visible;
                     foreach (Module module in modules)
                     {
@@ -250,6 +257,7 @@ namespace ST10083735_PROG6212_POE
             confirmAddlb.Visibility = Visibility.Collapsed;
             yeschbkx.Visibility = Visibility.Collapsed;
             nochbx.Visibility = Visibility.Collapsed;
+            nameErrorlb.Visibility = Visibility.Collapsed;
         }
 
         private void Yeschbkx_Checked(object sender, RoutedEventArgs e)
@@ -278,6 +286,7 @@ namespace ST10083735_PROG6212_POE
             nochbx.Visibility = Visibility.Hidden;
             addedModuleslstbx.Visibility = Visibility.Hidden;
             infolb.Visibility = Visibility.Hidden;
+            nameErrorlb.Visibility = Visibility.Hidden;
         }
 
         private void HideAllComponents()

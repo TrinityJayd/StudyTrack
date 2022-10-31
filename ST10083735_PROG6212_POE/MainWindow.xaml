@@ -53,6 +53,7 @@
             <local:HoursLeft x:Name="hoursLeft" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:HoursLeft>
             <local:SignUp x:Name="signUp" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:SignUp>
             <local:Login x:Name="login" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:Login>
+            <local:ViewStudySessions x:Name="viewSessions" Visibility="Collapsed" Grid.ColumnSpan="2" ></local:ViewStudySessions>
 
 
         </Grid>

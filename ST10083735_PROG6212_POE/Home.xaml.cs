@@ -26,12 +26,13 @@ namespace ST10083735_PROG6212_POE
         public event EventHandler ShowHoursBtnClicked;       
         public event EventHandler ShowModulesBtnClicked;
         public event EventHandler ShowDeleteModulesBtnClicked;
+        public event EventHandler ShowSessionsBtnClicked;
         public Home()
         {
             InitializeComponent();
         }
 
-        
+             
         //Event handler for when the user wants to record hours
         private void RecordHoursbtn_Click(object sender, RoutedEventArgs e)
         {
@@ -68,7 +69,11 @@ namespace ST10083735_PROG6212_POE
             if (ShowDeleteModulesBtnClicked != null)
                 ShowDeleteModulesBtnClicked(this, EventArgs.Empty);
         }
-         
-        
+
+        private void viewStudySessions_Click(object sender, RoutedEventArgs e)
+        {
+            if (ShowSessionsBtnClicked != null)
+                ShowSessionsBtnClicked(this, EventArgs.Empty);
+        }
     }
 }
