@@ -18,7 +18,9 @@ namespace Modules.Models
         }
 
         public virtual DbSet<Module> Modules { get; set; } = null!;
+        public virtual DbSet<StudySession> StudySessions { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<UserSemester> UserSemesters { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,7 +39,7 @@ namespace Modules.Models
             modelBuilder.Entity<Module>(entity =>
             {
                 entity.HasKey(e => e.EntryId)
-                    .HasName("PK__Module__F57BD2D773A56EBD");
+                    .HasName("PK__Module__F57BD2D7E4FE783F");
 
                 entity.ToTable("Module");
 
@@ -49,8 +51,6 @@ namespace Modules.Models
 
                 entity.Property(e => e.Credits).HasColumnType("decimal(18, 0)");
 
-                entity.Property(e => e.DateLastStudied).HasColumnType("date");
-
                 entity.Property(e => e.ModuleCode)
                     .HasMaxLength(200)
                     .IsUnicode(false);
@@ -59,16 +59,37 @@ namespace Modules.Models
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SemesterStartDate).HasColumnType("date");
-
                 entity.Property(e => e.UserId).HasColumnName("UserID");
-
-                entity.Property(e => e.WeeksInSemester).HasColumnType("decimal(18, 0)");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Modules)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Module__UserID__0B91BA14");
+                    .HasConstraintName("FK__Module__UserID__0E6E26BF");
+            });
+
+            modelBuilder.Entity<StudySession>(entity =>
+            {
+                entity.HasKey(e => e.SessionId)
+                    .HasName("PK__Study_Se__C9F4927034A14E32");
+
+                entity.ToTable("Study_Sessions");
+
+                entity.Property(e => e.SessionId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("SessionID");
+
+                entity.Property(e => e.DateStudied).HasColumnType("date");
+
+                entity.Property(e => e.ModuleCode)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.StudySessions)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Study_Ses__UserI__14270015");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -96,6 +117,29 @@ namespace Modules.Models
                 entity.Property(e => e.Username)
                     .HasMaxLength(200)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<UserSemester>(entity =>
+            {
+                entity.HasKey(e => e.SemesterId)
+                    .HasName("PK__User_Sem__043301BDAB56DEFB");
+
+                entity.ToTable("User_Semester");
+
+                entity.Property(e => e.SemesterId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("SemesterID");
+
+                entity.Property(e => e.SemesterStartDate).HasColumnType("date");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.Property(e => e.WeeksInSemester).HasColumnType("decimal(18, 0)");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserSemesters)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__User_Seme__UserI__114A936A");
             });
 
             OnModelCreatingPartial(modelBuilder);

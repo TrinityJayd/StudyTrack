@@ -41,7 +41,6 @@ namespace ST10083735_PROG6212_POE
                                SelfStudyHours = TimeSpan.FromTicks(m.SelfStudyHours),
                                HoursStudied = TimeSpan.FromTicks(m.HoursStudied),
                                HoursLeft = TimeSpan.FromTicks(m.HoursLeft),
-                               DateLastStudied = m.DateLastStudied
                            }).ToList();
                 //if there are modules saved, display the datagrid
                 noModuleslb.Visibility = Visibility.Collapsed;
@@ -78,7 +77,6 @@ namespace ST10083735_PROG6212_POE
                                SelfStudyHours = TimeSpan.FromTicks(m.SelfStudyHours),
                                HoursStudied = TimeSpan.FromTicks(m.HoursStudied),
                                HoursLeft = TimeSpan.FromTicks(m.HoursLeft),
-                               DateLastStudied = m.DateLastStudied
                            }).OrderByDescending(x => x.SelfStudyHours).ToList();
                 orderBySelfStudybtn.Content = "  Self Study Hours   🡡";
             }
@@ -92,7 +90,6 @@ namespace ST10083735_PROG6212_POE
                                SelfStudyHours = TimeSpan.FromTicks(m.SelfStudyHours),
                                HoursStudied = TimeSpan.FromTicks(m.HoursStudied),
                                HoursLeft = TimeSpan.FromTicks(m.HoursLeft),
-                               DateLastStudied = m.DateLastStudied
                            }).OrderBy(x => x.SelfStudyHours).ToList();
                 orderBySelfStudybtn.Content = "  Self Study Hours   🡣";
             }

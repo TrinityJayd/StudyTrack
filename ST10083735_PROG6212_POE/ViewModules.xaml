@@ -10,17 +10,15 @@
         Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
     <Grid>
         <Label x:Name="headinglb" Content="All Modules" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="222"/>
-        <DataGrid Visibility="Collapsed" AutoGenerateColumns="False" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding Modules}" Margin="26,76,30,29">
+        <DataGrid Visibility="Collapsed" AutoGenerateColumns="False" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding Modules}" Margin="26,68,202,37">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Module Code" Binding="{Binding ModuleCode}"/>
                 <DataGridTextColumn Header="Module Name" Binding="{Binding ModuleName}"/>
                 <DataGridTextColumn Header="Credits" Binding="{Binding Credits}"/>
                 <DataGridTextColumn Header="Class Hours Per Week" Binding="{Binding ClassHours}"/>
-                <DataGridTextColumn Header="Number Of Weeks In Semester" Binding="{Binding WeeksInSemester}"/>
-                <DataGridTextColumn Header="Semester Start Date" Binding="{Binding SemesterStartDate, StringFormat=\{0:dd/MM/yyyy\}}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="No modules added." Width="Auto" Visibility="Visible" x:Name="noModuleslb"  Foreground="#FF8C52FF" FontWeight="Regular"  Margin="26,76,669,379" FontSize="20" FontFamily="Segoe UI" BorderBrush="White" />
+        <Label Content="No modules added." Width="Auto" Visibility="Collapsed" x:Name="noModuleslb"  Foreground="#FF8C52FF" FontWeight="Regular"  Margin="26,76,669,379" FontSize="20" FontFamily="Segoe UI" BorderBrush="White" />
 
     </Grid>
 </UserControl>

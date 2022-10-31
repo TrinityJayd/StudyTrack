@@ -1,4 +1,5 @@
 ﻿using Modules;
+using Modules.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -126,20 +127,28 @@ namespace ST10083735_PROG6212_POE
                     decimal weeks = Convert.ToDecimal(weeksspn.Value);
                     DateTime startdate = datedp.SelectedDate.Value;
 
+                    UserSemester semester = new UserSemester
+                    {
+                        UserId = userID,
+                        WeeksInSemester = weeks,
+                        SemesterStartDate = startdate
+                    };
+
+                    SemesterManagement semesterManagement = new SemesterManagement();
+                    semesterManagement.AddSemester(semester);
+
                     Module module = new Module
                     {
                         ModuleCode = moduleCode,
                         ModuleName = moduleName,
                         ClassHours = classHours,
                         Credits = credits,
-                        WeeksInSemester = weeks,
-                        SemesterStartDate = startdate,
                         UserId = userID
                     };
 
                     newMod.AddModule(module);
 
-
+                    
                     //on the confirmation listbox add the code of the module so the user knows which module has been added 
                     addedModuleslstbx.Items.Add($"{moduleCode} Added.");
                     addedModuleslstbx.Visibility = Visibility.Visible;
@@ -181,6 +190,7 @@ namespace ST10083735_PROG6212_POE
                 ModuleManagement newMod = new ModuleManagement();
                 int userID = (int)this.DataContext;
                 List<Module> modules = newMod.GetModules(userID);
+                SemesterManagement manageSemester = new SemesterManagement();
                 if (modules.Count == 6)
                 {
                     HideAllComponents();
@@ -188,8 +198,8 @@ namespace ST10083735_PROG6212_POE
                 }
                 else if (modules.Count > 0)
                 {
-                    weeksspn.Value = (double?)newMod.GetWeeksInSemester(userID);
-                    datedp.SelectedDate = newMod.GetSemesterStartDate(userID);
+                    weeksspn.Value = (double?)manageSemester.GetWeeksInSemester(userID);
+                    datedp.SelectedDate = manageSemester.GetSemesterStartDate(userID);
                     HideSemesterComponents();
                     ShowAllComponents();
                     infolb.Visibility = Visibility.Hidden;

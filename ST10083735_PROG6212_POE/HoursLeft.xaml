@@ -10,13 +10,12 @@
         Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsVisibleChanged="HoursLeft_IsVisibleChanged"
              >
     <Grid>
-        <DataGrid  Visibility="Collapsed" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True" AutoGenerateColumns="False" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding Modules}" Margin="32,129,75,10">
+        <DataGrid  Visibility="Collapsed" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True" AutoGenerateColumns="False" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding Modules}" Margin="32,129,139,10" Width="717">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Module Code" Binding="{Binding ModuleCode}"/>
                 <DataGridTextColumn CanUserSort="True" Header="Self Study Time Per Week" Binding="{Binding SelfStudyHours, StringFormat=hh\\:mm}"/>
                 <DataGridTextColumn Header="Time Studied" Binding="{Binding HoursStudied, StringFormat=hh\\:mm}"/>
                 <DataGridTextColumn Header="Time Left" Binding="{Binding HoursLeft, StringFormat=hh\\:mm}"/>
-                <DataGridTextColumn Header="Last Studied On" Binding="{Binding DateLastStudied, StringFormat=\{0:dd/MM/yyyy\}}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="headinglb" Content="Module Study Hours" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="425"/>

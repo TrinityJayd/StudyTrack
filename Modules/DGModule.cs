@@ -11,8 +11,6 @@ namespace Modules
         public string ModuleCode { get; set; }
         public TimeSpan SelfStudyHours { get; set; }
         public TimeSpan HoursStudied{ get; set; }
-        public TimeSpan HoursLeft { get; set; }
-        public DateTime? DateLastStudied { get; set; }
-        
+        public TimeSpan HoursLeft { get; set; } 
     }
 }

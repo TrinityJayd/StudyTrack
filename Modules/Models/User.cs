@@ -8,6 +8,8 @@ namespace Modules.Models
         public User()
         {
             Modules = new HashSet<Module>();
+            StudySessions = new HashSet<StudySession>();
+            UserSemesters = new HashSet<UserSemester>();
         }
 
         public int UserId { get; set; }
@@ -19,5 +21,7 @@ namespace Modules.Models
         public string Email { get; set; } = null!;
 
         public virtual ICollection<Module> Modules { get; set; }
+        public virtual ICollection<StudySession> StudySessions { get; set; }
+        public virtual ICollection<UserSemester> UserSemesters { get; set; }
     }
 }
