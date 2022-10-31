@@ -87,6 +87,14 @@
         <ListBox BorderBrush="#FF8C52FF" Visibility="Hidden" x:Name="addedModuleslstbx" ItemsSource="{Binding}" Margin="438,149,123,200" FontFamily="Segoe UI Light" FontSize="20" />
         <Label x:Name="infolb" Content="You can only add 6 modules per semester." HorizontalAlignment="Left" Margin="26,68,0,0" VerticalAlignment="Top" FontSize="26" FontFamily="Segoe UI Semilight" Width="488" Visibility="Hidden"/>
         <Label x:Name="moduleExistslb" Content="Module already exists." HorizontalAlignment="Left" Margin="438,326,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="471" Visibility="Collapsed"/>
+        <RichTextBox x:Name="nameErrorlb" Margin="438,344,89,119" Width="380" BorderThickness="0" IsReadOnly="True" Focusable="False" Visibility="Collapsed" Height="58" FontSize="20" FontFamily="Segoe UI Light">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="Module names and codes only allow letters, "/>
+                    <Run Text="digits, underscores and spaces."/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
 
 
     </Grid>

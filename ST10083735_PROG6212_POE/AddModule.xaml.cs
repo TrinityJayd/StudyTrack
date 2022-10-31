@@ -1,4 +1,5 @@
 ﻿using Modules;
+using Modules.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -79,9 +80,6 @@ namespace ST10083735_PROG6212_POE
             }
 
 
-
-
-
             //if the user has not entered the module code/name or chosen a start date for the semester, display the error label
             if (String.IsNullOrWhiteSpace(moduleCodetbx.Text) || String.IsNullOrWhiteSpace(moduleNametbx.Text) || String.IsNullOrWhiteSpace(datedp.SelectedDate.ToString()))
             {
@@ -97,11 +95,14 @@ namespace ST10083735_PROG6212_POE
                 //If the module code or name is invalid alert the user
                 if (!isModuleNameValid || !isModuleCodeValid)
                 {
-                    MessageBox.Show("Module names and codes only allow letters, digits, underscores and spaces.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    ClearText();
+                    HideExtraComponents();
+                    nameErrorlb.Visibility = Visibility.Visible;
+                    moduleCodetbx.Text = "";
+                    moduleNametbx.Text = "";
                 }
                 else
                 {
+                    nameErrorlb.Visibility = Visibility.Collapsed;
                     string moduleCode = moduleCodetbx.Text;
                     ////If the list already contains modules
                     if (modules.Count != 0)
@@ -126,20 +127,35 @@ namespace ST10083735_PROG6212_POE
                     decimal weeks = Convert.ToDecimal(weeksspn.Value);
                     DateTime startdate = datedp.SelectedDate.Value;
 
+                    SemesterManagement semesterManagement = new SemesterManagement();
+                    if (modules.Count == 0 && semesterManagement.SemesterExists(userID))
+                    {
+                        semesterManagement.UpdateSemester(userID,startdate,weeks);
+                    }
+                    else if (modules.Count == 0 && !semesterManagement.SemesterExists(userID))
+                    {
+                        UserSemester semester = new UserSemester
+                        {
+                            UserId = userID,
+                            WeeksInSemester = weeks,
+                            SemesterStartDate = startdate
+                        };
+                        semesterManagement.AddSemester(semester);
+                    }   
+                              
+
                     Module module = new Module
                     {
                         ModuleCode = moduleCode,
                         ModuleName = moduleName,
                         ClassHours = classHours,
                         Credits = credits,
-                        WeeksInSemester = weeks,
-                        SemesterStartDate = startdate,
                         UserId = userID
                     };
-
+                    
                     newMod.AddModule(module);
 
-
+                    
                     //on the confirmation listbox add the code of the module so the user knows which module has been added 
                     addedModuleslstbx.Items.Add($"{moduleCode} Added.");
                     addedModuleslstbx.Visibility = Visibility.Visible;
@@ -181,6 +197,7 @@ namespace ST10083735_PROG6212_POE
                 ModuleManagement newMod = new ModuleManagement();
                 int userID = (int)this.DataContext;
                 List<Module> modules = newMod.GetModules(userID);
+                SemesterManagement manageSemester = new SemesterManagement();
                 if (modules.Count == 6)
                 {
                     HideAllComponents();
@@ -188,12 +205,12 @@ namespace ST10083735_PROG6212_POE
                 }
                 else if (modules.Count > 0)
                 {
-                    weeksspn.Value = (double?)newMod.GetWeeksInSemester(userID);
-                    datedp.SelectedDate = newMod.GetSemesterStartDate(userID);
+                    weeksspn.Value = (double?)manageSemester.GetWeeksInSemester(userID);
+                    datedp.SelectedDate = manageSemester.GetSemesterStartDate(userID);
                     HideSemesterComponents();
                     ShowAllComponents();
                     infolb.Visibility = Visibility.Hidden;
-
+                    nameErrorlb.Visibility = Visibility.Collapsed;
                     addedModuleslstbx.Visibility = Visibility.Visible;
                     foreach (Module module in modules)
                     {
@@ -240,6 +257,7 @@ namespace ST10083735_PROG6212_POE
             confirmAddlb.Visibility = Visibility.Collapsed;
             yeschbkx.Visibility = Visibility.Collapsed;
             nochbx.Visibility = Visibility.Collapsed;
+            nameErrorlb.Visibility = Visibility.Collapsed;
         }
 
         private void Yeschbkx_Checked(object sender, RoutedEventArgs e)
@@ -268,6 +286,7 @@ namespace ST10083735_PROG6212_POE
             nochbx.Visibility = Visibility.Hidden;
             addedModuleslstbx.Visibility = Visibility.Hidden;
             infolb.Visibility = Visibility.Hidden;
+            nameErrorlb.Visibility = Visibility.Hidden;
         }
 
         private void HideAllComponents()

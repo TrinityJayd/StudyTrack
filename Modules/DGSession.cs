@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Modules
 {
-    public class DGModule
+    public class DGSession
     {
         public string ModuleCode { get; set; }
-        public TimeSpan SelfStudyHours { get; set; }
-        public TimeSpan HoursStudied{ get; set; }
-        public TimeSpan HoursLeft { get; set; } 
+        public TimeSpan TimeStudied { get; set; }
+        public DateTime? DateStudied { get; set; }
     }
 }

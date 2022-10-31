@@ -63,7 +63,7 @@ namespace ST10083735_PROG6212_POE
         {
             int userID = (int)this.DataContext;
             List<Module> moduleList = moduleManagement.GetModules(userID);
-
+            SemesterManagement semesterManagement = new SemesterManagement();   
             //Clear the combobox of any other modules it contained
             modulecmb.Items.Clear();
 
@@ -74,7 +74,7 @@ namespace ST10083735_PROG6212_POE
                 {
                     //Make the semester start date the beginning boundary
                     //The user cannot study for a module when the semester/classes has not started
-                    datedp.DisplayDateStart = moduleList[0].SemesterStartDate;
+                    datedp.DisplayDateStart = semesterManagement.GetSemesterStartDate(userID);
 
                     //Make the end boundary, the current date, the user can only log past study sessions not future ones
                     datedp.DisplayDateEnd = DateTime.Now;
@@ -86,7 +86,7 @@ namespace ST10083735_PROG6212_POE
             }
             else
             {
-                //Clear all inputs when the user control is not visible
+                //Clear all inputs when the user control is not visible                
                 modulecmb.SelectedIndex = -1;
                 datedp.SelectedDate = null;
                 timespedt.Value = timespedt.MinValue;
@@ -102,6 +102,7 @@ namespace ST10083735_PROG6212_POE
                 timespedt.Visibility = Visibility.Visible;
                 datedp.Visibility = Visibility.Visible;
                 datelb.Visibility = Visibility.Visible;
+                errorlb.Visibility = Visibility.Collapsed;
             }
             else{
                 hourslb.Visibility = Visibility.Collapsed;

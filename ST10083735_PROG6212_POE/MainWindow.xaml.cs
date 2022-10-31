@@ -45,6 +45,12 @@ namespace ST10083735_PROG6212_POE
             signUp.HideSignUpButtonClicked += OnHideSignUpButtonClicked;
             login.LoginSuccess += OnLoginSuccess;
             login.RegisterButtonClicked += Login_RegisterButtonClicked;
+            home.ShowSessionsBtnClicked += OnShowSessionsBtnClicked;
+        }
+
+        private void OnShowSessionsBtnClicked(object? sender, EventArgs e)
+        {
+            SetActiveUserControl(viewSessions);
         }
 
 
@@ -89,7 +95,8 @@ namespace ST10083735_PROG6212_POE
             hoursLeft.Visibility = Visibility.Collapsed;
             signUp.Visibility = Visibility.Collapsed;
             login.Visibility = Visibility.Collapsed;
-
+            viewSessions.Visibility = Visibility.Collapsed;
+            
             //Make the user control recieved as a parameter visible
             control.Visibility = Visibility.Visible;
         }
