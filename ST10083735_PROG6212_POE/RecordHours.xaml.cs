@@ -31,7 +31,7 @@ namespace ST10083735_PROG6212_POE
             
         }
 
-        private void Completebtn_Click(object sender, RoutedEventArgs e)
+        private async void Completebtn_Click(object sender, RoutedEventArgs e)
         {
             //Hide the error label
             errorlb.Visibility = Visibility.Collapsed;
@@ -46,10 +46,14 @@ namespace ST10083735_PROG6212_POE
                 //Save the code of the module to update
                 string moduleToUpdate = modulecmb.SelectedItem.ToString();
 
+                //get the hours tsudied from the time span edit
                 TimeSpan hoursStudied = (TimeSpan)timespedt.Value;                
 
+                //get the users id
                 int userID = (int)this.DataContext;
-                moduleManagement.UpdateModule(hoursStudied.Ticks, datedp.SelectedDate.Value, moduleToUpdate, userID);
+                
+                //update the module
+                await moduleManagement.UpdateModule(hoursStudied.Ticks, datedp.SelectedDate.Value, moduleToUpdate, userID);
 
                 
                 //Navigate to home page
@@ -61,7 +65,9 @@ namespace ST10083735_PROG6212_POE
 
         private void RecordHours_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            //get the users id
             int userID = (int)this.DataContext;
+            //get all their saved modules
             List<Module> moduleList = moduleManagement.GetModules(userID);
             SemesterManagement semesterManagement = new SemesterManagement();   
             //Clear the combobox of any other modules it contained
@@ -94,8 +100,9 @@ namespace ST10083735_PROG6212_POE
             
         }
 
-        private void modulecmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Modulecmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //if a module is selected, show input components
             if (modulecmb.SelectedIndex != -1)
             {
                 hourslb.Visibility = Visibility.Visible;
@@ -105,6 +112,7 @@ namespace ST10083735_PROG6212_POE
                 errorlb.Visibility = Visibility.Collapsed;
             }
             else{
+                //otherwise hide input components
                 hourslb.Visibility = Visibility.Collapsed;
                 timespedt.Visibility = Visibility.Collapsed;
                 datedp.Visibility = Visibility.Collapsed;

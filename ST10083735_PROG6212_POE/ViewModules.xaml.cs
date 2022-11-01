@@ -31,15 +31,12 @@ namespace ST10083735_PROG6212_POE
 
             if (viewModules.Visibility == Visibility.Visible)
             {
+                //get the logged in users id
                 int userID = (int)this.DataContext;
-                //Save the list
+                //Save the list if they have modules saved
                 if (modules.GetModules(userID).Count != 0)
                 {
                     moduleList = modules.GetModules(userID);
-                }
-
-                if (moduleList.Count != 0)
-                {
                     //make the datagrid visible and add the list to the datagrid itemsource
                     noModuleslb.Visibility = Visibility.Collapsed;
                     moduleDG.Visibility = Visibility.Visible;
@@ -52,7 +49,8 @@ namespace ST10083735_PROG6212_POE
                     moduleDG.Visibility = Visibility.Collapsed;
                     noModuleslb.Visibility = Visibility.Visible;
                 }
-               
+
+              
                 
             }
         }

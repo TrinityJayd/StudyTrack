@@ -2,6 +2,7 @@
 using Modules.Models;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using Module = Modules.Models.Module;
@@ -13,13 +14,9 @@ namespace ST10083735_PROG6212_POE
     /// </summary>
     public partial class AddModule : UserControl
     {
-
-
         public event EventHandler HideModulePageButtonClicked;
         //Create an object of the validation methods class
         private ValidationMethods newValid = new ValidationMethods();
-        //Create a List of module objects
-
 
         public AddModule()
         {
@@ -29,8 +26,8 @@ namespace ST10083735_PROG6212_POE
 
         private void Completebtn_Click(object sender, RoutedEventArgs e)
         {
-            //If the module code text box isnt empty, it means that the user has not clicked th add module button
-            //this means that the module has not been added to the list
+            //If the module code text box isnt empty, it means that the user has not clicked the add module button
+            //this means that the module has not been added to the database
             if (!String.IsNullOrEmpty(moduleCodetbx.Text))
             {
                 confirmAddlb.Visibility = Visibility.Visible;
@@ -54,7 +51,6 @@ namespace ST10083735_PROG6212_POE
         }
 
 
-
         private void AddModulebtn_Click(object sender, RoutedEventArgs e)
         {
             moduleExistslb.Visibility = Visibility.Collapsed;
@@ -68,16 +64,10 @@ namespace ST10083735_PROG6212_POE
 
             ModuleManagement newMod = new ModuleManagement();
             int userID = (int)this.DataContext;
+            //retrieve a list of all modules for the current user in the database
             List<Module> modules = newMod.GetModules(userID);
 
-            //do not allow the user to add more than 6 modules
-            if (modules.Count == 6)
-            {
-                infolb.Visibility = Visibility.Visible;
-                HideAllComponents();
-                ClearText();
-                NavigateToHome();
-            }
+            ModuleLimitReached(modules);
 
 
             //if the user has not entered the module code/name or chosen a start date for the semester, display the error label
@@ -112,8 +102,11 @@ namespace ST10083735_PROG6212_POE
 
                         if (moduleExists)
                         {
+                            //Hide components like error messages, to show the label that
+                            //tells the user that the module already exists
                             HideExtraComponents();
                             moduleExistslb.Visibility = Visibility.Visible;
+                            //Clear textboxes
                             moduleCodetbx.Text = "";
                             moduleNametbx.Text = "";
                             return;
@@ -128,10 +121,13 @@ namespace ST10083735_PROG6212_POE
                     DateTime startdate = datedp.SelectedDate.Value;
 
                     SemesterManagement semesterManagement = new SemesterManagement();
+                    //If the user has no saved modules but they have already enetered semester information
+                    //then update the current saved semester
                     if (modules.Count == 0 && semesterManagement.SemesterExists(userID))
                     {
                         semesterManagement.UpdateSemester(userID,startdate,weeks);
                     }
+                    //Otherwise, create a new semester
                     else if (modules.Count == 0 && !semesterManagement.SemesterExists(userID))
                     {
                         UserSemester semester = new UserSemester
@@ -143,7 +139,7 @@ namespace ST10083735_PROG6212_POE
                         semesterManagement.AddSemester(semester);
                     }   
                               
-
+                    //Create a module object
                     Module module = new Module
                     {
                         ModuleCode = moduleCode,
@@ -153,6 +149,7 @@ namespace ST10083735_PROG6212_POE
                         UserId = userID
                     };
                     
+                    //Add the module
                     newMod.AddModule(module);
 
                     
@@ -168,6 +165,8 @@ namespace ST10083735_PROG6212_POE
 
                     //Once the user has added all the information about the semester make the semester inputs invisible
                     HideSemesterComponents();
+                    modules = newMod.GetModules(userID);
+                    ModuleLimitReached(modules);
                 }
 
 
@@ -177,6 +176,23 @@ namespace ST10083735_PROG6212_POE
 
         }
 
+        private void ModuleLimitReached(List<Module> modules)
+        {
+            //do not allow the user to add more than 6 modules
+            if (modules.Count == 6)
+            {
+                //make the information label visible that tells the user they can only add 6 modules
+                infolb.Visibility = Visibility.Visible;
+                //hide all the components to prevent the user from entering data
+                HideAllComponents();
+                //clear all fields
+                ClearText();
+                //move to home page
+                NavigateToHome();
+            }
+        }
+        
+        
         //Code to navigate to the home page
         private void NavigateToHome()
         {
@@ -193,40 +209,80 @@ namespace ST10083735_PROG6212_POE
             if (this.Visibility == Visibility.Visible)
             {
                 moduleExistslb.Visibility = Visibility.Collapsed;
+                addedModuleslstbx.Visibility = Visibility.Collapsed;
+                //Clear the list box
                 addedModuleslstbx.Items.Clear();
                 ModuleManagement newMod = new ModuleManagement();
+                
+                //get the user id of the current logged in user
                 int userID = (int)this.DataContext;
+                
+                //retrieve their modules
                 List<Module> modules = newMod.GetModules(userID);
                 SemesterManagement manageSemester = new SemesterManagement();
+
+                //if the user has 6 modules then hide all components and display the label that tells them they may only save 6 modules
                 if (modules.Count == 6)
                 {
-                    HideAllComponents();
-                    infolb.Visibility = Visibility.Visible;
+                   HideAllComponents();
+                   infolb.Visibility = Visibility.Visible;
                 }
                 else if (modules.Count > 0)
                 {
+                    //otherwise, set the value of the date and week components to the values of the current semester
+                    //this is done so that the data passes the checks in the add button which checks that all components are not null
                     weeksspn.Value = (double?)manageSemester.GetWeeksInSemester(userID);
                     datedp.SelectedDate = manageSemester.GetSemesterStartDate(userID);
+                    
+                    //Hide the semester components so that they cannot edit the semester details
                     HideSemesterComponents();
+                    
+                    //show all other module components
                     ShowAllComponents();
+
+                    //hide error labels
                     infolb.Visibility = Visibility.Hidden;
-                    nameErrorlb.Visibility = Visibility.Collapsed;
-                    addedModuleslstbx.Visibility = Visibility.Visible;
+                    nameErrorlb.Visibility = Visibility.Hidden;
+                    
+                    //Add all saved modules to the list box
                     foreach (Module module in modules)
                     {
                         addedModuleslstbx.Items.Add($"{module.ModuleCode} Added.");
                     }
+                    addedModuleslstbx.Visibility = Visibility.Visible;
+
                 }
                 else if (modules.Count == 0)
                 {
+                    //if the user has no saved modules, show them the semester components
                     ShowSemesterComponents();
                     addedModuleslstbx.Visibility = Visibility.Hidden;
                 }
 
             }
 
-            //Clear all the input text once the user leaves the page           
+            //Clear all the input text once the user leaves the page
             ClearText();
+        }
+
+       
+        private void Yeschbkx_Checked(object sender, RoutedEventArgs e)
+        {
+            //Uncheck the no box if the ye box is checked
+            if (yeschbkx.IsChecked == true)
+            {
+                nochbx.IsChecked = false;
+            }
+
+        }
+
+        private void Nochbx_Checked(object sender, RoutedEventArgs e)
+        {
+            //Uncheck the yes box if the no box is checked
+            if (nochbx.IsChecked == true)
+            {
+                yeschbkx.IsChecked = false;
+            }
         }
 
         private void ShowSemesterComponents()
@@ -253,39 +309,14 @@ namespace ST10083735_PROG6212_POE
             moduleNametbx.Clear();
             creditspn.Value = creditspn.MinValue;
             hoursspn.Value = hoursspn.MinValue;
-            errorlb.Visibility = Visibility.Collapsed;
-            confirmAddlb.Visibility = Visibility.Collapsed;
-            yeschbkx.Visibility = Visibility.Collapsed;
-            nochbx.Visibility = Visibility.Collapsed;
-            nameErrorlb.Visibility = Visibility.Collapsed;
-        }
-
-        private void Yeschbkx_Checked(object sender, RoutedEventArgs e)
-        {
-            //Uncheck the no box if the ye box is checked
-            if (yeschbkx.IsChecked == true)
-            {
-                nochbx.IsChecked = false;
-            }
-
-        }
-
-        private void Nochbx_Checked(object sender, RoutedEventArgs e)
-        {
-            //Uncheck the yes box if the no box is checked
-            if (nochbx.IsChecked == true)
-            {
-                yeschbkx.IsChecked = false;
-            }
+            HideExtraComponents();
         }
 
         private void HideExtraComponents()
         {
             confirmAddlb.Visibility = Visibility.Hidden;
             yeschbkx.Visibility = Visibility.Hidden;
-            nochbx.Visibility = Visibility.Hidden;
-            addedModuleslstbx.Visibility = Visibility.Hidden;
-            infolb.Visibility = Visibility.Hidden;
+            nochbx.Visibility = Visibility.Hidden;           
             nameErrorlb.Visibility = Visibility.Hidden;
         }
 
@@ -319,6 +350,6 @@ namespace ST10083735_PROG6212_POE
 
         }
 
-
+        
     }
 }

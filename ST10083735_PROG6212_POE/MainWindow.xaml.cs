@@ -48,12 +48,7 @@ namespace ST10083735_PROG6212_POE
             home.ShowSessionsBtnClicked += OnShowSessionsBtnClicked;
         }
 
-        private void OnShowSessionsBtnClicked(object? sender, EventArgs e)
-        {
-            SetActiveUserControl(viewSessions);
-        }
-
-
+      
         ////Author:andreask
         ////https://stackoverflow.com/questions/25585491/showing-user-control-from-another-user-controls-button-click-in-main-window
         private void OnHideButtonClicked(object? sender, EventArgs e)
@@ -62,6 +57,12 @@ namespace ST10083735_PROG6212_POE
             SetActiveUserControl(signUp);
         }
 
+        //Show the user control that alows the user to view their study sessions for a specific module
+        private void OnShowSessionsBtnClicked(object? sender, EventArgs e)
+        {
+            SetActiveUserControl(viewSessions);
+        }
+        
         private void OnLoginSuccess(object? sender, EventArgs e)
         {
             //If the user successfully logs in show the home page
@@ -109,6 +110,7 @@ namespace ST10083735_PROG6212_POE
 
         private void Homebtn_Click(object sender, RoutedEventArgs e)
         {
+            //if the user id is 0 then the user is not logged in
             if (UserID == 0)
             {
                 //If the user is not logged in show the login page
@@ -187,21 +189,27 @@ namespace ST10083735_PROG6212_POE
 
         private void signUpbtn_Click(object sender, RoutedEventArgs e)
         {
+            //if a user is currently logged in and they click the sign up button log them out
+            if (loginbtn.Visibility == Visibility.Collapsed)
+            {
+                UserID = 0;
+            }
             SetActiveUserControl(signUp);
         }
 
         private void loginbtn_Click(object sender, RoutedEventArgs e)
         {
+            //Show the login page
             SetActiveUserControl(login);
         }
 
         private void logoutbtn_Click(object sender, RoutedEventArgs e)
         {
+            //set the user id to 0 because it means that no user is logged in
             UserID = 0;
             SetActiveUserControl(landingPage);
             logoutbtn.Visibility = Visibility.Collapsed;
-            loginbtn.Visibility = Visibility.Visible;
-            
+            loginbtn.Visibility = Visibility.Visible;          
         }
 
         

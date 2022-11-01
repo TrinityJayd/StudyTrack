@@ -29,36 +29,44 @@ namespace ST10083735_PROG6212_POE
             InitializeComponent();
         }
 
-        private void Completebtn_Click(object sender, RoutedEventArgs e)
+        private async void Completebtn_Click(object sender, RoutedEventArgs e)
         {
+            //set the textbox used to communicate errors to empty
             messagetb.Text = "";
+            //check if any fields are empty
             if (String.IsNullOrEmpty(usernametxt.Text) || String.IsNullOrEmpty(passwordtxt.Password) || String.IsNullOrEmpty(confirmpasswordtxt.Password)
                 || String.IsNullOrEmpty(nametxt.Text) || String.IsNullOrEmpty(lastnametxt.Text) || String.IsNullOrEmpty(emailtxt.Text) || String.IsNullOrEmpty(celltxt.Text))
             {
                 messagetb.Text = "Missing Information. All fields are required.";
             }
+            //check if the users password and confirm password fields dont match
             else if (passwordtxt.Password != confirmpasswordtxt.Password)
             {
                 messagetb.Text = "Passwords do not match";
             }
             else
-            {                
+            {
+                //check is the passwors is valid
                 if (validation.passwordRequirements(passwordtxt.Password) == false)
                 {
                     messagetb.Text = "Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.";
                 }
+                //check if the phone number is valid
                 else if (validation.IsPhoneNumberValid(celltxt.Text) == false)
                 {
                     messagetb.Text = "Cell number must be numeric and contain 10 digits.";
                 }
+                //check if the name is valid
                 else if (validation.OnlyLetters(nametxt.Text) == false)
                 {
                     messagetb.Text = "Name must only contain letters.";
                 }
+                //check if the last name is valid
                 else if (validation.OnlyLetters(lastnametxt.Text) == false)
                 {
                     messagetb.Text = "Last name must only contain letters.";
                 }
+                //check if the email is valid
                 else if (validation.IsEmailValid(emailtxt.Text) == false)
                 {
                     messagetb.Text = "Email is not valid.";
@@ -66,6 +74,7 @@ namespace ST10083735_PROG6212_POE
                 else
                 {
                     Account account = new Account();
+                    //create a user object
                     User user = new User
                     {
                         Username = usernametxt.Text,
@@ -75,22 +84,26 @@ namespace ST10083735_PROG6212_POE
                         Email = emailtxt.Text,
                         CellNumber = celltxt.Text
                     };
+
+                    //check if the username is already taken
                     if (account.UsernameExists(user.Username) == true)
                     {
                         messagetb.Text = "Username already exists.";
                     }
+                    //check if the email is already in use
                     else if (account.EmailExists(user.Email) == true)
                     {
                         messagetb.Text = "User with this email already exists.";
                     }
+                    //check if the phone number is already in use
                     else if (account.PhoneExists(user.CellNumber) == true)
                     {
                         messagetb.Text = "User with this cell number already exists.";
                     }
                     else
                     {
-
-                        account.Register(user);
+                        //register the user
+                        await account.Register(user);
                         ClearText();
                         NavigateToHome();
                     }

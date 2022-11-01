@@ -87,7 +87,7 @@
 
         </Button>
         <Label x:Name="mainLb" Foreground="#8C52FF" FontWeight="Bold" Content="studytrack" HorizontalAlignment="Left" Height="46" Margin="28,-7,0,0" VerticalAlignment="Top" Width="123" FontFamily="Candara" FontSize="24" MouseDown="MainLb_MouseDown"/>
-        <Button x:Name="signUpbtn" Content="Sign Up"  HorizontalAlignment="Left" Margin="667,0,0,50" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Height="29" VerticalAlignment="Bottom" Click="signUpbtn_Click">
+        <Button x:Name="signUpbtn" Content="Sign Up"  HorizontalAlignment="Left" Margin="667,0,0,50" BorderBrush="White" Background="White" FontFamily="Corbel" FontSize="19" Click="signUpbtn_Click" Height="29" VerticalAlignment="Bottom">
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Template">

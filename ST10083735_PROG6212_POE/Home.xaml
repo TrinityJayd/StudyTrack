@@ -148,7 +148,7 @@
             </Button.Resources>
         </Button>
         <Image x:Name="Image7" HorizontalAlignment="Left" Height="185" Margin="644,254,0,0" VerticalAlignment="Top" Width="210" Source="/undraw_Brainstorming_re_1lmw.png"/>
-        <Button x:Name="viewStudySessions" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="660,395,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" Click="viewStudySessions_Click" >
+        <Button x:Name="viewStudySessions" HorizontalAlignment="Left" FontFamily="Corbel" FontSize="16" Margin="660,395,0,0" VerticalAlignment="Top" Width="178"  Foreground="White" Height="30" Click="ViewStudySessions_Click" >
             <Button.Resources>
                 <Style TargetType="{x:Type Button}" >
                     <Setter Property="Background" Value="#8C52FF"/>

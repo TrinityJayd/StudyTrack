@@ -70,7 +70,8 @@ namespace ST10083735_PROG6212_POE
                 ShowDeleteModulesBtnClicked(this, EventArgs.Empty);
         }
 
-        private void viewStudySessions_Click(object sender, RoutedEventArgs e)
+        //Event handler for when the user wants to view a list of all their study sessions
+        private void ViewStudySessions_Click(object sender, RoutedEventArgs e)
         {
             if (ShowSessionsBtnClicked != null)
                 ShowSessionsBtnClicked(this, EventArgs.Empty);

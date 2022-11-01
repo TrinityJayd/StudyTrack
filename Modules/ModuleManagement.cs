@@ -38,9 +38,14 @@ namespace Modules
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             //Remove the module from the modules table
-            appDataContext.Remove(appDataContext.Modules.Single(m => m.ModuleCode == moduleCode && m.UserId == userID));  
-            //remove the module from the study session table
-            appDataContext.Remove(appDataContext.StudySessions.Single(m => m.ModuleCode == moduleCode && m.UserId == userID));  
+            appDataContext.Remove(appDataContext.Modules.Single(m => m.ModuleCode == moduleCode && m.UserId == userID));
+
+            //check if the user has any study sessions for the module
+            if (appDataContext.StudySessions.Any(s => s.ModuleCode == moduleCode && s.UserId == userID))
+            {
+                //remove the study sessions from the study sessions table
+                appDataContext.RemoveRange(appDataContext.StudySessions.Where(s => s.ModuleCode == moduleCode && s.UserId == userID));
+            } 
             await appDataContext.SaveChangesAsync();
         }
 

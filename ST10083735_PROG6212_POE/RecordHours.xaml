@@ -174,7 +174,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <ComboBox Style="{DynamicResource ComboBoxStyle1}"  x:Name="modulecmb" BorderThickness="1" Background="White" BorderBrush="#FF8C52FF" HorizontalAlignment="Left" Margin="34,219,0,0" VerticalAlignment="Top" Width="227"  FontFamily="Segoe UI Light" FontSize="20" SelectionChanged="modulecmb_SelectionChanged"/>
+        <ComboBox Style="{DynamicResource ComboBoxStyle1}"  x:Name="modulecmb" BorderThickness="1" Background="White" BorderBrush="#FF8C52FF" HorizontalAlignment="Left" Margin="34,219,0,0" VerticalAlignment="Top" Width="227"  FontFamily="Segoe UI Light" FontSize="20" SelectionChanged="Modulecmb_SelectionChanged"/>
         <DatePicker x:Name="datedp"  HorizontalAlignment="Left" Margin="414,219,0,0" VerticalAlignment="Top" BorderBrush="#FF8C52FF" FontFamily="Segoe UI Light" FontSize="20" Width="227" Visibility="Collapsed"/>
         <syncfusion:TimeSpanEdit x:Name="timespedt" Style="{DynamicResource TimeSpanEditStyle1}" BorderBrush="#FF8C52FF" AllowNull="False" HorizontalAlignment="Left" Height="38" Margin="34,323,0,0" FontFamily="Segoe UI Light" FontSize="20" NullString="Enter a duration" TextWrapping="Wrap" Text="00:00" Value="0.0:0:0.0" VerticalAlignment="Top" Width="182" MinValue="0.0:0:00" Format="h 'hours' m 'minutes'" StepInterval="0.01:01:01" MaxValue="0.23:59:00" Visibility="Collapsed"/>
         <Label Visibility="Collapsed" x:Name="errorlb" Content="Missing information. All fields are required." HorizontalAlignment="Left" Margin="29,429,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Light" Width="369"/>

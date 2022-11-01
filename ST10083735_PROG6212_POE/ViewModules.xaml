@@ -10,7 +10,7 @@
         Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
     <Grid>
         <Label x:Name="headinglb" Content="All Modules" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top" FontSize="40" Width="222"/>
-        <DataGrid Visibility="Collapsed" AutoGenerateColumns="False" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding Modules}" Margin="26,68,202,37">
+        <DataGrid Visibility="Collapsed" AutoGenerateColumns="False" Width="Auto" Background="White" Style="{DynamicResource DataGridStyle1}" x:Name="moduleDG" BorderThickness="0" FontFamily="Segoe UI Light" FontSize="20" ItemsSource="{Binding Modules}" Margin="26,68,202,37">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Module Code" Binding="{Binding ModuleCode}"/>
                 <DataGridTextColumn Header="Module Name" Binding="{Binding ModuleName}"/>

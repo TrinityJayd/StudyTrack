@@ -23,7 +23,7 @@ namespace ST10083735_PROG6212_POE
 
         }
 
-        private void Completebtn_Click(object sender, RoutedEventArgs e)
+        private async void Completebtn_Click(object sender, RoutedEventArgs e)
         {
             //Check if the user has chosen a module and confirmed if they wanted to delete the module
             if (modulecmb.SelectedIndex == -1 || (yeschbkx.IsChecked == false && nochbx.IsChecked == false))
@@ -36,8 +36,9 @@ namespace ST10083735_PROG6212_POE
                 if (yeschbkx.IsChecked == true)
                 {
                     string moduleToDelete = modulecmb.SelectedItem.ToString();
+                    //get the id of the currenlty logged in user
                     int userID = (int)this.DataContext;
-                    modules.DeleteModule(moduleToDelete, userID);
+                    await modules.DeleteModule(moduleToDelete, userID);
                 }
                 
                 //Navigate to home page
@@ -55,7 +56,7 @@ namespace ST10083735_PROG6212_POE
 
         private void Yeschbkx_Checked(object sender, RoutedEventArgs e)
         {
-            //Uncheck the no box if the ye box is checked
+            //Uncheck the no box if the yes box is checked
             if (yeschbkx.IsChecked == true)
             {
                 nochbx.IsChecked = false;

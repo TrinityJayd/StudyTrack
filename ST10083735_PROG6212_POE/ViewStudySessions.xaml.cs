@@ -24,14 +24,16 @@ namespace ST10083735_PROG6212_POE
 
         private void viewSessions_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-
+            //clear the module combobox
             modulecmb.Items.Clear();
+            //get the logged in users id
             int userID = (int)this.DataContext;
 
             //Use LINQ to get only the fields we require from the data context
             //only if the list is not null,
             if (this.Visibility == Visibility.Visible)
             {
+                // if the user has any modules saved then add them to the combobox
                 if (moduleManagement.GetModules(userID).Count != 0)
                 {
                     List<Module> modules = moduleManagement.GetModules(userID);
@@ -39,6 +41,7 @@ namespace ST10083735_PROG6212_POE
                     {
                         modulecmb.Items.Add(m.ModuleCode);
                     }
+                    //get the sessions they have saved
                     sessionsList = management.GetSessions(userID);
                 }
             }
@@ -54,10 +57,12 @@ namespace ST10083735_PROG6212_POE
         {
             if (this.Visibility == Visibility.Visible)
             {
+                //get the logged in users id
                 int userID = (int)this.DataContext;
                 //Set the datagrid ItemSource to null
                 sessionDG.ItemsSource = null;
-                
+
+                //if they have study sessions saved then show them for that specific module
                 if (sessionsList.Count != 0)
                 {
                     Sessions = (from s in sessionsList
@@ -69,6 +74,7 @@ namespace ST10083735_PROG6212_POE
                                     DateStudied = s.DateStudied
                                 }).ToList();
 
+                    // if there are sessions for that module then show them
                     if (Sessions.Count != 0)
                     {
                         //if there are modules saved, display the datagrid
@@ -78,7 +84,7 @@ namespace ST10083735_PROG6212_POE
                     }
                     else
                     {
-                        //If there are no modules in the list, show the user the label that states that there are no modules saved
+                        //If there are no session in the list, show the user the label that states that there are no modules saved
                         sessionDG.Visibility = Visibility.Collapsed;
                         noSessionslb.Visibility = Visibility.Visible;
                     }
