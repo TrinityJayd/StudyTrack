@@ -89,7 +89,7 @@ namespace ST10083735_PROG6212_POE
                     }
                     else
                     {
-                        
+
                         account.Register(user);
                         ClearText();
                         NavigateToHome();

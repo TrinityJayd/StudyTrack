@@ -39,7 +39,7 @@ namespace Modules.Models
             modelBuilder.Entity<Module>(entity =>
             {
                 entity.HasKey(e => e.EntryId)
-                    .HasName("PK__Module__F57BD2D7E4FE783F");
+                    .HasName("PK__Module__F57BD2D77BA5F479");
 
                 entity.ToTable("Module");
 
@@ -64,13 +64,13 @@ namespace Modules.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Modules)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Module__UserID__0E6E26BF");
+                    .HasConstraintName("FK__Module__UserID__5EBF139D");
             });
 
             modelBuilder.Entity<StudySession>(entity =>
             {
                 entity.HasKey(e => e.SessionId)
-                    .HasName("PK__Study_Se__C9F4927034A14E32");
+                    .HasName("PK__Study_Se__C9F49270832F216A");
 
                 entity.ToTable("Study_Sessions");
 
@@ -89,7 +89,7 @@ namespace Modules.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.StudySessions)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Study_Ses__UserI__14270015");
+                    .HasConstraintName("FK__Study_Ses__UserI__6477ECF3");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -122,7 +122,7 @@ namespace Modules.Models
             modelBuilder.Entity<UserSemester>(entity =>
             {
                 entity.HasKey(e => e.SemesterId)
-                    .HasName("PK__User_Sem__043301BDAB56DEFB");
+                    .HasName("PK__User_Sem__043301BDBEC481C0");
 
                 entity.ToTable("User_Semester");
 
@@ -139,7 +139,7 @@ namespace Modules.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserSemesters)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__User_Seme__UserI__114A936A");
+                    .HasConstraintName("FK__User_Seme__UserI__619B8048");
             });
 
             OnModelCreatingPartial(modelBuilder);
