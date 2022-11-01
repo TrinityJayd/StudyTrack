@@ -16,19 +16,20 @@ namespace Modules
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             //Find last entry id value
             var lastEntry = await appDataContext.Modules.OrderByDescending(x => x.EntryId).FirstOrDefaultAsync();
-            int lastID;
+
             if (lastEntry == null)
             {
-                lastID = 0;
+                module.EntryId = 1;
             }
             else
             {
-                lastID = lastEntry.EntryId;
+                module.EntryId = lastEntry.EntryId + 1;
             }
-            
-            module.EntryId = lastID + 1;
+            //calculate the self study hours
             module.SelfStudyHours = CalculateSelfStudyHours(module);
+            //the hours left to study will be the same as the self study hours
             module.HoursLeft = module.SelfStudyHours;
+            //add the module to the database
             appDataContext.Modules.Add(module);
             await appDataContext.SaveChangesAsync();
         }
@@ -36,7 +37,9 @@ namespace Modules
         public async Task DeleteModule(string moduleCode, int userID)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            //Remove the module from the modules table
             appDataContext.Remove(appDataContext.Modules.Single(m => m.ModuleCode == moduleCode && m.UserId == userID));  
+            //remove the module from the study session table
             appDataContext.Remove(appDataContext.StudySessions.Single(m => m.ModuleCode == moduleCode && m.UserId == userID));  
             await appDataContext.SaveChangesAsync();
         }
@@ -44,9 +47,12 @@ namespace Modules
         public async Task UpdateModule(long hoursStudied, DateTime dateLastStudied, string moduleCode, int userID)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            //Retrieve the module from the database
             var moduleToUpdate = appDataContext.Modules.Single(m => m.ModuleCode == moduleCode && m.UserId == userID);
+            //accumulate the hours studied
             moduleToUpdate.HoursStudied += hoursStudied;
 
+            //create a new study session
             StudySession session = new StudySession
             {
                 UserId = userID,
@@ -56,6 +62,7 @@ namespace Modules
             };
 
             StudySessionManagement sessionManagement = new StudySessionManagement();
+            //add the study session to the database
             await sessionManagement.AddSession(session);
 
             //if the user studies more than is required then set the hours left
@@ -69,7 +76,8 @@ namespace Modules
                 //otherwise, subtract the times
                 moduleToUpdate.HoursLeft = moduleToUpdate.SelfStudyHours - moduleToUpdate.HoursStudied;
             }
-            
+
+            //update the module in the database
             appDataContext.Modules.Update(moduleToUpdate);
             await appDataContext.SaveChangesAsync();
         }
@@ -77,6 +85,7 @@ namespace Modules
         public List<Module> GetModules(int userID)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            //get a list of all the modules for the user id
             return appDataContext.Modules.Where(m => m.UserId == userID).ToList();
         }
 
@@ -85,12 +94,14 @@ namespace Modules
         public bool ModuleExists(string moduleCode, int userID)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            //check if the ucrrent user has already entered the module before
             return appDataContext.Modules.Any(m => m.ModuleCode == moduleCode && m.UserId == userID);
         }
 
         public long CalculateSelfStudyHours(Module module)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            //get the weeks in the semester from the database
             decimal weeks = appDataContext.UserSemesters.First(u => u.UserId == module.UserId).WeeksInSemester;
             
             //Calculation for the amount of time the student needs to self study
@@ -99,8 +110,10 @@ namespace Modules
             {
                 studyHours = 0;
             }
+            //convert the calculation to a timespan to get the accurate time
             TimeSpan hours = TimeSpan.FromHours(Convert.ToDouble(studyHours));
 
+            //return the long type to be stored in the database
             return hours.Ticks;
 
         }
