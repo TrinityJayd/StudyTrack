@@ -193,6 +193,9 @@ namespace ST10083735_PROG6212_POE
             if (loginbtn.Visibility == Visibility.Collapsed)
             {
                 UserID = 0;
+                logoutbtn.Visibility = Visibility.Collapsed;
+                loginbtn.Visibility = Visibility.Visible;
+
             }
             SetActiveUserControl(signUp);
         }
