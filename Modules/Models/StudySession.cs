@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Modules.Models
+namespace DbManagement.Models
 {
     public partial class StudySession
     {

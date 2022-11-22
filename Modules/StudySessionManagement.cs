@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modules.Models;
+using DbManagement.Models;
 
 namespace Modules
 {
