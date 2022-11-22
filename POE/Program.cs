@@ -1,9 +1,30 @@
+using DbManagement.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+var config = new ConfigurationBuilder().
+        SetBasePath(Directory.GetCurrentDirectory()).
+AddJsonFile("appsettings.json").
+Build();
+
+//Code Attribution
+//Author: Anuraj 
+//Link: https://dotnetthoughts.net/using-ef-core-in-a-separate-class-library/
+//Code to facilitate the use of a separate class library for the database context
+builder.Services.AddDbContext<Prog6212P2Context>(options =>
+{
+    options.UseSqlServer(config.GetConnectionString("UserDatabase"),
+        assembly => assembly.MigrationsAssembly(typeof(Prog6212P2Context).Assembly.FullName));
+});
 var app = builder.Build();
+
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

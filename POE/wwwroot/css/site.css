@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu:wght@500&display=swap');
+
 html {
   font-size: 14px;
 }
@@ -15,4 +17,64 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+label{
+    font-size:1.1rem;
+    margin-bottom:10px;
+}
+
+input {
+    border-color: #8C52FF;
+    margin-bottom: 10px;
+}
+
+
+/*Header*/
+
+.brand {   
+    font-family: 'Montserrat', sans-serif;
+    font-weight:bold;
+}
+
+
+/*Buttons*/
+.submit-btns {
+    background-color: #8C52FF;
+    border:none;
+    color: white;
+    border-radius: 29px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight:500;
+    height: 2.3rem;
+    margin-top: 10px;
+    width: 7rem;
+}
+
+.submit-btns:hover {
+    background-color: #7042cc;
+}
+
+/*Landing page*/
+
+.landing{
+    margin-top:5rem;
+}
+
+.landing-heading {
+    font-size: 3.5rem;
+}
+
+.landing {
+    display: flex;
+}
+
+.landing_image {
+    object-fit: contain;
+    max-width: 350px;
+    align-self: flex-start;
+}
+
+.landing_text {
+    flex: 1 1 auto;
 }

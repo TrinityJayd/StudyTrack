@@ -1,62 +1,57 @@
 ﻿@model DbManagement.Models.User
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Sign Up";
 }
 
-<h1>Create</h1>
-
-<h4>User</h4>
-<hr />
+<h1>Sign Up</h1>
+<hr>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>          
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" required class="form-control" style="border-color:#8C52FF" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Lastname" class="control-label"></label>
-                <input asp-for="Lastname" class="form-control" />
+                <label asp-for="Lastname" class="control-label">Last Name</label>
+                <input asp-for="Lastname" required class="form-control" style="border-color:#8C52FF" />
                 <span asp-validation-for="Lastname" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
+                <input asp-for="Username" required class="form-control" style="border-color:#8C52FF" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" required class="form-control" style="border-color:#8C52FF" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CellNumber" class="control-label"></label>
-                <input asp-for="CellNumber" class="form-control" />
+                <label class="control-label">Confirm Password</label>
+                <input required class="form-control" style="border-color:#8C52FF" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CellNumber" class="control-label">Phone Number</label>
+                <input asp-for="CellNumber" required class="form-control" style="border-color:#8C52FF"/>
                 <span asp-validation-for="CellNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" required class="form-control" style="border-color:#8C52FF" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Sign Up" class="submit-btns" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

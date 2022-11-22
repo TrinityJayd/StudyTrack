@@ -7,6 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\images\books-stack-of-three.png" />
+    <None Include="wwwroot\images\landing.png" />
+    <None Include="wwwroot\images\undraw_Access_account_re_8spm.png" />
+    <None Include="wwwroot\images\undraw_Bookshelves_re_lxoy.png" />
+    <None Include="wwwroot\images\undraw_Brainstorming_re_1lmw.png" />
+    <None Include="wwwroot\images\undraw_Knowledge_re_5v9l.png" />
+    <None Include="wwwroot\images\undraw_Learning_re_32qv.png" />
+    <None Include="wwwroot\images\undraw_Mobile_login_re_9ntv.png" />
+    <None Include="wwwroot\images\undraw_Online_test_re_kyfx.png" />
+    <None Include="wwwroot\images\undraw_Reading_re_29f8.png" />
+    <None Include="wwwroot\images\undraw_Reading_time_re_phf7.png" />
+    <None Include="wwwroot\images\undraw_road_to_knowledge_m8s0.png" />
+    <None Include="wwwroot\images\undraw_Scrum_board_re_wk7v.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
