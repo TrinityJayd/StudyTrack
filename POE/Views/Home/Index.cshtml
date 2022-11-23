@@ -2,15 +2,23 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="landing">
-    <div class="landing_text">
-    <h1 class="landing-heading">We Help You</h1>
-    <h1 class="landing-heading"><span style="color:#8C52FF">Achieve</span> Your</h1>
-    <h1 class="landing-heading">Goals</h1>
+
+<div class="card mb-2">
+    <div class="row g-0">
+        <div class="col-lg-5 col-md-7">
+            <div class="card-body">
+                <h1 class="landing-heading">We Help You</h1>
+                <h1 class="landing-heading"><span style="color:#8C52FF">Achieve</span> Your</h1>
+                <h1 class="landing-heading">Goals</h1>
+                <a asp-controller="Users" asp-action="Create">
+                    <input type="submit" value="Sign Up" class="submit-btns"  />
+                </a>               
+                <input type="submit" value="Login" class="submit-btns login-btn" />
+            </div>
+        </div>
+
+        <div class="col-lg-7 col-md-5" id="large-screen-img">
+            <img src="images/landing.png" class="landing-img img-fluid rounded-start" alt="...">
+        </div>
     </div>
-   
-    <div class="landing_img">
-        <img src="images/landing.png" class="landing-image" />
-    </div>
-    
 </div>
