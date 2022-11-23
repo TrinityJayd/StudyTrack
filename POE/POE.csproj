@@ -9,7 +9,7 @@
   <ItemGroup>
     <None Include="wwwroot\images\books-stack-of-three.png" />
     <None Include="wwwroot\images\landing.png" />
-    <None Include="wwwroot\images\undraw_Access_account_re_8spm.png" />
+    <None Include="wwwroot\images\login.png" />
     <None Include="wwwroot\images\undraw_Bookshelves_re_lxoy.png" />
     <None Include="wwwroot\images\undraw_Brainstorming_re_1lmw.png" />
     <None Include="wwwroot\images\undraw_Knowledge_re_5v9l.png" />
