@@ -109,3 +109,19 @@ input {
     }
 }
 
+/*Home page*/
+
+#home-img.card-img-top {
+    align-self: center;
+    width: 80%;
+}
+
+#home-btns {
+    margin-top:2rem;
+    text-align:center;
+}
+
+.home-btn {
+   align-self:center;
+   width:60%;
+}

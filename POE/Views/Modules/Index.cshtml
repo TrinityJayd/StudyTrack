@@ -5,7 +5,7 @@
 }
 
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,110 +16,61 @@
     <link href="css/bootstrap.rtl.min.css" rel="stylesheet">
 </head>
 <body>
-
     <main>
-
-        <div class="album py-5 bg-light">
+        <div class="album py-5">
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div class="col">
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة مصغرة</text></svg>
-
-                            <div class="card-body">
-                                <p class="card-text">هذه بطاقة أوسع مع نص داعم أدناه كمقدمة طبيعية لمحتوى إضافي. هذا المحتوى أطول قليلاً.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">عرض</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">تعديل</button>
-                                    </div>
-                                    <small class="text-muted">9 دقائق</small>
-                                </div>
-                            </div>
+                        <div class="card ">
+                            <img id="home-img" class="bd-placeholder-img card-img-top" width="100%" height="225" src="~/images/read.png" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <a id="home-btns" asp-controller="Modules" asp-action="Create">
+                                <input type="submit" value="Add Modules" class="submit-btns home-btn" />
+                            </a>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة مصغرة</text></svg>
-
-                            <div class="card-body">
-                                <p class="card-text">هذه بطاقة أوسع مع نص داعم أدناه كمقدمة طبيعية لمحتوى إضافي. هذا المحتوى أطول قليلاً.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">عرض</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">تعديل</button>
-                                    </div>
-                                    <small class="text-muted">9 دقائق</small>
-                                </div>
-                            </div>
+                        <div class="card ">
+                            <img id="home-img" class="bd-placeholder-img card-img-top" width="100%" height="225" src="~/images/scrum.png" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <a id="home-btns" asp-controller="Modules" asp-action="Create">
+                                <input type="submit" value="View Modules" class="submit-btns home-btn" />
+                            </a>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة مصغرة</text></svg>
-
-                            <div class="card-body">
-                                <p class="card-text">هذه بطاقة أوسع مع نص داعم أدناه كمقدمة طبيعية لمحتوى إضافي. هذا المحتوى أطول قليلاً.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">عرض</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">تعديل</button>
-                                    </div>
-                                    <small class="text-muted">9 دقائق</small>
-                                </div>
-                            </div>
+                        <div class="card ">
+                            <img id="home-img" class="bd-placeholder-img card-img-top" width="100%" height="225" src="~/images/online.png" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <a id="home-btns" asp-controller="Modules" asp-action="Create">
+                                <input type="submit" value="Delete Modules" class="submit-btns home-btn" />
+                                </a>
                         </div>
                     </div>
-
+                    
                     <div class="col">
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة مصغرة</text></svg>
-
-                            <div class="card-body">
-                                <p class="card-text">هذه بطاقة أوسع مع نص داعم أدناه كمقدمة طبيعية لمحتوى إضافي. هذا المحتوى أطول قليلاً.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">عرض</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">تعديل</button>
-                                    </div>
-                                    <small class="text-muted">9 دقائق</small>
-                                </div>
-                            </div>
+                        <div class="card ">
+                            <img id="home-img" class="bd-placeholder-img card-img-top" width="100%" height="225" src="~/images/read_couch.png" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <a id="home-btns" asp-controller="Modules" asp-action="Create">
+                                <input type="submit" value="Log Study Session" class="submit-btns home-btn" />
+                            </a>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة مصغرة</text></svg>
-
-                            <div class="card-body">
-                                <p class="card-text">هذه بطاقة أوسع مع نص داعم أدناه كمقدمة طبيعية لمحتوى إضافي. هذا المحتوى أطول قليلاً.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">عرض</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">تعديل</button>
-                                    </div>
-                                    <small class="text-muted">9 دقائق</small>
-                                </div>
-                            </div>
+                        <div class="card ">
+                            <img id="home-img" class="bd-placeholder-img card-img-top" width="100%" height="225" src="~/images/book_ladder.png" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <a id="home-btns" asp-controller="Modules" asp-action="Create">
+                                <input type="submit" value="Study Sessions Required" class="submit-btns home-btn" />
+                            </a>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة مصغرة</text></svg>
-
-                            <div class="card-body">
-                                <p class="card-text">هذه بطاقة أوسع مع نص داعم أدناه كمقدمة طبيعية لمحتوى إضافي. هذا المحتوى أطول قليلاً.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">عرض</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">تعديل</button>
-                                    </div>
-                                    <small class="text-muted">9 دقائق</small>
-                                </div>
-                            </div>
+                        <div class="card ">
+                            <img id="home-img" class="bd-placeholder-img card-img-top" width="100%" height="225" src="~/images/brainstorm.png" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <a id="home-btns" asp-controller="Modules" asp-action="Create">
+                                <input type="submit" value="Study Sessions" class="submit-btns home-btn" />
+                            </a>
                         </div>
                     </div>
-
+                    
+                    
                     
                 </div>
             </div>
