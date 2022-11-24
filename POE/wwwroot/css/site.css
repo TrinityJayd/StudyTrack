@@ -75,6 +75,12 @@ input {
     height:580px;
 }
 
+/*Login page*/
+
+#login-body{
+    padding-left:3rem;
+}
+
 .login-btn {
     background-color: white;
     border-color: #8C52FF;
@@ -86,4 +92,20 @@ input {
         border:none;
         color:white;
     }
+
+.login-frm {
+    margin-top: 2rem;
+    margin-right:2rem;
+}
+
+.login-img{
+    margin-left:9rem;
+    width:70%
+}
+
+@media (max-width: 768px) {
+    .login-img {
+        display: none;
+    }
+}
 
