@@ -8,3 +8,6 @@ $('#password, #confirm_password').on('keyup', function () {
         $('#message').html('Passwords do not match.');
     }       
 });
+
+
+

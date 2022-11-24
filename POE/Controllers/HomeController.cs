@@ -15,6 +15,7 @@ namespace POE.Controllers
 
         public IActionResult Index()
         {
+            HttpContext.Session.SetInt32("UserID", 0);
             return View();
         }
 

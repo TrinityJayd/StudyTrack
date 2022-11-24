@@ -8,15 +8,15 @@ namespace Modules
         //Create an object of validation class
         ValidationMethods security = new ValidationMethods();
 
-        public bool Login(string username, string password)
+        public int Login(string username, string password)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             
             //Check if the user exists
             bool userFound = appDataContext.Users.Any(u => u.Username.Equals(username));
 
-            //set default value to false
-            bool isLoggedIn = false;
+            //set default value to 0 this means no user is logged in
+            int isLoggedIn = 0;
 
             //only if the the user exists, check the password
             if (userFound == true)
@@ -27,7 +27,7 @@ namespace Modules
                 if (security.HashPassword($"{username}{password}").Equals(loginUser.Password) == true)
                 {
                     //return log in status
-                    isLoggedIn = true;
+                    isLoggedIn = loginUser.UserId;
                     return isLoggedIn;
                 }
             }

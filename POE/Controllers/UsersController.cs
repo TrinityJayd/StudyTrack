@@ -1,4 +1,5 @@
 ﻿using DbManagement.Models;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.AspNetCore.Mvc;
 using Modules;
 
@@ -93,8 +94,18 @@ namespace POE.Controllers
             if (ModelState.IsValid)
             {
                 Account login = new Account();
-                bool result = login.Login(username, password);
-                return RedirectToAction(nameof(Index));
+                int result = login.Login(username, password);
+                if (result > 0)
+                {
+                    HttpContext.Session.SetInt32("UserID", result);
+                    return RedirectToAction(nameof(ModulesController.Index), "Modules");
+                }
+                else
+                {
+                    ModelState.AddModelError("Password", "Username or password is incorrect.");
+                    return View();
+                }
+                
             }
             return View();
         }

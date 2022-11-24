@@ -12,7 +12,8 @@ namespace POE.Controllers
     public class ModulesController : Controller
     {
         private readonly Prog6212P2Context _context;
-
+        private int userID;
+        
         public ModulesController(Prog6212P2Context context)
         {
             _context = context;
@@ -21,7 +22,16 @@ namespace POE.Controllers
         // GET: Modules
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Modules.ToListAsync());
+            userID = HttpContext.Session.GetInt32("UserID").Value;
+            if (userID == 0 )
+            {
+                return RedirectToAction("Login", "Users");
+            }
+            else
+            {
+                return View();
+            }
+              
         }
 
         // GET: Modules/Details/5
