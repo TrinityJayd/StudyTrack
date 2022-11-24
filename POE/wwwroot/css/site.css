@@ -29,6 +29,13 @@ input {
     margin-bottom: 10px;
 }
 
+/*Nav*/
+
+.nav-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #8C52FF;
+}
 
 /*Header*/
 
@@ -58,7 +65,7 @@ input {
 /*Landing page*/
 
 .card {
-    border:none;
+    border:none!important;
     height:auto;
 }
 

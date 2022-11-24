@@ -22,6 +22,9 @@ namespace POE.Controllers
         // GET: Modules
         public async Task<IActionResult> Index()
         {
+            //Code Attribution
+            //Author:Mikesdotnetting
+            //Link:https://www.mikesdotnetting.com/article/192/transferring-data-between-asp-net-web-pages
             userID = HttpContext.Session.GetInt32("UserID").Value;
             if (userID == 0 )
             {

@@ -33,8 +33,6 @@ builder.Services.AddDbContext<Prog6212P2Context>(options =>
 var app = builder.Build();
 
 
-
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
