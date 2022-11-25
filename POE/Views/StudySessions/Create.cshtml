@@ -1,0 +1,49 @@
+﻿@model DbManagement.Models.StudySession
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>StudySession</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SessionId" class="control-label"></label>
+                <input asp-for="SessionId" class="form-control" />
+                <span asp-validation-for="SessionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModuleCode" class="control-label"></label>
+                <input asp-for="ModuleCode" class="form-control" />
+                <span asp-validation-for="ModuleCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoursStudied" class="control-label"></label>
+                <input asp-for="HoursStudied" class="form-control" />
+                <span asp-validation-for="HoursStudied" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateStudied" class="control-label"></label>
+                <input asp-for="DateStudied" class="form-control" />
+                <span asp-validation-for="DateStudied" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

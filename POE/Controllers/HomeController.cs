@@ -15,14 +15,23 @@ namespace POE.Controllers
 
         public IActionResult Index()
         {
-            HttpContext.Session.SetInt32("UserID", 0);
-            return View();
+           
+
+            //Check if the session variable exists
+            if (HttpContext.Session.GetInt32("UserID") == null)
+            {
+                //If it doesn't, create it
+                HttpContext.Session.SetInt32("UserID", 0);
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Modules");
+            }
+            
+            
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

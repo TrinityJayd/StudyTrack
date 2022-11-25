@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DbManagement.Models.UserSemester>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Semester Details</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SemesterStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WeeksInSemester)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SemesterStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeeksInSemester)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.SemesterId">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
