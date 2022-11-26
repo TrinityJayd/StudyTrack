@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DbManagement.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DbManagement.Models;
 using Modules;
-using System.Web.Mvc;
+using ActionNameAttribute = Microsoft.AspNetCore.Mvc.ActionNameAttribute;
+using BindAttribute = Microsoft.AspNetCore.Mvc.BindAttribute;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
 using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
 using ValidateAntiForgeryTokenAttribute = Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute;
-using JsonResult = Microsoft.AspNetCore.Mvc.JsonResult;
-using ActionNameAttribute = Microsoft.AspNetCore.Mvc.ActionNameAttribute;
-using DbManagement;
-using BindAttribute = Microsoft.AspNetCore.Mvc.BindAttribute;
 
 namespace POE.Controllers
 {
@@ -22,7 +14,7 @@ namespace POE.Controllers
     {
         private readonly Prog6212P2Context _context;
         private int userID;
-        
+
         public ModulesController(Prog6212P2Context context)
         {
             _context = context;
@@ -30,8 +22,8 @@ namespace POE.Controllers
 
         // GET: Modules
         public async Task<IActionResult> Index()
-        {       
-            
+        {
+
             //Code Attribution
             //Author:Mikesdotnetting
             //Link:https://www.mikesdotnetting.com/article/192/transferring-data-between-asp-net-web-pages
@@ -39,7 +31,7 @@ namespace POE.Controllers
             //Check if the user has any semesters in the semester table
             var userSemester = await _context.UserSemesters
                 .FirstOrDefaultAsync(m => m.UserId == userID);
-            if (userID == 0 )
+            if (userID == 0)
             {
                 return RedirectToAction("Login", "Users");
             }
@@ -51,7 +43,7 @@ namespace POE.Controllers
             {
                 return View();
             }
-            
+
         }
 
         // GET: Modules/Details/5
@@ -83,33 +75,38 @@ namespace POE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ModuleId,ModuleCode,ModuleName,Credits,ClassHours")] Module @module)
+        public async Task<IActionResult> Create([Bind("ModuleCode,ModuleName,Credits,ClassHours")] Module @module)
         {
-            
+
             if (ModelState.IsValid)
             {
                 ModuleManagement mod = new ModuleManagement();
-                
+
                 int userID = HttpContext.Session.GetInt32("UserID").Value;
 
-                bool existsForUser = mod.ModuleExistsInModuleEntry(@module, userID);
-                if (existsForUser)
+                if (mod.ModuleExistsInDB(module) == true)
                 {
-                    ModelState.AddModelError("ModuleCode", "You have already added this module.");
-                    return View();
-                }
-                else
-                {
-                    await mod.AddModule(@module, userID);
                     
-                   // return RedirectToAction("Index", "Modules");
+                    if (mod.ModuleExistsInModuleEntry(module, userID) == true)
+                    {
+                        ModelState.AddModelError("ModuleCode", "Module already exists in your module list");                      
+                    }
+                    else
+                    {
+                        var matchingMod = mod.GetMatchingModule(module);
+                        await mod.CreateModuleEntry(matchingMod, userID);
+                    }
+                }
+                else 
+                {                   
+                    await mod.AddModule(module, userID);
+                    await mod.CreateModuleEntry(module, userID);                    
                 }
                 
+                return View();
             }
             return View();
         }
-
-        
 
         // GET: Modules/Delete/5 
         public async Task<IActionResult> Delete(int? id)
@@ -143,7 +140,7 @@ namespace POE.Controllers
             {
                 _context.Modules.Remove(@module);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

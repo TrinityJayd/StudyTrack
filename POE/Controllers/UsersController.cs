@@ -72,7 +72,7 @@ namespace POE.Controllers
                 else
                 {
                     await account.Register(user);
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Login","Users");
                 }
 
                 return View();
