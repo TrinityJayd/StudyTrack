@@ -65,7 +65,8 @@ namespace POE.Controllers
                 SemesterManagement semester = new SemesterManagement();
                 userSemester.UserId = HttpContext.Session.GetInt32("UserID");
                 await semester.AddSemester(userSemester);
-                return RedirectToAction(nameof(Index));
+                //Redirect to home page
+                return RedirectToAction("Index", "Modules");                
             }           
             return View();
         }

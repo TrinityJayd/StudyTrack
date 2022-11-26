@@ -4,21 +4,20 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Semester Details</h1>
 
-<h4>UserSemester</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="SemesterStartDate" class="control-label"></label>
+                <label asp-for="SemesterStartDate" class="control-label">Semester Start Date</label>
                 <input asp-for="SemesterStartDate" type="date" class="form-control" />
                 <span asp-validation-for="SemesterStartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WeeksInSemester" class="control-label"></label>
+                <label asp-for="WeeksInSemester" class="control-label">Weeks In Semester</label>
                 <input asp-for="WeeksInSemester" type="number" min="15" max="30" class="form-control" />
                 <span asp-validation-for="WeeksInSemester" class="text-danger"></span>
             </div>

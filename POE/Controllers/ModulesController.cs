@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DbManagement.Models;
+using Modules;
 
 namespace POE.Controllers
 {
@@ -21,14 +22,21 @@ namespace POE.Controllers
 
         // GET: Modules
         public async Task<IActionResult> Index()
-        {
+        {           
             //Code Attribution
             //Author:Mikesdotnetting
             //Link:https://www.mikesdotnetting.com/article/192/transferring-data-between-asp-net-web-pages
             userID = HttpContext.Session.GetInt32("UserID").Value;
+            //Check if the user has any semesters in the semester table
+            var userSemester = await _context.UserSemesters
+                .FirstOrDefaultAsync(m => m.UserId == userID);
             if (userID == 0 )
             {
                 return RedirectToAction("Login", "Users");
+            }
+            else if (userSemester == null)
+            {
+                return RedirectToAction("Create", "UserSemesters");
             }
             else
             {
@@ -66,20 +74,33 @@ namespace POE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ModuleId,ModuleCode,ModuleName,Credits,ClassHours,SelfStudyHours")] Module @module)
+        public async Task<IActionResult> Create(Module @module)
         {
+            //[Bind("ModuleId,ModuleCode,ModuleName,Credits,ClassHours")]
             if (ModelState.IsValid)
             {
-                _context.Add(@module);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModuleManagement mod = new ModuleManagement();
+                int userID = HttpContext.Session.GetInt32("UserID").Value;
+
+                bool existsForUser = mod.ModuleExistsInModuleEntry(@module, userID);
+                if (existsForUser)
+                {
+                    ModelState.AddModelError("ModuleCode", "You have already added this module.");
+                    return View();
+                }
+                else
+                {
+                    await mod.AddModule(@module, userID);
+                    return RedirectToAction("Index", "Modules");
+                }
+                
             }
-            return View(@module);
+            return View();
         }
 
         
 
-        // GET: Modules/Delete/5
+        // GET: Modules/Delete/5 
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Modules == null)
@@ -116,9 +137,6 @@ namespace POE.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ModuleExists(int id)
-        {
-          return _context.Modules.Any(e => e.ModuleId == id);
-        }
+
     }
 }

@@ -10,4 +10,15 @@ $('#password, #confirm_password').on('keyup', function () {
 });
 
 
+$('#toHome').on('click', function () {
+    if ($('#moduleCode').val() == '') {
+        $('#modCode').html('');
+        $('#modName').html('');
+        $('#modCredits').html('');
+        $('#hours').html('');
+        window.location.href = "Index";
+    } else {
+
+    }
+});
 
