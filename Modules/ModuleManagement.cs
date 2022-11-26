@@ -11,7 +11,7 @@ namespace Modules
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
 
             //if the module exists and all the data matches just insert into the module entry table
-            if (ModuleExistsInDB(module))
+            if (ModuleExistsInDB(module) == true)
             {
                 await CreateModuleEntry(module, userID);
             }
@@ -108,15 +108,36 @@ namespace Modules
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             //check if a module in the database matches  the recieved module
-            return appDataContext.Modules.Contains(module);
+            var exists = appDataContext.Modules.Any(m => m.ModuleCode == module.ModuleCode && m.ModuleName == module.ModuleName
+            && m.ClassHours == module.ClassHours && m.Credits == module.Credits);
+            return exists;
+        }
+
+        public Module GetMatchingModule(Module module)
+        {
+            using Prog6212P2Context appDataContext = new Prog6212P2Context();
+            //check if a module in the database matches  the recieved module
+            var exists = appDataContext.Modules.Where(m => m.ModuleCode == module.ModuleCode && m.ModuleName == module.ModuleName
+            && m.ClassHours == module.ClassHours && m.Credits == module.Credits).FirstOrDefault();
+            return exists;
         }
 
         public bool ModuleExistsInModuleEntry(Module module, int userID)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
 
-            //check if there is a module in the module entry table that matches what the user has entered
-            return appDataContext.ModuleEntries.Any(m => m.ModuleId == module.ModuleId && m.UserId == userID);
+            var mod = GetMatchingModule(module);
+
+            if (mod == null)
+            {
+                return false;
+            }
+            else
+            {
+                //check if there is a module in the module entry table that matches what the user has entered
+                return appDataContext.ModuleEntries.Any(m => m.ModuleId == mod.ModuleId && m.UserId == userID);
+            }
+            
         }
 
         public long CalculateSelfStudyHours(Module module, int userID)
@@ -167,6 +188,7 @@ namespace Modules
             appDataContext.ModuleEntries.Add(moduleEntry);
             await appDataContext.SaveChangesAsync();
         }
+
 
     }
 }

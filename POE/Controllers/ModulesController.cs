@@ -7,6 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DbManagement.Models;
 using Modules;
+using System.Web.Mvc;
+using Controller = Microsoft.AspNetCore.Mvc.Controller;
+using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
+using ValidateAntiForgeryTokenAttribute = Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute;
+using JsonResult = Microsoft.AspNetCore.Mvc.JsonResult;
+using ActionNameAttribute = Microsoft.AspNetCore.Mvc.ActionNameAttribute;
+using DbManagement;
+using BindAttribute = Microsoft.AspNetCore.Mvc.BindAttribute;
 
 namespace POE.Controllers
 {
@@ -22,7 +30,8 @@ namespace POE.Controllers
 
         // GET: Modules
         public async Task<IActionResult> Index()
-        {           
+        {       
+            
             //Code Attribution
             //Author:Mikesdotnetting
             //Link:https://www.mikesdotnetting.com/article/192/transferring-data-between-asp-net-web-pages
@@ -42,7 +51,7 @@ namespace POE.Controllers
             {
                 return View();
             }
-              
+            
         }
 
         // GET: Modules/Details/5
@@ -74,12 +83,13 @@ namespace POE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Module @module)
+        public async Task<IActionResult> Create([Bind("ModuleId,ModuleCode,ModuleName,Credits,ClassHours")] Module @module)
         {
-            //[Bind("ModuleId,ModuleCode,ModuleName,Credits,ClassHours")]
+            
             if (ModelState.IsValid)
             {
                 ModuleManagement mod = new ModuleManagement();
+                
                 int userID = HttpContext.Session.GetInt32("UserID").Value;
 
                 bool existsForUser = mod.ModuleExistsInModuleEntry(@module, userID);
@@ -91,7 +101,8 @@ namespace POE.Controllers
                 else
                 {
                     await mod.AddModule(@module, userID);
-                    return RedirectToAction("Index", "Modules");
+                    
+                   // return RedirectToAction("Index", "Modules");
                 }
                 
             }
