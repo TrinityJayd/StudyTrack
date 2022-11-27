@@ -122,7 +122,7 @@ namespace POE.Controllers
         {
             if (id == null || _context.Modules == null)
             {
-                return NotFound();
+                return RedirectToAction("NoModules", "Modules");
             }
 
             var @module = await _context.Modules
@@ -142,15 +142,16 @@ namespace POE.Controllers
         {
             if (_context.Modules == null)
             {
-                return Problem("Entity set 'Prog6212P2Context.Modules'  is null.");
+                return RedirectToAction("NoModules", "Modules");
             }
             var @module = await _context.Modules.FindAsync(id);
             if (@module != null)
             {
-                _context.Modules.Remove(@module);
+                ModuleManagement mod = new ModuleManagement();
+                int userID = HttpContext.Session.GetInt32("UserID").Value;
+                await mod.DeleteModule(@module,userID);
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

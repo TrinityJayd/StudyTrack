@@ -38,7 +38,7 @@ namespace Modules
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             int moduleID = module.ModuleId;
             //Remove the module from the module entry table
-            appDataContext.Remove(appDataContext.ModuleEntries.Where(m => m.ModuleId == moduleID && m.UserId == userID).FirstOrDefault());
+            appDataContext.ModuleEntries.Remove(appDataContext.ModuleEntries.Where(m => m.ModuleId == moduleID && m.UserId == userID).FirstOrDefault());
 
             //check if the user has any study sessions for the module
             string moduleCode = module.ModuleCode;

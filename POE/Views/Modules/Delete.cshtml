@@ -8,17 +8,16 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Module</h4>
     <hr/>
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModuleCode)
+            Module Code
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ModuleCode)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModuleName)
+            Module Name
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ModuleName)
@@ -30,22 +29,23 @@
             @Html.DisplayFor(model => model.Credits)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClassHours)
+            Class Hours
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ClassHours)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SelfStudyHours)
+            Self Study Hours
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.SelfStudyHours)
         </dd>
     </dl>
     
+    <h6 style="color: #8C52FF">All related study sessions will also be deleted.</h6>
     <form asp-action="Delete">
         <input type="hidden" asp-for="ModuleId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="submit-btns" /> |
+        <a asp-action="Details" class="delete-links">Back to List</a>
     </form>
 </div>

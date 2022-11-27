@@ -40,6 +40,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ClassHours)
                 </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.ModuleId" class="delete-links">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

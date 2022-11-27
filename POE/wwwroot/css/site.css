@@ -132,3 +132,14 @@ input {
    align-self:center;
    width:60%;
 }
+
+
+/*Delete links */
+
+.delete-links {
+    color: #8C52FF;
+}
+
+.delete-links:hover{
+    color:#7042cc;
+}
