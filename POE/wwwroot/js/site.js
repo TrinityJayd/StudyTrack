@@ -21,4 +21,8 @@ $('#toHome').on('click', function () {
     }
 });
 
+$('#toHomeMods').on('click', function () {
+        window.location.href = "Index";   
+});
+
 

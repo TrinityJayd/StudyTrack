@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Modules;
+using System.Linq;
 using ActionNameAttribute = Microsoft.AspNetCore.Mvc.ActionNameAttribute;
 using BindAttribute = Microsoft.AspNetCore.Mvc.BindAttribute;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
@@ -49,21 +50,25 @@ namespace POE.Controllers
         // GET: Modules/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Modules == null)
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            //get all modules that are related to module entries and the user
+            var prog6212P2Context = from m in _context.Modules
+                                    join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
+                                    where me.UserId == userID
+                                    select m;
+
+
+            if (prog6212P2Context == null)
             {
-                return NotFound();
+                return RedirectToAction("NoModules", "Modules");
+            }
+            else
+            {
+                return View(await prog6212P2Context.ToListAsync());
             }
 
-            var @module = await _context.Modules
-                .FirstOrDefaultAsync(m => m.ModuleId == id);
-            if (@module == null)
-            {
-                return NotFound();
-            }
-
-            return View(@module);
         }
-
+        
         // GET: Modules/Create
         public IActionResult Create()
         {
@@ -149,6 +154,9 @@ namespace POE.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        public IActionResult NoModules()
+        {
+            return View();
+        }
     }
 }
