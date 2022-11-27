@@ -95,12 +95,16 @@ namespace POE.Controllers
                     {
                         var matchingMod = mod.GetMatchingModule(module);
                         await mod.CreateModuleEntry(matchingMod, userID);
+                        //Clear the form
+                        ModelState.Clear();
                     }
                 }
                 else 
                 {                   
                     await mod.AddModule(module, userID);
-                    await mod.CreateModuleEntry(module, userID);                    
+                    await mod.CreateModuleEntry(module, userID);
+                    //Clear the form
+                    ModelState.Clear();
                 }
                 
                 return View();

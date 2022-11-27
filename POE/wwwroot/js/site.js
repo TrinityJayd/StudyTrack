@@ -22,6 +22,3 @@ $('#toHome').on('click', function () {
 });
 
 
-
-
-

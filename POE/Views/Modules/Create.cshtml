@@ -12,7 +12,7 @@
 <hr/>
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" id="modFrm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>               
             <div class="form-group">
                 <label asp-for="ModuleCode" class="control-label">Module Code</label>
@@ -39,7 +39,7 @@
                     <input id="addModule" type="submit" value="Add Module" class="submit-btns" />
                 </div>
                 <div >
-                    <input type="reset" value="Reset" class="submit-btns" style="margin-left:15px;" />
+                    <input type="reset" id="reset-btn" value="Reset" class="submit-btns" style="margin-left:15px;" />
                 </div>
                 <div  >
                     <input id="toHome" type="submit" value="To Home" class="submit-btns" style="margin-left:15px;" />
