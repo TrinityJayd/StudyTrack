@@ -1,5 +1,7 @@
-﻿using DbManagement.Models;
+﻿using DbManagement;
+using DbManagement.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 
 namespace Modules
 {
@@ -50,42 +52,44 @@ namespace Modules
             await appDataContext.SaveChangesAsync();
         }
 
-        public async Task UpdateModule(long hoursStudied, DateTime dateLastStudied, Module module, int userID)
+        public async Task AddStudySession(StudySessionHtmlModel session, int userID)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
-            int moduleID = module.ModuleId;
-            //Retrieve the module from the database
-            var moduleToUpdate = appDataContext.ModuleEntries.Single(m => m.ModuleId == moduleID && m.UserId == userID);
-            //accumulate the hours studied
-            moduleToUpdate.HoursStudied += hoursStudied;
-            string moduleCode = module.ModuleCode;
-            //create a new study session
-            StudySession session = new StudySession
-            {
-                UserId = userID,
-                ModuleCode = moduleCode,
-                HoursStudied = hoursStudied,
-                DateStudied = dateLastStudied
-            };
+
+            StudySession studySession = new StudySession();
+            studySession.HoursStudied = session.HoursStudied.Ticks;
+            studySession.DateStudied = session.DateStudied;
+            studySession.UserId = userID;
+            studySession.ModuleCode = session.ModuleCode;
 
             StudySessionManagement sessionManagement = new StudySessionManagement();
             //add the study session to the database
-            await sessionManagement.AddSession(session);
+            await sessionManagement.AddSession(studySession);
 
+            var module = from m in appDataContext.Modules
+                                 join me in appDataContext.ModuleEntries on m.ModuleId equals me.ModuleId
+                                 where me.UserId == userID && m.ModuleCode == session.ModuleCode
+                                 select m;
+
+            var studyModule = from me in appDataContext.ModuleEntries
+                              join m in appDataContext.Modules on me.ModuleId equals m.ModuleId
+                              where me.UserId == userID && m.ModuleCode == session.ModuleCode
+                              select me;
+            studyModule.FirstOrDefault().HoursStudied += studySession.HoursStudied;
             //if the user studies more than is required then set the hours left
             //that they need to study to 0
-            if (moduleToUpdate.HoursStudied > module.SelfStudyHours)
+            if (studySession.HoursStudied > module.FirstOrDefault().SelfStudyHours)
             {
-                moduleToUpdate.HoursLeft = 0;
+                studyModule.FirstOrDefault().HoursLeft = 0;
             }
             else
             {
-                //otherwise, subtract the times
-                moduleToUpdate.HoursLeft = module.SelfStudyHours - moduleToUpdate.HoursStudied;
+                studyModule.FirstOrDefault().HoursLeft -= studySession.HoursStudied;
             }
+            
 
             //update the module in the database
-            appDataContext.ModuleEntries.Update(moduleToUpdate);
+            appDataContext.ModuleEntries.Update(studyModule.FirstOrDefault());
             await appDataContext.SaveChangesAsync();
         }
 

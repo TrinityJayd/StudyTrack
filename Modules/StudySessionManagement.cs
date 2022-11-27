@@ -1,18 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DbManagement.Models;
+using DbManagement;
 
 namespace Modules
 {
     public class StudySessionManagement
     {
         public async Task AddSession(StudySession session)
-        {
+        {         
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
             //get the value of the last session id entered
             var lastEntry = await appDataContext.StudySessions.OrderByDescending(x => x.SessionId).FirstOrDefaultAsync();
             if (lastEntry == null)
             {
-               session.SessionId = 1;
+                session.SessionId = 1;
             }
             else
             {

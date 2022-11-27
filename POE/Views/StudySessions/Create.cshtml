@@ -1,49 +1,34 @@
-﻿@model DbManagement.Models.StudySession
+﻿@model DbManagement.StudySessionHtmlModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Log a study session</h1>
 
-<h4>StudySession</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
             <div class="form-group">
-                <label asp-for="SessionId" class="control-label"></label>
-                <input asp-for="SessionId" class="form-control" />
-                <span asp-validation-for="SessionId" class="text-danger"></span>
+                <label asp-for="ModuleCode" class="control-label">Module Code</label>
+                <select asp-for="ModuleCode" style="appearance:menulist;" class="form-control" asp-items="ViewBag.Modules"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="ModuleCode" class="control-label"></label>
-                <input asp-for="ModuleCode" class="form-control" />
-                <span asp-validation-for="ModuleCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HoursStudied" class="control-label"></label>
-                <input asp-for="HoursStudied" class="form-control" />
+            <div class="form-group" style="margin-top:15px;">
+                <label asp-for="HoursStudied" class="control-label">Hours/Minutes Studied</label>
+                <input asp-for="HoursStudied" min="00:00:00" max="11:59:00" type="time" class="form-control" />
                 <span asp-validation-for="HoursStudied" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateStudied" class="control-label"></label>
-                <input asp-for="DateStudied" class="form-control" />
+                <label asp-for="DateStudied" class="control-label">Date Studied</label>
+                <input asp-for="DateStudied" type="date" class="form-control" />
                 <span asp-validation-for="DateStudied" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="submit-btns" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 

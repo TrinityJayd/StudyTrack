@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DbManagement.Models;
+using DbManagement;
+using Modules;
 
 namespace POE.Controllers
 {
@@ -23,31 +25,17 @@ namespace POE.Controllers
         {
             var prog6212P2Context = _context.StudySessions.Include(s => s.User);
             return View(await prog6212P2Context.ToListAsync());
-        }
-
-        // GET: StudySessions/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.StudySessions == null)
-            {
-                return NotFound();
-            }
-
-            var studySession = await _context.StudySessions
-                .Include(s => s.User)
-                .FirstOrDefaultAsync(m => m.SessionId == id);
-            if (studySession == null)
-            {
-                return NotFound();
-            }
-
-            return View(studySession);
-        }
+        }       
 
         // GET: StudySessions/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "CellNumber");
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            var prog6212P2Context = from m in _context.Modules
+                                    join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
+                                    where me.UserId == userID
+                                    select m;
+            ViewData["Modules"] = new SelectList(prog6212P2Context, "ModuleCode", "ModuleCode");
             return View();
         }
 
@@ -56,112 +44,23 @@ namespace POE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SessionId,ModuleCode,HoursStudied,DateStudied,UserId")] StudySession studySession)
+        public async Task<IActionResult> Create([Bind("ModuleCode,HoursStudied,DateStudied")] StudySessionHtmlModel studySession)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(studySession);
-                await _context.SaveChangesAsync();
+                ModuleManagement moduleManagement = new ModuleManagement();
+                await moduleManagement.AddStudySession(studySession, HttpContext.Session.GetInt32("UserID").Value);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "CellNumber", studySession.UserId);
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            var prog6212P2Context = from m in _context.Modules
+                                    join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
+                                    where me.UserId == userID
+                                    select m;
+            ViewData["Modules"] = new SelectList(prog6212P2Context, "ModuleCode", "ModuleCode");
             return View(studySession);
         }
 
-        // GET: StudySessions/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.StudySessions == null)
-            {
-                return NotFound();
-            }
-
-            var studySession = await _context.StudySessions.FindAsync(id);
-            if (studySession == null)
-            {
-                return NotFound();
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "CellNumber", studySession.UserId);
-            return View(studySession);
-        }
-
-        // POST: StudySessions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SessionId,ModuleCode,HoursStudied,DateStudied,UserId")] StudySession studySession)
-        {
-            if (id != studySession.SessionId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(studySession);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!StudySessionExists(studySession.SessionId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "CellNumber", studySession.UserId);
-            return View(studySession);
-        }
-
-        // GET: StudySessions/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.StudySessions == null)
-            {
-                return NotFound();
-            }
-
-            var studySession = await _context.StudySessions
-                .Include(s => s.User)
-                .FirstOrDefaultAsync(m => m.SessionId == id);
-            if (studySession == null)
-            {
-                return NotFound();
-            }
-
-            return View(studySession);
-        }
-
-        // POST: StudySessions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.StudySessions == null)
-            {
-                return Problem("Entity set 'Prog6212P2Context.StudySessions'  is null.");
-            }
-            var studySession = await _context.StudySessions.FindAsync(id);
-            if (studySession != null)
-            {
-                _context.StudySessions.Remove(studySession);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool StudySessionExists(int id)
-        {
-          return _context.StudySessions.Any(e => e.SessionId == id);
-        }
+        
     }
 }
