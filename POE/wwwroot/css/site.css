@@ -143,3 +143,15 @@ input {
 .delete-links:hover{
     color:#7042cc;
 }
+
+/*Sort links*/
+
+.sort-links {
+    color: #8C52FF;
+    font-weight:bold;
+    text-decoration:none!important;
+}
+
+.sort-links:hover {
+    color: #7042cc;
+}

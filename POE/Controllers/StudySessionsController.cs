@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using DbManagement;
 using DbManagement.Models;
-using DbManagement;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Modules;
-using Microsoft.AspNetCore.Http;
+using BindAttribute = Microsoft.AspNetCore.Mvc.BindAttribute;
+using Controller = Microsoft.AspNetCore.Mvc.Controller;
+using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
+using SelectList = Microsoft.AspNetCore.Mvc.Rendering.SelectList;
+using ValidateAntiForgeryTokenAttribute = Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute;
 
 namespace POE.Controllers
 {
@@ -23,7 +22,7 @@ namespace POE.Controllers
 
         public async Task<IActionResult> Index()
         {
-            PopulateFindCombobox();
+
             int userID = HttpContext.Session.GetInt32("UserID").Value;
             var sessions = from s in _context.StudySessions
                            where s.UserId == userID
@@ -33,7 +32,8 @@ namespace POE.Controllers
                                TimeStudied = TimeSpan.FromTicks(s.HoursStudied),
                                DateStudied = s.DateStudied
                            };
-            ViewData["Sessions"] = await sessions.ToListAsync();           
+            ViewData["Sessions"] = await sessions.ToListAsync();
+            PopulateFindCombobox();
             return View();
         }
 
@@ -45,16 +45,16 @@ namespace POE.Controllers
             var sessions = from s in _context.StudySessions
                            where s.ModuleCode == code && s.UserId == userID
                            select new DGSession
-                        {
-                            ModuleCode = s.ModuleCode,
-                            TimeStudied = TimeSpan.FromTicks(s.HoursStudied),
-                            DateStudied = s.DateStudied
-                        };
+                           {
+                               ModuleCode = s.ModuleCode,
+                               TimeStudied = TimeSpan.FromTicks(s.HoursStudied),
+                               DateStudied = s.DateStudied
+                           };
             ViewData["Sessions"] = await sessions.ToListAsync();
 
             PopulateFindCombobox();
             return View();
-        }       
+        }
 
         // GET: StudySessions/Create
         public IActionResult Create()
@@ -74,7 +74,7 @@ namespace POE.Controllers
             {
                 ModuleManagement moduleManagement = new ModuleManagement();
                 await moduleManagement.AddStudySession(studySession, HttpContext.Session.GetInt32("UserID").Value);
-                return RedirectToAction("Index","Modules");
+                return RedirectToAction("Index", "Modules");
             }
             PopulateStudySessionComboBox();
             return View(studySession);
@@ -84,9 +84,9 @@ namespace POE.Controllers
         {
             int userID = HttpContext.Session.GetInt32("UserID").Value;
             var prog6212P2Context = (from m in _context.Modules
-                          join s in _context.StudySessions on m.ModuleCode equals s.ModuleCode
-                          where s.UserId == userID
-                           select m).Distinct();
+                                     join s in _context.StudySessions on m.ModuleCode equals s.ModuleCode
+                                     where s.UserId == userID
+                                     select m).Distinct();
             ViewData["Modules"] = new SelectList(prog6212P2Context, "ModuleCode", "ModuleCode");
         }
 
@@ -98,6 +98,68 @@ namespace POE.Controllers
                                     where me.UserId == userID
                                     select m;
             ViewData["AddStudySession"] = new SelectList(prog6212P2Context, "ModuleCode", "ModuleCode");
+        }
+
+
+        public async Task<IActionResult> SessionsRequired(string sortOrder)
+        {
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.SelfHoursParm = sortOrder == "Self" ? "self_desc" : "Self";
+            ViewBag.StudiedParm = sortOrder == "Studied" ? "studied_desc" : "Studied";
+            ViewBag.LeftParm = sortOrder == "Left" ? "left_desc" : "Left";
+
+            var modules = (from m in _context.Modules
+                          join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
+                          where me.UserId == userID
+                          orderby m.ModuleCode
+                          select new DGModule
+                          {
+                              ModuleCode = m.ModuleCode,
+                              SelfStudyHours = TimeSpan.FromTicks(m.SelfStudyHours),
+                              HoursStudied = TimeSpan.FromTicks(me.HoursStudied),
+                              HoursLeft = TimeSpan.FromTicks(me.HoursLeft)
+                          }).AsEnumerable();
+
+            if (modules == null)
+            {
+                return RedirectToAction("NoModules", "Modules");
+            }
+            else
+            {
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        modules = modules.OrderByDescending(s => s.ModuleCode);
+                        break;
+                    case "Self":
+                        modules = modules.OrderBy(s => s.SelfStudyHours);
+                        break;
+                    case "self_desc":
+                        modules = modules.OrderByDescending(s => s.SelfStudyHours);
+                        break;
+                    case "Studied":
+                        modules = modules.OrderBy(s => s.HoursStudied);
+                        break;
+                    case "studied_desc":
+                        modules = modules.OrderByDescending(s => s.HoursStudied);
+                        break;
+                    case "Left":
+                        modules = modules.OrderBy(s => s.HoursLeft);
+                        break;
+                    case "left_desc":
+                        modules = modules.OrderByDescending(s => s.HoursLeft);
+                        break;
+                    default:  // Name ascending 
+                        modules = modules.OrderBy(s => s.ModuleCode);
+                        break;
+                }
+                ViewData["HoursLeft"] = modules;
+                return View();
+            }
+
+
         }
     }
 }

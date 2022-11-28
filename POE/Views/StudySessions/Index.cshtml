@@ -8,7 +8,7 @@
 <h1>Study Sesssions</h1>
 <form asp-action="Index" id="sessionFrm">
     <label asp-for="ModCode" class="control-label">Select the module you want to see study sessions for:</label>
-    <select asp-for="ModCode" id="moduleSelect" style="appearance:menulist;" class="form-control" asp-items="ViewBag.Modules"></select>
+    <select asp-for="ModCode" id="moduleSelect" style="appearance:menulist; width:20%;" class="form-control" asp-items="ViewBag.Modules"></select>
     <input id="find" type="submit" value="Find" class="submit-btns" />
 </form>
 
