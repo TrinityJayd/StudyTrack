@@ -23,6 +23,7 @@ namespace POE.Controllers
 
         public async Task<IActionResult> Index()
         {
+            PopulateFindCombobox();
             int userID = HttpContext.Session.GetInt32("UserID").Value;
             var sessions = from s in _context.StudySessions
                            where s.UserId == userID
@@ -32,8 +33,7 @@ namespace POE.Controllers
                                TimeStudied = TimeSpan.FromTicks(s.HoursStudied),
                                DateStudied = s.DateStudied
                            };
-            ViewData["Sessions"] = await sessions.ToListAsync();
-            populateFindCombobox();
+            ViewData["Sessions"] = await sessions.ToListAsync();           
             return View();
         }
 
@@ -52,14 +52,14 @@ namespace POE.Controllers
                         };
             ViewData["Sessions"] = await sessions.ToListAsync();
 
-            populateFindCombobox();
+            PopulateFindCombobox();
             return View();
         }       
 
         // GET: StudySessions/Create
         public IActionResult Create()
         {
-            populateStudySessionComboBox();
+            PopulateStudySessionComboBox();
             return View();
         }
 
@@ -74,13 +74,13 @@ namespace POE.Controllers
             {
                 ModuleManagement moduleManagement = new ModuleManagement();
                 await moduleManagement.AddStudySession(studySession, HttpContext.Session.GetInt32("UserID").Value);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Modules");
             }
-            populateStudySessionComboBox();
+            PopulateStudySessionComboBox();
             return View(studySession);
         }
 
-        public void populateFindCombobox()
+        public void PopulateFindCombobox()
         {
             int userID = HttpContext.Session.GetInt32("UserID").Value;
             var prog6212P2Context = (from m in _context.Modules
@@ -90,7 +90,7 @@ namespace POE.Controllers
             ViewData["Modules"] = new SelectList(prog6212P2Context, "ModuleCode", "ModuleCode");
         }
 
-        public void populateStudySessionComboBox()
+        public void PopulateStudySessionComboBox()
         {
             int userID = HttpContext.Session.GetInt32("UserID").Value;
             var prog6212P2Context = from m in _context.Modules
