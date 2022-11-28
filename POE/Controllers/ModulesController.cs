@@ -1,4 +1,5 @@
-﻿using DbManagement.Models;
+﻿using DbManagement;
+using DbManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Modules;
@@ -55,8 +56,16 @@ namespace POE.Controllers
             var prog6212P2Context = from m in _context.Modules
                                     join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
                                     where me.UserId == userID
-                                    select m;
-
+                                    select new ModuleHtmlModule
+                                    {
+                                        ModuleId = m.ModuleId,
+                                        ModuleCode = m.ModuleCode,
+                                        ModuleName = m.ModuleName,
+                                        Credits = (int)m.Credits,
+                                        ClassHours = TimeSpan.FromHours((double)m.ClassHours),
+                                        SelfStudyHours = TimeSpan.FromTicks(m.SelfStudyHours)
+                                    };
+            ViewData["ModuleData"] = await prog6212P2Context.ToListAsync();
 
             if (prog6212P2Context == null)
             {
@@ -64,7 +73,7 @@ namespace POE.Controllers
             }
             else
             {
-                return View(await prog6212P2Context.ToListAsync());
+                return View();
             }
 
         }
@@ -125,8 +134,17 @@ namespace POE.Controllers
                 return RedirectToAction("NoModules", "Modules");
             }
 
-            var @module = await _context.Modules
-                .FirstOrDefaultAsync(m => m.ModuleId == id);
+            var @module = await (from m in _context.Modules
+                                    where m.ModuleId == id
+                                    select new ModuleHtmlModule
+                                    {
+                                        ModuleId = m.ModuleId,
+                                        ModuleCode = m.ModuleCode,
+                                        ModuleName = m.ModuleName,
+                                        Credits = (int)m.Credits,
+                                        ClassHours = TimeSpan.FromHours((double)m.ClassHours),
+                                        SelfStudyHours = TimeSpan.FromTicks(m.SelfStudyHours)
+                                    }).FirstOrDefaultAsync();
             if (@module == null)
             {
                 return NotFound();

@@ -12,5 +12,6 @@ namespace Modules
         public string ModuleCode { get; set; }
         public TimeSpan TimeStudied { get; set; }
         public DateTime? DateStudied { get; set; }
+        public string ModCode { get; set; }
     }
 }

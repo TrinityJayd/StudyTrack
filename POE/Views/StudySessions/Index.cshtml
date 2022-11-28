@@ -1,53 +1,47 @@
-﻿@model IEnumerable<DbManagement.Models.StudySession>
+﻿@model Modules.DGSession
 
 @{
     ViewData["Title"] = "Index";
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<h1>Index</h1>
+<h1>Study Sesssions</h1>
+<form asp-action="Index" id="sessionFrm">
+    <label asp-for="ModCode" class="control-label">Select the module you want to see study sessions for:</label>
+    <select asp-for="ModCode" id="moduleSelect" style="appearance:menulist;" class="form-control" asp-items="ViewBag.Modules"></select>
+    <input id="find" type="submit" runat="server" value="Find" class="submit-btns" />
+</form>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ModuleCode)
+                Module Code
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HoursStudied)
+                Time Studied
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateStudied)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
+                Date Studied
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var session in ViewBag.Sessions)
+    {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ModuleCode)
+                     @session.ModuleCode
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HoursStudied)
+                     @session.TimeStudied
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateStudied)
+                     @session.DateStudied.ToString("dd/MM/yyyy")
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.CellNumber)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SessionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SessionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SessionId">Delete</a>
-            </td>
+
         </tr>
-}
+    }
     </tbody>
 </table>

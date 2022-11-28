@@ -1,5 +1,4 @@
-﻿@model IEnumerable<DbManagement.Models.Module>
-
+﻿@model DbManagement.ModuleHtmlModule
 @{
     ViewData["Title"] = "Details";
 }
@@ -21,27 +20,33 @@
             <th>
                 Class Hours
             </th>
+            <th>
+                Self Study Hours
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var module in ViewBag.ModuleData)
         {
             <tr>
                 <td >
-                    @Html.DisplayFor(modelItem => item.ModuleCode)
+                    @module.ModuleCode
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ModuleName)
+                    @module.ModuleName
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Credits)
+                    @module.Credits
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ClassHours)
+                    @module.ClassHours
                 </td>
                 <td>
-                    <a asp-action="Delete" asp-route-id="@item.ModuleId" class="delete-links">Delete</a>
+                    @module.SelfStudyHours
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@module.ModuleId" class="delete-links">Delete</a>
                 </td>
             </tr>
         }

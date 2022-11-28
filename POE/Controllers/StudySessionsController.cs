@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DbManagement.Models;
 using DbManagement;
 using Modules;
+using Microsoft.AspNetCore.Http;
 
 namespace POE.Controllers
 {
@@ -20,22 +21,45 @@ namespace POE.Controllers
             _context = context;
         }
 
-        // GET: StudySessions
         public async Task<IActionResult> Index()
         {
-            var prog6212P2Context = _context.StudySessions.Include(s => s.User);
-            return View(await prog6212P2Context.ToListAsync());
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            var sessions = from s in _context.StudySessions
+                           where s.UserId == userID
+                           select new DGSession
+                           {
+                               ModuleCode = s.ModuleCode,
+                               TimeStudied = TimeSpan.FromTicks(s.HoursStudied),
+                               DateStudied = s.DateStudied
+                           };
+            ViewData["Sessions"] = await sessions.ToListAsync();
+            populateFindCombobox();
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index([Bind("ModCode")] DGSession session)
+        {
+            string code = session.ModCode;
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            var sessions = from s in _context.StudySessions
+                           where s.ModuleCode == code && s.UserId == userID
+                           select new DGSession
+                        {
+                            ModuleCode = s.ModuleCode,
+                            TimeStudied = TimeSpan.FromTicks(s.HoursStudied),
+                            DateStudied = s.DateStudied
+                        };
+            ViewData["Sessions"] = await sessions.ToListAsync();
+
+            populateFindCombobox();
+            return View();
         }       
 
         // GET: StudySessions/Create
         public IActionResult Create()
         {
-            int userID = HttpContext.Session.GetInt32("UserID").Value;
-            var prog6212P2Context = from m in _context.Modules
-                                    join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
-                                    where me.UserId == userID
-                                    select m;
-            ViewData["Modules"] = new SelectList(prog6212P2Context, "ModuleCode", "ModuleCode");
+            populateStudySessionComboBox();
             return View();
         }
 
@@ -52,15 +76,28 @@ namespace POE.Controllers
                 await moduleManagement.AddStudySession(studySession, HttpContext.Session.GetInt32("UserID").Value);
                 return RedirectToAction(nameof(Index));
             }
+            populateStudySessionComboBox();
+            return View(studySession);
+        }
+
+        public void populateFindCombobox()
+        {
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            var prog6212P2Context = (from m in _context.Modules
+                          join s in _context.StudySessions on m.ModuleCode equals s.ModuleCode
+                          where s.UserId == userID
+                           select m).Distinct();
+            ViewData["Modules"] = new SelectList(prog6212P2Context, "ModuleCode", "ModuleCode");
+        }
+
+        public void populateStudySessionComboBox()
+        {
             int userID = HttpContext.Session.GetInt32("UserID").Value;
             var prog6212P2Context = from m in _context.Modules
                                     join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
                                     where me.UserId == userID
                                     select m;
-            ViewData["Modules"] = new SelectList(prog6212P2Context, "ModuleCode", "ModuleCode");
-            return View(studySession);
+            ViewData["AddStudySession"] = new SelectList(prog6212P2Context, "ModuleCode", "ModuleCode");
         }
-
-        
     }
 }
