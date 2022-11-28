@@ -104,7 +104,17 @@ namespace Modules
             return appDataContext.ModuleEntries.Where(m => m.UserId == userID).ToList();
         }
 
-
+        public bool CheckLimit(int userID)
+        {
+            if (GetModules(userID).Count() == 6)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public bool ModuleExistsInDB(Module module)
         {

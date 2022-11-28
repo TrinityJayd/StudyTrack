@@ -98,7 +98,8 @@ namespace POE.Controllers
                 if (result > 0)
                 {
                     HttpContext.Session.SetInt32("UserID", result);
-                    return RedirectToAction(nameof(ModulesController.Index), "Modules");
+                    ViewData["UserID"] = result;
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -108,6 +109,13 @@ namespace POE.Controllers
                 
             }
             return View();
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetInt32("UserID", 0);
+            ViewData["UserID"] = 0;
+            return RedirectToAction("Index", "Home");
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using DbManagement;
 using DbManagement.Models;
+using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Modules;
@@ -24,6 +25,7 @@ namespace POE.Controllers
         {
 
             int userID = HttpContext.Session.GetInt32("UserID").Value;
+
             var sessions = from s in _context.StudySessions
                            where s.UserId == userID
                            select new DGSession
@@ -33,15 +35,25 @@ namespace POE.Controllers
                                DateStudied = s.DateStudied
                            };
             ViewData["Sessions"] = await sessions.ToListAsync();
-            PopulateFindCombobox();
-            return View();
+            if (sessions == null || sessions.Count() == 0)
+            {
+                return RedirectToAction("NoModules", "Modules");
+            }
+            else
+            {
+                PopulateFindCombobox();
+                return View();
+            }
+            
         }
 
         [HttpPost]
         public async Task<IActionResult> Index([Bind("ModCode")] DGSession session)
         {
+            
             string code = session.ModCode;
             int userID = HttpContext.Session.GetInt32("UserID").Value;
+           
             var sessions = from s in _context.StudySessions
                            where s.ModuleCode == code && s.UserId == userID
                            select new DGSession
@@ -51,16 +63,32 @@ namespace POE.Controllers
                                DateStudied = s.DateStudied
                            };
             ViewData["Sessions"] = await sessions.ToListAsync();
-
-            PopulateFindCombobox();
-            return View();
+            if (sessions == null || sessions.Count() == 0)
+            {
+                return RedirectToAction("NoModules", "Modules");
+            }
+            else
+            {
+                PopulateFindCombobox();
+                return View();
+            }
         }
 
         // GET: StudySessions/Create
         public IActionResult Create()
         {
-            PopulateStudySessionComboBox();
-            return View();
+            ModuleManagement module = new ModuleManagement();
+            List<ModuleEntry> mods = module.GetModules(HttpContext.Session.GetInt32("UserID").Value);
+            if (mods.Count() == 0 || mods == null)
+            {
+                return RedirectToAction("NoModules", "Modules");
+            }
+            else
+            {
+                PopulateStudySessionComboBox();
+                return View();
+            }
+            
         }
 
         // POST: StudySessions/Create
@@ -70,6 +98,7 @@ namespace POE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ModuleCode,HoursStudied,DateStudied")] StudySessionHtmlModel studySession)
         {
+            ViewData["UserID"] = HttpContext.Session.GetInt32("UserID").Value;
             if (ModelState.IsValid)
             {
                 ModuleManagement moduleManagement = new ModuleManagement();
@@ -82,6 +111,7 @@ namespace POE.Controllers
 
         public void PopulateFindCombobox()
         {
+            ViewData["UserID"] = HttpContext.Session.GetInt32("UserID").Value;
             int userID = HttpContext.Session.GetInt32("UserID").Value;
             var prog6212P2Context = (from m in _context.Modules
                                      join s in _context.StudySessions on m.ModuleCode equals s.ModuleCode
@@ -92,6 +122,7 @@ namespace POE.Controllers
 
         public void PopulateStudySessionComboBox()
         {
+            ViewData["UserID"] = HttpContext.Session.GetInt32("UserID").Value;
             int userID = HttpContext.Session.GetInt32("UserID").Value;
             var prog6212P2Context = from m in _context.Modules
                                     join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
@@ -103,12 +134,9 @@ namespace POE.Controllers
 
         public async Task<IActionResult> SessionsRequired(string sortOrder)
         {
+            ViewData["UserID"] = HttpContext.Session.GetInt32("UserID").Value;
             int userID = HttpContext.Session.GetInt32("UserID").Value;
-
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.SelfHoursParm = sortOrder == "Self" ? "self_desc" : "Self";
-            ViewBag.StudiedParm = sortOrder == "Studied" ? "studied_desc" : "Studied";
-            ViewBag.LeftParm = sortOrder == "Left" ? "left_desc" : "Left";
+            
 
             var modules = (from m in _context.Modules
                           join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
@@ -121,13 +149,17 @@ namespace POE.Controllers
                               HoursStudied = TimeSpan.FromTicks(me.HoursStudied),
                               HoursLeft = TimeSpan.FromTicks(me.HoursLeft)
                           }).AsEnumerable();
-
-            if (modules == null)
+            
+            if (modules == null || modules.Count() == 0)
             {
                 return RedirectToAction("NoModules", "Modules");
             }
             else
             {
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+                ViewBag.SelfHoursParm = sortOrder == "Self" ? "self_desc" : "Self";
+                ViewBag.StudiedParm = sortOrder == "Studied" ? "studied_desc" : "Studied";
+                ViewBag.LeftParm = sortOrder == "Left" ? "left_desc" : "Left";
                 switch (sortOrder)
                 {
                     case "name_desc":

@@ -9,8 +9,9 @@
 <h1>Add Modules</h1>
 
 <h4>Module Information</h4>
+<h6 style="color:#8C52FF;">Note: You may only add up to 6 modules.</h6>
 <hr/>
-<div class="row">
+<div class="row" >
     <div class="col-md-4">
         <form asp-action="Create" id="modFrm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>               
@@ -45,8 +46,14 @@
             
         </form>
     </div>
-    <div>
-        <select style="appearance:listbox;" class="form-control" asp-items="ViewBag.lstModules"></select>
+    <div class="col-md-6" style="margin-left: 10rem;height: 300px;margin-top: 30px;">
+        <h4 style="color:#8C52FF;">Modules Added:</h4>
+         <ol type="1" style="padding-left:1rem;">
+            @foreach (var module in ViewBag.lstModules)
+            {
+                <li>@module</li>
+            }
+        </ol>
     </div>
 </div>
 

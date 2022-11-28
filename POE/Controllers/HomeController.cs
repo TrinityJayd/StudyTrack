@@ -16,16 +16,17 @@ namespace POE.Controllers
         public IActionResult Index()
         {
            
-
             //Check if the session variable exists
             if (HttpContext.Session.GetInt32("UserID") == null)
             {
                 //If it doesn't, create it
                 HttpContext.Session.SetInt32("UserID", 0);
+                ViewData["UserID"] = 0;
                 return View();
             }
             else
             {
+                ViewData["UserID"] = HttpContext.Session.GetInt32("UserID");
                 return RedirectToAction("Index", "Modules");
             }
             

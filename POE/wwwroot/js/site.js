@@ -16,7 +16,8 @@ $('#toHome').on('click', function () {
         $('#modCode').html('');
         $('#modName').html('');
         $('#modCredits').html('');
-        $('#hours').html('');
+        $('#hours').html('');     
+
         window.location.href = "Index";
     }
 });
@@ -24,4 +25,11 @@ $('#toHome').on('click', function () {
 $('#toHomeMods').on('click', function () {
         window.location.href = "Index";   
 });
+
+$('#modLimit').on('click', function () {
+    window.location.href = "Index";
+});
+
+
+
 
