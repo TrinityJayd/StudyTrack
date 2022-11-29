@@ -1,0 +1,37 @@
+﻿@model IEnumerable<DbManagement.Models.FutureStudySession>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateToStudy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Module)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateToStudy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Module.ModuleCode)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.FutureId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FutureId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

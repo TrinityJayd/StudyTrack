@@ -7,6 +7,7 @@ namespace DbManagement.Models
     {
         public Module()
         {
+            FutureStudySessions = new HashSet<FutureStudySession>();
             ModuleEntries = new HashSet<ModuleEntry>();
         }
 
@@ -17,6 +18,7 @@ namespace DbManagement.Models
         public decimal ClassHours { get; set; }
         public long SelfStudyHours { get; set; }
 
+        public virtual ICollection<FutureStudySession> FutureStudySessions { get; set; }
         public virtual ICollection<ModuleEntry> ModuleEntries { get; set; }
     }
 }

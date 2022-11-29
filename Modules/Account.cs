@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Modules
 {
-    public class Account
+
+public class Account
     {
         //Create an object of validation class
         ValidationMethods security = new ValidationMethods();
@@ -11,7 +12,7 @@ namespace Modules
         public int Login(string username, string password)
         {
             using Prog6212P2Context appDataContext = new Prog6212P2Context();
-            
+
             //Check if the user exists
             bool userFound = appDataContext.Users.Any(u => u.Username.Equals(username));
 
@@ -44,8 +45,8 @@ namespace Modules
             user.Password = hashedPassword;
 
             var lastEntry = await appDataContext.Users.OrderByDescending(x => x.UserId).FirstOrDefaultAsync();
-            
-            
+
+
             if (lastEntry == null)
             {
                 user.UserId = 1;
@@ -101,5 +102,5 @@ namespace Modules
             return phoneFound;
         }
 
-    }  
+    }
 }

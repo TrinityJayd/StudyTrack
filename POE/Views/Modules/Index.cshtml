@@ -18,7 +18,9 @@
 </head>
 <body>
     <main>
-
+        <div id="reminder" style="background-color:#8C52FF; color:white; height:2rem; border-radius:30px;">
+            <p style="padding-top: 3px;margin-left: 15px;font-weight:bold;">@ViewBag.Reminder</p>
+        </div>
         <div class="album py-5" style="padding-top:1.5rem">
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -65,12 +67,19 @@
                     <div class="col">
                         <div class="card ">
                             <img id="home-img" class="bd-placeholder-img card-img-top" width="100%" height="225" src="~/images/online.png" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <a id="home-btns" asp-controller="FutureStudySessions" asp-action="Create">
+                                <input type="submit" value="Remind Me To Study" class="submit-btns home-btn" />
+                                </a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card ">
+                            <img id="home-img" class="bd-placeholder-img card-img-top" width="100%" height="225" src="~/images/online.png" preserveAspectRatio="xMidYMid slice" focusable="false">
                             <a id="home-btns" asp-controller="Modules" asp-action="Delete">
                                 <input type="submit" value="Study Statistics" class="submit-btns home-btn" />
                                 </a>
                         </div>
                     </div>
-                    
                     
                 </div>
             </div>

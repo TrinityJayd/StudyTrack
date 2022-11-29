@@ -17,6 +17,7 @@ namespace DbManagement.Models
         {
         }
 
+        public virtual DbSet<FutureStudySession> FutureStudySessions { get; set; } = null!;
         public virtual DbSet<Module> Modules { get; set; } = null!;
         public virtual DbSet<ModuleEntry> ModuleEntries { get; set; } = null!;
         public virtual DbSet<StudySession> StudySessions { get; set; } = null!;
@@ -37,6 +38,34 @@ namespace DbManagement.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<FutureStudySession>(entity =>
+            {
+                entity.HasKey(e => e.FutureId)
+                    .HasName("PK__Future_S__BACE7BD4885B1327");
+
+                entity.ToTable("Future_Study_Sessions");
+
+                entity.Property(e => e.FutureId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("Future_ID");
+
+                entity.Property(e => e.DateToStudy).HasColumnType("date");
+
+                entity.Property(e => e.ModuleId).HasColumnName("ModuleID");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.Module)
+                    .WithMany(p => p.FutureStudySessions)
+                    .HasForeignKey(d => d.ModuleId)
+                    .HasConstraintName("FK__Future_St__Modul__6EF57B66");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.FutureStudySessions)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Future_St__UserI__6E01572D");
+            });
+
             modelBuilder.Entity<Module>(entity =>
             {
                 entity.ToTable("Module");

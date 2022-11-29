@@ -1,13 +1,13 @@
 ﻿using DbManagement.Models;
-using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Modules;
 
 namespace POE.Controllers
 {
     public class UsersController : Controller
     {
-        
+
         private readonly Prog6212P2Context _context;
 
         public UsersController(Prog6212P2Context context)
@@ -18,7 +18,7 @@ namespace POE.Controllers
         // GET: Users/Create
         public IActionResult Create()
         {
-            return View();           
+            return View();
         }
 
         // POST: Users/Create
@@ -72,7 +72,7 @@ namespace POE.Controllers
                 else
                 {
                     await account.Register(user);
-                    return RedirectToAction("Login","Users");
+                    return RedirectToAction("Login", "Users");
                 }
 
                 return View();
@@ -96,7 +96,7 @@ namespace POE.Controllers
                 Account login = new Account();
                 int result = login.Login(username, password);
                 if (result > 0)
-                {
+                {                    
                     HttpContext.Session.SetInt32("UserID", result);
                     ViewData["UserID"] = result;
                     return RedirectToAction("Index", "Home");
@@ -106,7 +106,7 @@ namespace POE.Controllers
                     ModelState.AddModelError("Password", "Username or password is incorrect.");
                     return View();
                 }
-                
+
             }
             return View();
         }
