@@ -101,8 +101,8 @@ namespace POE.Controllers
             ViewData["UserID"] = HttpContext.Session.GetInt32("UserID").Value;
             if (ModelState.IsValid)
             {
-                ModuleManagement moduleManagement = new ModuleManagement();
-                await moduleManagement.AddStudySession(studySession, HttpContext.Session.GetInt32("UserID").Value);
+                StudySessionManagement moduleManagement = new StudySessionManagement();
+                await moduleManagement.ConvertStudySession(studySession, HttpContext.Session.GetInt32("UserID").Value);
                 return RedirectToAction("Index", "Modules");
             }
             PopulateStudySessionComboBox();

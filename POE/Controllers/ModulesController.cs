@@ -42,8 +42,9 @@ namespace POE.Controllers
             }
             else
             {
+                FutureStudySessionManagement futureStudySessionManagement = new FutureStudySessionManagement();
                 //Alert the user
-                ViewData["Reminder"] = "No module to study for today. Take a break and come back later.";
+                ViewData["Reminder"] = futureStudySessionManagement.SessionToday(userID);
                 return View();
             }
 

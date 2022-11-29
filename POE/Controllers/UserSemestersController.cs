@@ -22,34 +22,16 @@ namespace POE.Controllers
         // GET: UserSemesters
         public async Task<IActionResult> Index()
         {
-            return View();
-        }
-
-        // GET: UserSemesters/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.UserSemesters == null)
-            {
-                return NotFound();
-            }
-
             int userID = HttpContext.Session.GetInt32("UserID").Value;
-            //get semester details where user id matches the semester user id
-            var userSemester = await _context.UserSemesters
-                .FirstOrDefaultAsync(m => m.UserId == userID);
-
-            
-            if (userSemester == null)
-            {
-                return NotFound();
-            }
-
-            return View(userSemester);
-        }
+            ViewData["UserID"] = userID;
+            return View();
+        }        
 
         // GET: UserSemesters/Create
         public IActionResult Create()
-        {           
+        {
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            ViewData["UserID"] = userID;
             return View();
         }
 
@@ -60,13 +42,23 @@ namespace POE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("SemesterStartDate,WeeksInSemester")] UserSemester userSemester)
         {
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            ViewData["UserID"] = userID;
             if (ModelState.IsValid)
             {
                 SemesterManagement semester = new SemesterManagement();
-                userSemester.UserId = HttpContext.Session.GetInt32("UserID");
-                await semester.AddSemester(userSemester);
+                userSemester.UserId = userID;
+                if (semester.SemesterExists(userID))
+                {
+                    await semester.UpdateSemester(userID, userSemester.SemesterStartDate, userSemester.WeeksInSemester);
+                }
+                else
+                {
+                    await semester.AddSemester(userSemester);
+                }
+
                 //Redirect to home page
-                return RedirectToAction("Index", "Modules");                
+                return RedirectToAction("Create", "Modules");
             }           
             return View();
         }

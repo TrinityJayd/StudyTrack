@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DbManagement;
+using DbManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DbManagement.Models;
+using Modules;
 
 namespace POE.Controllers
 {
@@ -21,37 +19,48 @@ namespace POE.Controllers
         // GET: FutureStudySessions
         public async Task<IActionResult> Index()
         {
-            ViewData["UserID"] = HttpContext.Session.GetInt32("UserID").Value;
-            var prog6212P2Context = _context.FutureStudySessions.Include(f => f.Module).Include(f => f.User);
-            return View(await prog6212P2Context.ToListAsync());
-        }
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            ViewData["UserID"] = userID;
 
-        // GET: FutureStudySessions/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.FutureStudySessions == null)
+            var sessions = from s in _context.FutureStudySessions
+                           join m in _context.Modules on s.ModuleId equals m.ModuleId
+                           join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
+                           where s.UserId == userID && me.UserId == userID
+                           select new FutureStudySessionHtmlModel
+                           {
+                               ModuleCode = m.ModuleCode,
+                               DateToStudy = s.DateToStudy
+                           };
+
+            ViewData["Sessions"] = await sessions.ToListAsync();
+            if (sessions == null || sessions.Count() == 0)
             {
-                return NotFound();
+                return RedirectToAction("NoModules", "Modules");
             }
-
-            var futureStudySession = await _context.FutureStudySessions
-                .Include(f => f.Module)
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.FutureId == id);
-            if (futureStudySession == null)
+            else
             {
-                return NotFound();
+                PopulateStudySessionComboBox();
+                return View();
             }
-
-            return View(futureStudySession);
         }
 
         // GET: FutureStudySessions/Create
         public IActionResult Create()
         {
-            ViewData["ModuleId"] = new SelectList(_context.Modules, "ModuleId", "ModuleCode");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "CellNumber");
-            return View();
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            ViewData["UserID"] = userID;
+            ModuleManagement mod = new ModuleManagement();
+            var modules = mod.GetModules(userID);
+            if (modules.Count() == 0 || modules == null)
+            {
+                return RedirectToAction("NoModules", "Modules");
+            }
+            else
+            {
+                PopulateStudySessionComboBox();
+                return View();
+            }
+
         }
 
         // POST: FutureStudySessions/Create
@@ -59,58 +68,40 @@ namespace POE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FutureId,UserId,ModuleId,DateToStudy")] FutureStudySession futureStudySession)
+        public async Task<IActionResult> Create([Bind("ModuleCode,DateToStudy")] FutureStudySessionHtmlModel futureStudySession)
         {
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            ViewData["UserID"] = userID;
             if (ModelState.IsValid)
             {
-                _context.Add(futureStudySession);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                FutureStudySessionManagement futureStudySessionManagement = new FutureStudySessionManagement();
+                if (futureStudySession.DateToStudy <= DateTime.Now)
+                {
+                    ModelState.AddModelError("DateToStudy", "Date must be in the future.");
+                }
+                else if (futureStudySessionManagement.CheckIfSessionAlreadyScheduled(futureStudySession.DateToStudy, userID))   
+                {
+                    ModelState.AddModelError("DateToStudy", "You already have a module scheduled for this day.");
+                }
+                else
+                {                  
+                    await futureStudySessionManagement.ConvertFutureSession(futureStudySession, userID);
+                    return RedirectToAction("Index", "Modules");
+                }               
             }
-            ViewData["ModuleId"] = new SelectList(_context.Modules, "ModuleId", "ModuleCode", futureStudySession.ModuleId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "CellNumber", futureStudySession.UserId);
+            PopulateStudySessionComboBox();
             return View(futureStudySession);
         }
 
-
-        // GET: FutureStudySessions/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public void PopulateStudySessionComboBox()
         {
-            if (id == null || _context.FutureStudySessions == null)
-            {
-                return NotFound();
-            }
-
-            var futureStudySession = await _context.FutureStudySessions
-                .Include(f => f.Module)
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.FutureId == id);
-            if (futureStudySession == null)
-            {
-                return NotFound();
-            }
-
-            return View(futureStudySession);
+            ViewData["UserID"] = HttpContext.Session.GetInt32("UserID").Value;
+            int userID = HttpContext.Session.GetInt32("UserID").Value;
+            var prog6212P2Context = from m in _context.Modules
+                                    join me in _context.ModuleEntries on m.ModuleId equals me.ModuleId
+                                    where me.UserId == userID
+                                    select m;
+            ViewData["Modules"] = new SelectList(prog6212P2Context, "ModuleCode", "ModuleCode");
         }
-
-        // POST: FutureStudySessions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.FutureStudySessions == null)
-            {
-                return Problem("Entity set 'Prog6212P2Context.FutureStudySessions'  is null.");
-            }
-            var futureStudySession = await _context.FutureStudySessions.FindAsync(id);
-            if (futureStudySession != null)
-            {
-                _context.FutureStudySessions.Remove(futureStudySession);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
     }
 }
