@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="card mb-2" id="landing-container">
+    <div class="row g-0">
+        <div class="col-lg-7 col-md-7" id="large-screen-img1" style="display:none;"> 
+            <img src="images/landing.png" class="landing-img img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-lg-5 col-md-5">
+            <div class="card-body" id="landing-body">
+                <h1 class="landing-heading">We Help You</h1>
+                <h1 class="landing-heading"><span style="color:#8C52FF">Achieve</span> Your</h1>
+                <h1 class="landing-heading">Goals</h1>
+                <a asp-controller="Users" asp-action="Create">
+                    <input type="submit" value="Sign Up" class="submit-btns"  />
+                </a>      
+                <a asp-controller="Users" asp-action="Login">
+                <input type="submit" value="Login" class="submit-btns login-btn" />
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-7 col-md-7" id="large-screen-img2">
+            <img src="images/landing.png" class="landing-img img-fluid rounded-start" alt="...">
+        </div>
+    </div>
+</div>

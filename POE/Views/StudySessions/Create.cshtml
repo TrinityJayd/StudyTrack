@@ -1,0 +1,34 @@
+﻿@model DbManagement.StudySessionHtmlModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Log a study session</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <div class="form-group">
+                <label asp-for="ModuleCode" class="control-label">Module Code</label>
+                <select asp-for="ModuleCode" required style="appearance:menulist;" class="form-control" asp-items="ViewBag.AddStudySession"></select>
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <label asp-for="HoursStudied" class="control-label">Hours/Minutes Studied</label>
+                <input asp-for="HoursStudied" required min="01:00:00" max="11:59:00"  type="time" class="form-control" />
+                <span asp-validation-for="HoursStudied" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateStudied" class="control-label">Date Studied</label>
+                <input asp-for="DateStudied" required type="date" class="form-control" />
+                <span asp-validation-for="DateStudied" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="submit-btns" />
+            </div>
+        </form>
+    </div>
+</div>
+

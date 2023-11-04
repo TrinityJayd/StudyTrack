@@ -1,0 +1,54 @@
+﻿@model DbManagement.ModuleHtmlModule
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>All modules</h1>
+<hr/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Module Code
+            </th>
+            <th>
+                Module Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Credits)
+            </th>
+            <th>
+                Class Hours
+            </th>
+            <th>
+                Self Study Hours
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var module in ViewBag.ModuleData)
+        {
+            <tr>
+                <td >
+                    @module.ModuleCode
+                </td>
+                <td>
+                    @module.ModuleName
+                </td>
+                <td>
+                    @module.Credits
+                </td>
+                <td>
+                    @module.ClassHours
+                </td>
+                <td>
+                    @module.SelfStudyHours
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@module.ModuleId" class="delete-links">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

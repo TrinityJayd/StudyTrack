@@ -1,0 +1,47 @@
+﻿@model Modules.DGSession
+
+@{
+    ViewData["Title"] = "Index";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<h1>Study Sesssions</h1>
+<form asp-action="Index" id="sessionFrm">
+    <label asp-for="ModCode" class="control-label">Select the module you want to see study sessions for:</label>
+    <select asp-for="ModCode" id="moduleSelect" style="appearance:menulist; width:20%;" class="form-control" asp-items="ViewBag.Modules"></select>
+    <input id="find" type="submit" value="Find" class="submit-btns" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Module Code
+            </th>
+            <th>
+                Time Studied
+            </th>
+            <th>
+                Date Studied
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var session in ViewBag.Sessions)
+    {
+        <tr>
+            <td>
+                     @session.ModuleCode
+            </td>
+            <td>
+                     @session.TimeStudied
+            </td>
+            <td>
+                     @session.DateStudied.ToString("dd/MM/yyyy")
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿@model Modules.DGModule
+
+@{
+    ViewData["Title"] = "SessionsRequired";
+}
+
+<h1>Study Sessions Required</h1>
+<hr/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Module Code", "SessionsRequired", new { sortOrder = ViewBag.NameSortParm}, new { @class = "sort-links" })
+            </th>
+            <th>
+                @Html.ActionLink("Self Study Hours", "SessionsRequired", new { sortOrder = ViewBag.SelfHoursParm}, new { @class = "sort-links" })
+            </th>
+            <th>
+                @Html.ActionLink("Hours Studied", "SessionsRequired", new { sortOrder = ViewBag.StudiedParm}, new { @class = "sort-links" })
+            </th>
+            <th>
+                @Html.ActionLink("Hours Left", "SessionsRequired", new { sortOrder = ViewBag.LeftParm}, new { @class = "sort-links" })
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.HoursLeft) {
+        <tr>
+            <td>
+                    @item.ModuleCode
+            </td>
+            <td>
+                    @item.SelfStudyHours
+            </td>
+            <td>
+                    @item.HoursStudied
+            </td>
+            <td>
+                    @item.HoursLeft
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

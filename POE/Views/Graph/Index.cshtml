@@ -1,0 +1,50 @@
+﻿@model DataPoint
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+
+//Code attribution
+//Link:https://canvasjs.com/asp-net-mvc-charts/bar-chart/    
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Ideal Study Hours vs Actual Study Hours",
+		fontFamily: "Verdana"
+	},
+	axisX:{
+		labelFontSize: 15,
+	},
+	axisY: {
+		title: "Hours",
+		labelFontSize: 15,
+		gridThickness: 0,
+	},
+	data: [{
+		type: "bar",
+		indexLabel: "{y}",
+		dataPoints: @Html.Raw(ViewBag.DataPoints)
+	}]
+});
+chart.render();
+
+}
+</script>
+</head>
+<body>
+	<form asp-action="Index" >
+	<label asp-for="ModCode" class="control-label">Select the module you want to see the graph for:</label>
+	<select asp-for="ModCode" id="moduleSelect" style="appearance:menulist; width:20%;" class="form-control" asp-items="ViewBag.Modules"></select>
+	<input id="find" type="submit" value="Find" class="submit-btns" />
+</form>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>	
+</body>
+</html> 
+

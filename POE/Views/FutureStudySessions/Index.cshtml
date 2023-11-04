@@ -1,0 +1,33 @@
+﻿@model DbManagement.FutureStudySessionHtmlModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Future Study Sessions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Module
+            </th>
+            <th>
+                Date To Study
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.Sessions) {
+        <tr>
+            <td>
+                    @item.ModuleCode
+            </td>
+            <td>
+                    @item.DateToStudy.ToString("dd/MM/yyyy")
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

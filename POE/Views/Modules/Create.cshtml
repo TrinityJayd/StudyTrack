@@ -1,0 +1,63 @@
+﻿@model DbManagement.Models.Module
+
+@{
+    ViewData["Title"] = "Create";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<h1>Add Modules</h1>
+
+<h4>Module Information</h4>
+<h6 style="color:#8C52FF;">Note: You may only add up to 6 modules.</h6>
+<hr/>
+<div class="row" >
+    <div class="col-md-4">
+        <form asp-action="Create" id="modFrm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>               
+            <div class="form-group">
+                <label asp-for="ModuleCode" class="control-label">Module Code</label>
+                <input id="moduleCode" required asp-for="ModuleCode"  class="form-control" />
+                <span id="modCode" asp-validation-for="ModuleCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModuleName" class="control-label">Module Name</label>
+                <input id="moduleName" required asp-for="ModuleName" class="form-control" />
+                <span id="modName" asp-validation-for="ModuleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Credits" class="control-label"></label>
+                <input id="moduleCredits" required asp-for="Credits" type="number" min="8" max="15" class="form-control" />
+                <span id="modCredits"  asp-validation-for="Credits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClassHours" class="control-label">Class Hours</label>
+                <input id="moduleHours" required asp-for="ClassHours" type="number" min="2" max="6" class="form-control" />
+                <span id="hours" asp-validation-for="ClassHours" class="text-danger"></span>
+            </div>        
+            <div style="display:flex;">
+                <div class="form-group" >
+                    <input id="addModule" type="submit" value="Add Module" class="submit-btns" />
+                </div>
+                <div  >
+                    <input id="toHome" type="submit" value="To Home" class="submit-btns" style="margin-left:15px;" />
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    <div id="listMods" class="col-md-6" style="margin-left: 10rem;height: 300px;margin-top: 30px;">
+        <h4 style="color:#8C52FF;">Modules Added:</h4>
+         <ol type="1" style="padding-left:1rem;">
+                @foreach (var module in ViewBag.lstModules)
+                {
+                    <li>@module</li>
+                }          
+        </ol>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
